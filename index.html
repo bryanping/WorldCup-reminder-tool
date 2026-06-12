@@ -1,10 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
+    
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name='impact-site-verification' value='e8845c05-d384-4968-9272-03ab97bd03b6'>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1966935992240369" crossorigin="anonymous"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1Z3FMHJKJ3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1Z3FMHJKJ3');
+</script>
 <title>2026 世界盃賽事提醒</title>
 <style>
 :root{--bg:#0b1220;--card:#131c30;--card2:#1a2742;--tx:#e8eefc;--mut:#8fa3c8;--ac:#4f8cff;--ac2:#22c55e;--gold:#fbbf24;--bd:#243352;--red:#ef4444}
@@ -24,6 +33,10 @@ select:focus,input:focus{border-color:var(--ac)}
 .chip.on{background:var(--ac);border-color:var(--ac);color:#fff}
 .chip.star{color:var(--gold)}
 .chip.star.on{background:var(--gold);border-color:var(--gold);color:#1a1200}
+.flags{display:flex;gap:4px;overflow-x:auto;padding:6px 2px;margin:2px 0 4px;scrollbar-width:thin}
+.fbtn{flex:0 0 auto;font-size:1.35rem;line-height:1;background:var(--card2);border:2px solid var(--bd);border-radius:10px;padding:6px 8px;cursor:pointer;user-select:none;opacity:.85}
+.fbtn:hover{border-color:var(--ac);opacity:1}
+.fbtn.on{border-color:var(--gold);background:#2a2410;opacity:1}
 .next{background:linear-gradient(120deg,#16244a,#0e3a2e);border:1px solid var(--bd);border-radius:14px;padding:12px 16px;margin:4px 0 14px;display:none}
 .next.show{display:block}
 .next .nt{color:var(--mut);font-size:.75rem;margin-bottom:4px}
@@ -64,6 +77,7 @@ footer{color:var(--mut);font-size:.75rem;text-align:center;padding:24px 0 16px}
   </select>
 </header>
 <div class="sub" id="tSub"></div>
+<div class="flags" id="flagBar"></div>
 <div class="next" id="nextBox"><div class="nt" id="nextLbl"></div><div class="nm" id="nextMatch"></div><div class="cd" id="nextCd"></div></div>
 <div class="bar">
   <input type="text" id="q" >
@@ -81,7 +95,7 @@ footer{color:var(--mut);font-size:.75rem;text-align:center;padding:24px 0 16px}
   <a class="chip" id="paypalChip" target="_blank" rel="noopener" style="text-decoration:none">💙 PayPal</a>
 </div>
 <div id="list"></div>
-<footer><span id="tTz"></span> <b id="tzName"></b> · <span id="tData"></span><br><span id="tAff"></span></footer>
+<footer><span id="tTz"></span> <b id="tzName"></b> · <span id="tData"></span></footer>
 </div>
 <div class="toast" id="toast"></div>
 <script>
@@ -89,7 +103,6 @@ footer{color:var(--mut);font-size:.75rem;text-align:center;padding:24px 0 16px}
 const CFG={
  coffee:"https://ko-fi.com/bryanping",
  paypal:"https://paypal.me/bryanping",
- streams:[],                                  // 聯盟連結核准後填入：[["DAZN","URL"],["fuboTV","URL"]]
  adsense:"ca-pub-1966935992240369"
 };
 // ===== teams: code -> [flag, en, zh, ja, es, fr, ar]
@@ -309,7 +322,6 @@ function applyStatic(){
  $("tNotif").textContent=Notification&&Notification.permission==="granted"?s.notifOn:s.notif;
  $("tSelAll").textContent=s.selAll;$("tUnselAll").textContent=s.unselAll;
  $("tCoffee").textContent=s.coffee;$("coffeeChip").href=CFG.coffee;$("paypalChip").href=CFG.paypal;
- $("tAff").textContent=s.aff;
  $("tTz").textContent=s.tz;$("tzName").textContent=Intl.DateTimeFormat().resolvedOptions().timeZone;
  $("tData").textContent=s.data;$("nextLbl").textContent=s.next;
  const ts=$("teamSel");ts.innerHTML="";
@@ -326,6 +338,13 @@ function applyStatic(){
   c.onclick=()=>{stage=k;localStorage.setItem("wc_stage",k);applyStatic();render()};sc.appendChild(c)});
  $("myChip").classList.toggle("on",myOnly);
  $("myCount").textContent=stars.size;
+ const fb=$("flagBar");fb.innerHTML="";
+ Object.keys(TM).forEach(c=>{
+  const b=document.createElement("span");
+  b.className="fbtn"+(team===c?" on":"");
+  b.textContent=fl(c);b.title=tn(c);
+  b.onclick=()=>{team=team===c?"all":c;$("teamSel").value=team;applyStatic();render()};
+  fb.appendChild(b)});
 }
 function filtered(){
  const q=query.trim().toLowerCase();
@@ -355,7 +374,6 @@ function render(){
    <button class="btn star${stars.has(m[0])?" on":""}" data-star="${m[0]}">★ ${stars.has(m[0])?s.added:s.add}</button>
    <a class="btn" target="_blank" rel="noopener" href="${gcalUrl(m)}">📅 ${s.gcal}</a>
    <button class="btn" data-ics="${m[0]}">📥 ${s.ics}</button>
-   ${past?"":CFG.streams.map(x=>`<a class="btn" target="_blank" rel="noopener sponsored" href="${x[1]}" title="${s.watch}">📺 ${x[0]}</a>`).join("")}
   </div>`;
   list.appendChild(card)});
  list.querySelectorAll("[data-star]").forEach(b=>b.onclick=()=>{
@@ -400,7 +418,7 @@ function scheduleNotifs(){
 $("langSel").value=lang;
 $("langSel").onchange=e=>{lang=e.target.value;localStorage.setItem("wc_lang",lang);applyStatic();render()};
 $("q").oninput=e=>{query=e.target.value;render()};
-$("teamSel").onchange=e=>{team=e.target.value;render()};
+$("teamSel").onchange=e=>{team=e.target.value;applyStatic();render()};
 $("leadSel").onchange=e=>{lead=+e.target.value;localStorage.setItem("wc_lead",lead);scheduleNotifs()};
 $("myChip").onclick=()=>{myOnly=!myOnly;applyStatic();render()};
 $("selAllChip").onclick=()=>{
