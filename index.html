@@ -86,12 +86,11 @@ footer{color:var(--mut);font-size:.75rem;text-align:center;padding:24px 0 16px}
 <script>
 // ===== 收益設定（只改這裡）=====
 const CFG={
- coffee:"https://ko-fi.com/YOUR_NAME",        // Ko-fi（支援 PayPal 收款）或 buymeacoffee.com/YOUR_NAME
- paypal:"https://paypal.me/YOUR_PAYPAL",      // PayPal.Me 直接打賞
- streams:[                                    // 聯盟連結：[顯示名, 你的 affiliate URL]
-  ["DAZN","https://www.dazn.com/?cid=YOUR_AFFILIATE_ID"],
-  ["fuboTV","https://www.fubo.tv/?irad=YOUR_IMPACT_ID"]
- ]};
+ coffee:"https://ko-fi.com/bryanping",
+ paypal:"https://paypal.me/bryanping",
+ streams:[],                                  // 聯盟連結核准後填入：[["DAZN","URL"],["fuboTV","URL"]]
+ adsense:""                                   // AdSense 核准後填入發布商 ID，例 "ca-pub-1234567890123456"
+};
 // ===== teams: code -> [flag, en, zh, ja, es, fr, ar]
 const TM={
 MEX:["🇲🇽","Mexico","墨西哥","メキシコ","México","Mexique","المكسيك"],
@@ -422,6 +421,20 @@ $("notifChip").onclick=()=>{
  if(!("Notification"in window))return;
  Notification.requestPermission().then(p=>{
   toast(p==="granted"?t().notifOn:t().notifNo);applyStatic();scheduleNotifs()})};
+// ===== Google AdSense（填 CFG.adsense 後自動啟用；單一版位在列表底部）
+if(CFG.adsense){
+ const sc=document.createElement("script");
+ sc.async=true;sc.crossOrigin="anonymous";
+ sc.src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client="+CFG.adsense;
+ document.head.appendChild(sc);
+ const ins=document.createElement("ins");
+ ins.className="adsbygoogle";ins.style.display="block";
+ ins.setAttribute("data-ad-client",CFG.adsense);
+ ins.setAttribute("data-ad-format","auto");
+ ins.setAttribute("data-full-width-responsive","true");
+ $("list").insertAdjacentElement("afterend",ins);
+ (window.adsbygoogle=window.adsbygoogle||[]).push({});
+}
 applyStatic();render();scheduleNotifs();
 setInterval(render,6e4);
 </script>
