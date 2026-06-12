@@ -71,6 +71,12 @@ select:focus,input:focus{border-color:var(--ac)}
 footer{color:var(--mut);font-size:.75rem;text-align:center;padding:24px 0 16px}
 .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--ac2);color:#06250f;font-weight:700;padding:10px 18px;border-radius:12px;font-size:.85rem;opacity:0;transition:.3s;pointer-events:none;z-index:9}
 .toast.show{opacity:1}
+.kfModal{position:fixed;inset:0;background:rgba(0,0,0,.65);display:none;align-items:center;justify-content:center;z-index:50;padding:14px}
+.kfModal.show{display:flex}
+.kfBox{background:#f9f9f9;border-radius:16px;max-width:420px;width:100%;max-height:88vh;overflow:auto;box-shadow:0 18px 60px rgba(0,0,0,.5)}
+.kfTop{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 14px;color:#222;font-weight:700;font-size:.9rem}
+.kfSkip{border:1px solid #ccc;background:#fff;color:#555;border-radius:8px;padding:5px 14px;font-size:.8rem;cursor:pointer;flex:0 0 auto}
+.kfSkip:hover{background:#eee}
 @media(max-width:520px){.acts .btn{padding:6px 9px;font-size:.74rem}}
 </style>
 </head>
@@ -102,16 +108,20 @@ footer{color:var(--mut);font-size:.75rem;text-align:center;padding:24px 0 16px}
   <span style="display:inline-flex;align-items:center">
    <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Support me', '#72a4f2', 'K6Q021981L');kofiwidget2.draw();</script>
   </span>
-  <a class="chip" id="paypalChip" target="_blank" rel="noopener" style="text-decoration:none">💙 PayPal</a>
 </div>
 <div id="list"></div>
 <footer><span id="tTz"></span> <b id="tzName"></b> · <span id="tData"></span></footer>
 </div>
 <div class="toast" id="toast"></div>
+<div class="kfModal" id="kfModal">
+ <div class="kfBox">
+  <div class="kfTop"><span id="kfMsg"></span><button class="kfSkip" id="kfClose"></button></div>
+  <iframe id="kofiframe" data-src="https://ko-fi.com/bryanping/?hidefeed=true&widget=true&embed=true&preview=true" style="border:none;width:100%;padding:4px;background:#f9f9f9;" height="560" title="bryanping"></iframe>
+ </div>
+</div>
 <script>
 // ===== 收益設定（只改這裡）=====
 const CFG={
- paypal:"https://paypal.me/bryanping",
  adsense:"ca-pub-1966935992240369"
 };
 // ===== teams: code -> [flag, en, zh, ja, es, fr, ar]
@@ -274,12 +284,12 @@ const M=[
 [104,"2026-07-19T19:00Z","f","","W101","W102","MetLife Stadium","NYC"]];
 // ===== UI strings
 const T={
-zh:{title:"2026 世界盃賽事提醒",sub:"美國・加拿大・墨西哥 · 6月11日–7月19日 · 104 場比賽",search:"搜尋球隊…",allTeams:"全部球隊",all:"全部",g:"小組賽",r32:"32 強",r16:"16 強",qf:"8 強",sf:"準決賽",tp:"季軍戰",f:"決賽",my:"我的提醒",add:"提醒",added:"已加入",gcal:"Google 日曆",ics:".ics",notif:"啟用通知",notifOn:"通知已啟用",notifNo:"通知被封鎖",exp:"匯出全部 (.ics)",none:"沒有符合的賽事",tz:"所有時間已自動換算為你的時區：",next:"下一場提醒倒數",live:"進行中",done:"已結束",grp:"組",mt:"第 {n} 場",w:"第 {n} 場勝者",l:"第 {n} 場敗者",p1:"{g} 組第一",p2:"{g} 組第二",p3:"小組第三 ({g})",lead:["提前 10 分鐘","提前 30 分鐘","提前 1 小時","提前 3 小時"],noti:"即將開賽",data:"資料：FIFA 2026 官方賽程",expEmpty:"尚未加入任何提醒",selAll:"全選目前清單",unselAll:"取消全選",selDone:"已全選 {n} 場",coffee:"請我喝咖啡",watch:"觀看直播",aff:"含聯盟連結，本站可能獲得分潤"},
-en:{title:"World Cup 2026 Match Reminders",sub:"USA · Canada · Mexico · Jun 11 – Jul 19 · 104 matches",search:"Search team…",allTeams:"All teams",all:"All",g:"Groups",r32:"R32",r16:"R16",qf:"QF",sf:"Semis",tp:"3rd place",f:"Final",my:"My reminders",add:"Remind",added:"Added",gcal:"Google Calendar",ics:".ics",notif:"Enable alerts",notifOn:"Alerts on",notifNo:"Alerts blocked",exp:"Export all (.ics)",none:"No matches found",tz:"All times shown in your timezone:",next:"Next reminder countdown",live:"LIVE",done:"Finished",grp:"Group",mt:"Match {n}",w:"Winner M{n}",l:"Loser M{n}",p1:"Group {g} winners",p2:"Group {g} runners-up",p3:"3rd place ({g})",lead:["10 min before","30 min before","1 hour before","3 hours before"],noti:"Kick-off soon",data:"Data: official FIFA 2026 schedule",expEmpty:"No reminders added yet",selAll:"Select all listed",unselAll:"Unselect all",selDone:"{n} matches selected",coffee:"Buy me a coffee",watch:"Watch live",aff:"Contains affiliate links; we may earn a commission"},
-es:{title:"Recordatorios Mundial 2026",sub:"EE. UU. · Canadá · México · 11 jun – 19 jul · 104 partidos",search:"Buscar equipo…",allTeams:"Todos los equipos",all:"Todos",g:"Grupos",r32:"16avos",r16:"Octavos",qf:"Cuartos",sf:"Semis",tp:"3er puesto",f:"Final",my:"Mis recordatorios",add:"Recordar",added:"Añadido",gcal:"Google Calendar",ics:".ics",notif:"Activar avisos",notifOn:"Avisos activados",notifNo:"Avisos bloqueados",exp:"Exportar todo (.ics)",none:"Sin partidos",tz:"Horarios en tu zona horaria:",next:"Próximo recordatorio",live:"EN VIVO",done:"Finalizado",grp:"Grupo",mt:"Partido {n}",w:"Ganador P{n}",l:"Perdedor P{n}",p1:"1.º Grupo {g}",p2:"2.º Grupo {g}",p3:"3.º de grupo ({g})",lead:["10 min antes","30 min antes","1 hora antes","3 horas antes"],noti:"Comienza pronto",data:"Datos: calendario oficial FIFA 2026",expEmpty:"Aún no hay recordatorios",selAll:"Seleccionar todo",unselAll:"Quitar todo",selDone:"{n} partidos seleccionados",coffee:"Invítame un café",watch:"Ver en vivo",aff:"Contiene enlaces de afiliados; podemos recibir comisión"},
-ja:{title:"2026 ワールドカップ試合リマインダー",sub:"アメリカ・カナダ・メキシコ · 6/11–7/19 · 全104試合",search:"チームを検索…",allTeams:"全チーム",all:"すべて",g:"グループ",r32:"R32",r16:"R16",qf:"準々決勝",sf:"準決勝",tp:"3位決定戦",f:"決勝",my:"マイリマインダー",add:"通知",added:"追加済み",gcal:"Google カレンダー",ics:".ics",notif:"通知を有効化",notifOn:"通知オン",notifNo:"通知がブロック",exp:"すべて書き出す (.ics)",none:"該当する試合がありません",tz:"時刻はあなたのタイムゾーンで表示:",next:"次のリマインダーまで",live:"試合中",done:"終了",grp:"グループ",mt:"第{n}試合",w:"第{n}試合の勝者",l:"第{n}試合の敗者",p1:"グループ{g} 1位",p2:"グループ{g} 2位",p3:"3位チーム ({g})",lead:["10分前","30分前","1時間前","3時間前"],noti:"まもなくキックオフ",data:"データ: FIFA 2026 公式日程",expEmpty:"リマインダーがありません",selAll:"表示中を全選択",unselAll:"全選択解除",selDone:"{n}試合を選択",coffee:"コーヒーをおごる",watch:"ライブ視聴",aff:"アフィリエイトリンクを含みます"},
-fr:{title:"Rappels Coupe du Monde 2026",sub:"USA · Canada · Mexique · 11 juin – 19 juil · 104 matchs",search:"Rechercher une équipe…",allTeams:"Toutes les équipes",all:"Tous",g:"Groupes",r32:"16es",r16:"8es",qf:"Quarts",sf:"Demies",tp:"3e place",f:"Finale",my:"Mes rappels",add:"Rappel",added:"Ajouté",gcal:"Google Agenda",ics:".ics",notif:"Activer alertes",notifOn:"Alertes activées",notifNo:"Alertes bloquées",exp:"Tout exporter (.ics)",none:"Aucun match trouvé",tz:"Heures affichées dans votre fuseau :",next:"Prochain rappel dans",live:"EN DIRECT",done:"Terminé",grp:"Groupe",mt:"Match {n}",w:"Vainqueur M{n}",l:"Perdant M{n}",p1:"1er groupe {g}",p2:"2e groupe {g}",p3:"3e de groupe ({g})",lead:["10 min avant","30 min avant","1 h avant","3 h avant"],noti:"Coup d'envoi imminent",data:"Données : calendrier officiel FIFA 2026",expEmpty:"Aucun rappel ajouté",selAll:"Tout sélectionner",unselAll:"Tout désélectionner",selDone:"{n} matchs sélectionnés",coffee:"Offrez-moi un café",watch:"Regarder en direct",aff:"Contient des liens affiliés ; nous pouvons toucher une commission"},
-ar:{title:"تذكير مباريات كأس العالم 2026",sub:"أمريكا · كندا · المكسيك · 11 يونيو – 19 يوليو · 104 مباراة",search:"ابحث عن منتخب…",allTeams:"كل المنتخبات",all:"الكل",g:"المجموعات",r32:"دور الـ32",r16:"دور الـ16",qf:"ربع النهائي",sf:"نصف النهائي",tp:"المركز الثالث",f:"النهائي",my:"تذكيراتي",add:"تذكير",added:"تمت الإضافة",gcal:"تقويم Google",ics:".ics",notif:"تفعيل التنبيهات",notifOn:"التنبيهات مفعلة",notifNo:"التنبيهات محظورة",exp:"تصدير الكل (.ics)",none:"لا توجد مباريات",tz:"الأوقات حسب منطقتك الزمنية:",next:"العد التنازلي للتذكير التالي",live:"مباشر",done:"انتهت",grp:"المجموعة",mt:"المباراة {n}",w:"الفائز م{n}",l:"الخاسر م{n}",p1:"متصدر المجموعة {g}",p2:"وصيف المجموعة {g}",p3:"ثالث المجموعات ({g})",lead:["قبل 10 دقائق","قبل 30 دقيقة","قبل ساعة","قبل 3 ساعات"],noti:"المباراة على وشك البدء",data:"البيانات: جدول فيفا 2026 الرسمي",expEmpty:"لا توجد تذكيرات",selAll:"تحديد كل القائمة",unselAll:"إلغاء التحديد",selDone:"تم تحديد {n} مباراة",coffee:"اشترِ لي قهوة",watch:"شاهد البث",aff:"يحتوي على روابط شراكة وقد نحصل على عمولة"}};
+zh:{title:"2026 世界盃賽事提醒",sub:"美國・加拿大・墨西哥 · 6月11日–7月19日 · 104 場比賽",search:"搜尋球隊…",allTeams:"全部球隊",all:"全部",g:"小組賽",r32:"32 強",r16:"16 強",qf:"8 強",sf:"準決賽",tp:"季軍戰",f:"決賽",my:"我的提醒",add:"提醒",added:"已加入",gcal:"Google 日曆",ics:".ics",notif:"啟用通知",notifOn:"通知已啟用",notifNo:"通知被封鎖",exp:"匯出全部 (.ics)",none:"沒有符合的賽事",tz:"所有時間已自動換算為你的時區：",next:"下一場提醒倒數",live:"進行中",done:"已結束",grp:"組",mt:"第 {n} 場",w:"第 {n} 場勝者",l:"第 {n} 場敗者",p1:"{g} 組第一",p2:"{g} 組第二",p3:"小組第三 ({g})",lead:["提前 10 分鐘","提前 30 分鐘","提前 1 小時","提前 3 小時"],noti:"即將開賽",data:"資料：FIFA 2026 官方賽程",expEmpty:"尚未加入任何提醒",selAll:"全選目前清單",unselAll:"取消全選",selDone:"已全選 {n} 場",coffee:"請我喝咖啡",watch:"觀看直播",aff:"含聯盟連結，本站可能獲得分潤",kfMsg:"覺得好用嗎？請我喝杯咖啡支持 ☕",kfSkip:"跳過"},
+en:{title:"World Cup 2026 Match Reminders",sub:"USA · Canada · Mexico · Jun 11 – Jul 19 · 104 matches",search:"Search team…",allTeams:"All teams",all:"All",g:"Groups",r32:"R32",r16:"R16",qf:"QF",sf:"Semis",tp:"3rd place",f:"Final",my:"My reminders",add:"Remind",added:"Added",gcal:"Google Calendar",ics:".ics",notif:"Enable alerts",notifOn:"Alerts on",notifNo:"Alerts blocked",exp:"Export all (.ics)",none:"No matches found",tz:"All times shown in your timezone:",next:"Next reminder countdown",live:"LIVE",done:"Finished",grp:"Group",mt:"Match {n}",w:"Winner M{n}",l:"Loser M{n}",p1:"Group {g} winners",p2:"Group {g} runners-up",p3:"3rd place ({g})",lead:["10 min before","30 min before","1 hour before","3 hours before"],noti:"Kick-off soon",data:"Data: official FIFA 2026 schedule",expEmpty:"No reminders added yet",selAll:"Select all listed",unselAll:"Unselect all",selDone:"{n} matches selected",coffee:"Buy me a coffee",watch:"Watch live",aff:"Contains affiliate links; we may earn a commission",kfMsg:"Find this useful? Support with a coffee ☕",kfSkip:"Skip"},
+es:{title:"Recordatorios Mundial 2026",sub:"EE. UU. · Canadá · México · 11 jun – 19 jul · 104 partidos",search:"Buscar equipo…",allTeams:"Todos los equipos",all:"Todos",g:"Grupos",r32:"16avos",r16:"Octavos",qf:"Cuartos",sf:"Semis",tp:"3er puesto",f:"Final",my:"Mis recordatorios",add:"Recordar",added:"Añadido",gcal:"Google Calendar",ics:".ics",notif:"Activar avisos",notifOn:"Avisos activados",notifNo:"Avisos bloqueados",exp:"Exportar todo (.ics)",none:"Sin partidos",tz:"Horarios en tu zona horaria:",next:"Próximo recordatorio",live:"EN VIVO",done:"Finalizado",grp:"Grupo",mt:"Partido {n}",w:"Ganador P{n}",l:"Perdedor P{n}",p1:"1.º Grupo {g}",p2:"2.º Grupo {g}",p3:"3.º de grupo ({g})",lead:["10 min antes","30 min antes","1 hora antes","3 horas antes"],noti:"Comienza pronto",data:"Datos: calendario oficial FIFA 2026",expEmpty:"Aún no hay recordatorios",selAll:"Seleccionar todo",unselAll:"Quitar todo",selDone:"{n} partidos seleccionados",coffee:"Invítame un café",watch:"Ver en vivo",aff:"Contiene enlaces de afiliados; podemos recibir comisión",kfMsg:"¿Te resulta útil? Apóyame con un café ☕",kfSkip:"Omitir"},
+ja:{title:"2026 ワールドカップ試合リマインダー",sub:"アメリカ・カナダ・メキシコ · 6/11–7/19 · 全104試合",search:"チームを検索…",allTeams:"全チーム",all:"すべて",g:"グループ",r32:"R32",r16:"R16",qf:"準々決勝",sf:"準決勝",tp:"3位決定戦",f:"決勝",my:"マイリマインダー",add:"通知",added:"追加済み",gcal:"Google カレンダー",ics:".ics",notif:"通知を有効化",notifOn:"通知オン",notifNo:"通知がブロック",exp:"すべて書き出す (.ics)",none:"該当する試合がありません",tz:"時刻はあなたのタイムゾーンで表示:",next:"次のリマインダーまで",live:"試合中",done:"終了",grp:"グループ",mt:"第{n}試合",w:"第{n}試合の勝者",l:"第{n}試合の敗者",p1:"グループ{g} 1位",p2:"グループ{g} 2位",p3:"3位チーム ({g})",lead:["10分前","30分前","1時間前","3時間前"],noti:"まもなくキックオフ",data:"データ: FIFA 2026 公式日程",expEmpty:"リマインダーがありません",selAll:"表示中を全選択",unselAll:"全選択解除",selDone:"{n}試合を選択",coffee:"コーヒーをおごる",watch:"ライブ視聴",aff:"アフィリエイトリンクを含みます",kfMsg:"役に立ちましたか？コーヒーで応援 ☕",kfSkip:"スキップ"},
+fr:{title:"Rappels Coupe du Monde 2026",sub:"USA · Canada · Mexique · 11 juin – 19 juil · 104 matchs",search:"Rechercher une équipe…",allTeams:"Toutes les équipes",all:"Tous",g:"Groupes",r32:"16es",r16:"8es",qf:"Quarts",sf:"Demies",tp:"3e place",f:"Finale",my:"Mes rappels",add:"Rappel",added:"Ajouté",gcal:"Google Agenda",ics:".ics",notif:"Activer alertes",notifOn:"Alertes activées",notifNo:"Alertes bloquées",exp:"Tout exporter (.ics)",none:"Aucun match trouvé",tz:"Heures affichées dans votre fuseau :",next:"Prochain rappel dans",live:"EN DIRECT",done:"Terminé",grp:"Groupe",mt:"Match {n}",w:"Vainqueur M{n}",l:"Perdant M{n}",p1:"1er groupe {g}",p2:"2e groupe {g}",p3:"3e de groupe ({g})",lead:["10 min avant","30 min avant","1 h avant","3 h avant"],noti:"Coup d'envoi imminent",data:"Données : calendrier officiel FIFA 2026",expEmpty:"Aucun rappel ajouté",selAll:"Tout sélectionner",unselAll:"Tout désélectionner",selDone:"{n} matchs sélectionnés",coffee:"Offrez-moi un café",watch:"Regarder en direct",aff:"Contient des liens affiliés ; nous pouvons toucher une commission",kfMsg:"Utile ? Soutenez-moi avec un café ☕",kfSkip:"Passer"},
+ar:{title:"تذكير مباريات كأس العالم 2026",sub:"أمريكا · كندا · المكسيك · 11 يونيو – 19 يوليو · 104 مباراة",search:"ابحث عن منتخب…",allTeams:"كل المنتخبات",all:"الكل",g:"المجموعات",r32:"دور الـ32",r16:"دور الـ16",qf:"ربع النهائي",sf:"نصف النهائي",tp:"المركز الثالث",f:"النهائي",my:"تذكيراتي",add:"تذكير",added:"تمت الإضافة",gcal:"تقويم Google",ics:".ics",notif:"تفعيل التنبيهات",notifOn:"التنبيهات مفعلة",notifNo:"التنبيهات محظورة",exp:"تصدير الكل (.ics)",none:"لا توجد مباريات",tz:"الأوقات حسب منطقتك الزمنية:",next:"العد التنازلي للتذكير التالي",live:"مباشر",done:"انتهت",grp:"المجموعة",mt:"المباراة {n}",w:"الفائز م{n}",l:"الخاسر م{n}",p1:"متصدر المجموعة {g}",p2:"وصيف المجموعة {g}",p3:"ثالث المجموعات ({g})",lead:["قبل 10 دقائق","قبل 30 دقيقة","قبل ساعة","قبل 3 ساعات"],noti:"المباراة على وشك البدء",data:"البيانات: جدول فيفا 2026 الرسمي",expEmpty:"لا توجد تذكيرات",selAll:"تحديد كل القائمة",unselAll:"إلغاء التحديد",selDone:"تم تحديد {n} مباراة",coffee:"اشترِ لي قهوة",watch:"شاهد البث",aff:"يحتوي على روابط شراكة وقد نحصل على عمولة",kfMsg:"هل أفادك الموقع؟ ادعمني بقهوة ☕",kfSkip:"تخطي"}};
 const LOC={zh:"zh-TW",en:"en",es:"es",ja:"ja",fr:"fr",ar:"ar"};
 const TI={en:1,zh:2,ja:3,es:4,fr:5,ar:6};
 const LEADS=[10,30,60,180];
@@ -319,8 +329,18 @@ function icsEvent(m){
 function dlIcs(ms,name){
  const ics=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//secalender//WC26//EN",...ms.map(icsEvent),"END:VCALENDAR"].join("\r\n");
  const u=URL.createObjectURL(new Blob([ics],{type:"text/calendar"}));
- const a=document.createElement("a");a.href=u;a.download=name;a.click();URL.revokeObjectURL(u)}
+ const a=document.createElement("a");a.href=u;a.download=name;a.click();URL.revokeObjectURL(u);maybeKofi()}
 function toast(msg){const e=$("toast");e.textContent=msg;e.classList.add("show");setTimeout(()=>e.classList.remove("show"),1800)}
+// Ko-fi 面板：匯出/加日曆後適時彈出，每 24h 最多一次，可跳過
+function maybeKofi(){
+ if(Date.now()-(+localStorage.getItem("wc_kofi")||0)<864e5)return;
+ localStorage.setItem("wc_kofi",Date.now());
+ setTimeout(()=>{
+  $("kfMsg").textContent=t().kfMsg;$("kfClose").textContent=t().kfSkip;
+  const f=$("kofiframe");if(!f.src)f.src=f.dataset.src;
+  $("kfModal").classList.add("show")},800)}
+$("kfClose").onclick=()=>$("kfModal").classList.remove("show");
+$("kfModal").onclick=e=>{if(e.target.id==="kfModal")$("kfModal").classList.remove("show")};
 // ===== render
 function applyStatic(){
  const s=t();
@@ -331,7 +351,6 @@ function applyStatic(){
  $("q").placeholder=s.search;$("tMy").textContent=s.my;$("tExport").textContent=s.exp;
  $("tNotif").textContent=Notification&&Notification.permission==="granted"?s.notifOn:s.notif;
  $("tSelAll").textContent=s.selAll;$("tUnselAll").textContent=s.unselAll;
- $("paypalChip").href=CFG.paypal;
  $("tTz").textContent=s.tz;$("tzName").textContent=Intl.DateTimeFormat().resolvedOptions().timeZone;
  $("tData").textContent=s.data;$("nextLbl").textContent=s.next;
  const ts=$("teamSel");ts.innerHTML="";
@@ -384,7 +403,7 @@ function mkCard(m,now){
  <div class="loc">📍 ${m[6]} · ${cityName(m[7])}${past||live?"":`<span class="cdwn" data-ts="${ts}"></span>`}</div>
  <div class="acts">
   <button class="btn star${stars.has(m[0])?" on":""}" data-star="${m[0]}">★ ${stars.has(m[0])?s.added:s.add}</button>
-  <a class="btn" target="_blank" rel="noopener" href="${gcalUrl(m)}">📅 ${s.gcal}</a>
+  <a class="btn" data-g="1" target="_blank" rel="noopener" href="${gcalUrl(m)}">📅 ${s.gcal}</a>
   <button class="btn" data-ics="${m[0]}">📥 ${s.ics}</button>
  </div>`;
  return card}
@@ -447,6 +466,7 @@ function scheduleNotifs(){
   if(fire>0&&fire<864e5*7)nT.push(setTimeout(()=>{
    new Notification(t().noti,{body:`${tn(m[4])} vs ${tn(m[5])} · ${fmtTime(new Date(m[1]))} · ${evLoc(m)}`})},fire))})}
 // ===== events
+$("list").addEventListener("click",e=>{if(e.target.closest("a[data-g]"))maybeKofi()});
 $("langSel").value=lang;
 $("langSel").onchange=e=>{lang=e.target.value;localStorage.setItem("wc_lang",lang);applyStatic();render()};
 $("q").oninput=e=>{query=e.target.value;render()};
