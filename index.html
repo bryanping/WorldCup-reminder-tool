@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name='impact-site-verification' value='e8845c05-d384-4968-9272-03ab97bd03b6'>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1966935992240369" crossorigin="anonymous"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1966935992240369" crossorigin="anonymous"></script>
 <title>2026 世界盃賽事提醒</title>
 <style>
 :root{--bg:#0b1220;--card:#131c30;--card2:#1a2742;--tx:#e8eefc;--mut:#8fa3c8;--ac:#4f8cff;--ac2:#22c55e;--gold:#fbbf24;--bd:#243352;--red:#ef4444}
@@ -89,7 +91,7 @@ const CFG={
  coffee:"https://ko-fi.com/bryanping",
  paypal:"https://paypal.me/bryanping",
  streams:[],                                  // 聯盟連結核准後填入：[["DAZN","URL"],["fuboTV","URL"]]
- adsense:""                                   // AdSense 核准後填入發布商 ID，例 "ca-pub-1234567890123456"
+ adsense:"ca-pub-1966935992240369"
 };
 // ===== teams: code -> [flag, en, zh, ja, es, fr, ar]
 const TM={
@@ -423,10 +425,6 @@ $("notifChip").onclick=()=>{
   toast(p==="granted"?t().notifOn:t().notifNo);applyStatic();scheduleNotifs()})};
 // ===== Google AdSense（填 CFG.adsense 後自動啟用；單一版位在列表底部）
 if(CFG.adsense){
- const sc=document.createElement("script");
- sc.async=true;sc.crossOrigin="anonymous";
- sc.src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client="+CFG.adsense;
- document.head.appendChild(sc);
  const ins=document.createElement("ins");
  ins.className="adsbygoogle";ins.style.display="block";
  ins.setAttribute("data-ad-client",CFG.adsense);
