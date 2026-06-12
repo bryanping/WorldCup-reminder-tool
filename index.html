@@ -99,7 +99,9 @@ footer{color:var(--mut);font-size:.75rem;text-align:center;padding:24px 0 16px}
   <span class="chip" id="unselAllChip">✕ <span id="tUnselAll"></span></span>
   <span class="chip" id="exportChip">📥 <span id="tExport"></span></span>
   <span class="chip" id="notifChip">🔔 <span id="tNotif"></span></span>
-  <a class="chip" id="coffeeChip" target="_blank" rel="noopener" style="text-decoration:none">☕ <span id="tCoffee"></span></a>
+  <span style="display:inline-flex;align-items:center">
+   <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Support me', '#72a4f2', 'K6Q021981L');kofiwidget2.draw();</script>
+  </span>
   <a class="chip" id="paypalChip" target="_blank" rel="noopener" style="text-decoration:none">💙 PayPal</a>
 </div>
 <div id="list"></div>
@@ -109,7 +111,6 @@ footer{color:var(--mut);font-size:.75rem;text-align:center;padding:24px 0 16px}
 <script>
 // ===== 收益設定（只改這裡）=====
 const CFG={
- coffee:"https://ko-fi.com/bryanping",
  paypal:"https://paypal.me/bryanping",
  adsense:"ca-pub-1966935992240369"
 };
@@ -330,7 +331,7 @@ function applyStatic(){
  $("q").placeholder=s.search;$("tMy").textContent=s.my;$("tExport").textContent=s.exp;
  $("tNotif").textContent=Notification&&Notification.permission==="granted"?s.notifOn:s.notif;
  $("tSelAll").textContent=s.selAll;$("tUnselAll").textContent=s.unselAll;
- $("tCoffee").textContent=s.coffee;$("coffeeChip").href=CFG.coffee;$("paypalChip").href=CFG.paypal;
+ $("paypalChip").href=CFG.paypal;
  $("tTz").textContent=s.tz;$("tzName").textContent=Intl.DateTimeFormat().resolvedOptions().timeZone;
  $("tData").textContent=s.data;$("nextLbl").textContent=s.next;
  const ts=$("teamSel");ts.innerHTML="";
