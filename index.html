@@ -54,6 +54,7 @@ select:focus,input:focus{border-color:var(--ac)}
 .fl{font-size:1.3rem}
 .vs{color:var(--mut);font-weight:400;font-size:.8rem}
 .loc{color:var(--mut);font-size:.78rem;margin-bottom:10px}
+.cdwn{display:inline-block;color:var(--ac2);font-weight:700;font-size:.82rem;font-variant-numeric:tabular-nums;background:#0e2a1e;border-radius:7px;padding:2px 8px;margin-left:8px}
 .acts{display:flex;gap:8px;flex-wrap:wrap}
 .btn{border:1px solid var(--bd);background:var(--card2);color:var(--tx);border-radius:9px;padding:6px 12px;font-size:.8rem;cursor:pointer;display:inline-flex;align-items:center;gap:6px;text-decoration:none}
 .btn:hover{border-color:var(--ac)}
@@ -369,7 +370,7 @@ function render(){
   const badge=m[2]==="g"?(s.g+" · "+m[3]):s[m[2]];
   card.innerHTML=`<div class="row1"><span class="badge${live?" live":""}">${live?s.live:badge} · ${s.mt.replace("{n}",m[0])}</span><span class="time">${past?s.done:fmtTime(d)}</span></div>
   <div class="teams"><span class="fl">${fl(m[4])}</span>${tn(m[4])}<span class="vs">vs</span><span class="fl">${fl(m[5])}</span>${tn(m[5])}</div>
-  <div class="loc">📍 ${m[6]} · ${cityName(m[7])}</div>
+  <div class="loc">📍 ${m[6]} · ${cityName(m[7])}${past||live?"":`<span class="cdwn" data-ts="${ts}"></span>`}</div>
   <div class="acts">
    <button class="btn star${stars.has(m[0])?" on":""}" data-star="${m[0]}">★ ${stars.has(m[0])?s.added:s.add}</button>
    <a class="btn" target="_blank" rel="noopener" href="${gcalUrl(m)}">📅 ${s.gcal}</a>
@@ -450,6 +451,18 @@ if(CFG.adsense){
  $("list").insertAdjacentElement("afterend",ins);
  (window.adsbygoogle=window.adsbygoogle||[]).push({});
 }
+// ===== 每張卡的開賽倒數（依用戶時區自動計算）
+function fmtCd(dl){
+ const dd=Math.floor(dl/864e5);dl%=864e5;
+ const hh=Math.floor(dl/36e5);dl%=36e5;
+ return (dd?dd+"d ":"")+pad(hh)+":"+pad(Math.floor(dl/6e4))+":"+pad(Math.floor(dl%6e4/1e3))}
+setInterval(()=>{
+ const now=Date.now();let expired=false;
+ document.querySelectorAll(".cdwn").forEach(e=>{
+  const dl=+e.dataset.ts-now;
+  if(dl<=0){expired=true;return}
+  e.textContent="⏳ "+fmtCd(dl)});
+ if(expired)render()},1000);
 applyStatic();render();scheduleNotifs();
 setInterval(render,6e4);
 </script>
