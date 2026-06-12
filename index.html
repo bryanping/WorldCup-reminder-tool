@@ -55,6 +55,13 @@ select:focus,input:focus{border-color:var(--ac)}
 .vs{color:var(--mut);font-weight:400;font-size:.8rem}
 .loc{color:var(--mut);font-size:.78rem;margin-bottom:10px}
 .cdwn{display:inline-block;color:var(--ac2);font-weight:700;font-size:.82rem;font-variant-numeric:tabular-nums;background:#0e2a1e;border-radius:7px;padding:2px 8px;margin-left:8px}
+.sc{color:var(--gold);font-size:1.15rem;font-variant-numeric:tabular-nums;padding:0 4px}
+.doneSec{margin-bottom:14px}
+.doneSec summary{cursor:pointer;color:var(--mut);font-size:.88rem;font-weight:700;background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:10px 14px;user-select:none;list-style:none}
+.doneSec summary::-webkit-details-marker{display:none}
+.doneSec summary:hover{border-color:var(--ac)}
+.doneSec[open] summary{margin-bottom:8px}
+.doneSec .card{opacity:.7}
 .acts{display:flex;gap:8px;flex-wrap:wrap}
 .btn{border:1px solid var(--bd);background:var(--card2);color:var(--tx);border-radius:9px;padding:6px 12px;font-size:.8rem;cursor:pointer;display:inline-flex;align-items:center;gap:6px;text-decoration:none}
 .btn:hover{border-color:var(--ac)}
@@ -282,6 +289,7 @@ let stage=localStorage.getItem("wc_stage")||"all";
 let team="all",query="",myOnly=false;
 let stars=new Set(JSON.parse(localStorage.getItem("wc_stars")||"[]"));
 let lead=+localStorage.getItem("wc_lead")||30;
+let SCORES={},doneOpen=false;
 const $=id=>document.getElementById(id);
 const t=()=>T[lang];
 function tn(c){return TM[c]?TM[c][TI[lang]]:phName(c)}
@@ -356,27 +364,49 @@ function filtered(){
   if(q){const hay=[tn(m[4]),tn(m[5]),TM[m[4]]?.[1]||"",TM[m[5]]?.[1]||"",m[6],cityName(m[7])].join(" ").toLowerCase();
    if(!hay.includes(q))return false}
   return true})}
+function mstate(m,now){
+ const ts=new Date(m[1]).getTime(),sc=SCORES[m[0]];
+ const past=sc?sc.st==="post":now>=ts+72e5;
+ const live=!past&&(sc?sc.st==="in":(now>=ts&&now<ts+72e5));
+ return{ts,sc,past,live}}
+function mkCard(m,now){
+ const s=t(),d=new Date(m[1]),{ts,sc,past,live}=mstate(m,now);
+ const card=document.createElement("div");card.className="card"+(stars.has(m[0])?" starred":"");
+ const badge=m[2]==="g"?(s.g+" · "+m[3]):s[m[2]];
+ const hN=TM[m[4]]?tn(m[4]):(sc?(sc.swap?sc.an:sc.hn):tn(m[4]));
+ const aN=TM[m[5]]?tn(m[5]):(sc?(sc.swap?sc.hn:sc.an):tn(m[5]));
+ const hS=sc?(sc.swap?sc.as:sc.hs):"",aS=sc?(sc.swap?sc.hs:sc.as):"";
+ const mid=(sc&&sc.st!=="pre")?`<b class="sc">${hS} – ${aS}</b>`:`<span class="vs">vs</span>`;
+ const liveTxt=s.live+(sc&&sc.clock&&sc.st==="in"?" · "+sc.clock:"");
+ card.innerHTML=`<div class="row1"><span class="badge${live?" live":""}">${live?"🔴 "+liveTxt:badge+" · "+s.mt.replace("{n}",m[0])}</span><span class="time">${past?s.done:fmtTime(d)}</span></div>
+ <div class="teams"><span class="fl">${fl(m[4])}</span>${hN}${mid}<span class="fl">${fl(m[5])}</span>${aN}</div>
+ <div class="loc">📍 ${m[6]} · ${cityName(m[7])}${past||live?"":`<span class="cdwn" data-ts="${ts}"></span>`}</div>
+ <div class="acts">
+  <button class="btn star${stars.has(m[0])?" on":""}" data-star="${m[0]}">★ ${stars.has(m[0])?s.added:s.add}</button>
+  <a class="btn" target="_blank" rel="noopener" href="${gcalUrl(m)}">📅 ${s.gcal}</a>
+  <button class="btn" data-ics="${m[0]}">📥 ${s.ics}</button>
+ </div>`;
+ return card}
 function render(){
  const s=t(),list=$("list");list.innerHTML="";
- const now=Date.now();let lastDay="";
+ const now=Date.now();
  const rows=filtered();
  if(!rows.length){list.innerHTML='<div class="empty">'+s.none+'</div>';updateNext();return}
- rows.forEach(m=>{
-  const d=new Date(m[1]),ts=d.getTime();
-  const day=d.toDateString();
-  if(day!==lastDay){lastDay=day;const h=document.createElement("div");h.className="dhead";h.textContent=fmtDateH(d);list.appendChild(h)}
-  const live=now>=ts&&now<ts+72e5,past=now>=ts+72e5;
-  const card=document.createElement("div");card.className="card"+(stars.has(m[0])?" starred":"");
-  const badge=m[2]==="g"?(s.g+" · "+m[3]):s[m[2]];
-  card.innerHTML=`<div class="row1"><span class="badge${live?" live":""}">${live?s.live:badge} · ${s.mt.replace("{n}",m[0])}</span><span class="time">${past?s.done:fmtTime(d)}</span></div>
-  <div class="teams"><span class="fl">${fl(m[4])}</span>${tn(m[4])}<span class="vs">vs</span><span class="fl">${fl(m[5])}</span>${tn(m[5])}</div>
-  <div class="loc">📍 ${m[6]} · ${cityName(m[7])}${past||live?"":`<span class="cdwn" data-ts="${ts}"></span>`}</div>
-  <div class="acts">
-   <button class="btn star${stars.has(m[0])?" on":""}" data-star="${m[0]}">★ ${stars.has(m[0])?s.added:s.add}</button>
-   <a class="btn" target="_blank" rel="noopener" href="${gcalUrl(m)}">📅 ${s.gcal}</a>
-   <button class="btn" data-ics="${m[0]}">📥 ${s.ics}</button>
-  </div>`;
-  list.appendChild(card)});
+ const doneRows=rows.filter(m=>mstate(m,now).past);
+ const actRows=rows.filter(m=>!mstate(m,now).past);
+ if(doneRows.length){
+  const det=document.createElement("details");det.className="doneSec";det.open=doneOpen;
+  det.innerHTML=`<summary>✅ ${s.done} (${doneRows.length})</summary>`;
+  det.addEventListener("toggle",()=>{doneOpen=det.open});
+  let ld="";
+  doneRows.forEach(m=>{const d=new Date(m[1]);
+   if(d.toDateString()!==ld){ld=d.toDateString();const h=document.createElement("div");h.className="dhead";h.textContent=fmtDateH(d);det.appendChild(h)}
+   det.appendChild(mkCard(m,now))});
+  list.appendChild(det)}
+ let lastDay="";
+ actRows.forEach(m=>{const d=new Date(m[1]);
+  if(d.toDateString()!==lastDay){lastDay=d.toDateString();const h=document.createElement("div");h.className="dhead";h.textContent=fmtDateH(d);list.appendChild(h)}
+  list.appendChild(mkCard(m,now))});
  list.querySelectorAll("[data-star]").forEach(b=>b.onclick=()=>{
   const n=+b.dataset.star;
   stars.has(n)?stars.delete(n):stars.add(n);
@@ -451,6 +481,30 @@ if(CFG.adsense){
  $("list").insertAdjacentElement("afterend",ins);
  (window.adsbygoogle=window.adsbygoogle||[]).push({});
 }
+// ===== 即時比分（ESPN 公開 API，免金鑰；失敗時靜默退回時間判斷）
+const ALIAS={MEX:["mexico"],RSA:["south africa"],KOR:["south korea","korea republic"],CZE:["czech"],CAN:["canada"],SUI:["switzerland"],QAT:["qatar"],BIH:["bosnia"],BRA:["brazil"],MAR:["morocco"],HAI:["haiti"],SCO:["scotland"],USA:["usa","united states"],PAR:["paraguay"],AUS:["australia"],TUR:["turkiye","turkey"],GER:["germany"],CUW:["curacao"],CIV:["cote d'ivoire","ivory coast"],ECU:["ecuador"],NED:["netherlands"],JPN:["japan"],TUN:["tunisia"],SWE:["sweden"],BEL:["belgium"],EGY:["egypt"],IRN:["iran"],NZL:["new zealand"],ESP:["spain"],CPV:["cabo verde","cape verde"],KSA:["saudi"],URU:["uruguay"],FRA:["france"],SEN:["senegal"],NOR:["norway"],IRQ:["iraq"],ARG:["argentina"],ALG:["algeria"],AUT:["austria"],JOR:["jordan"],POR:["portugal"],UZB:["uzbekistan"],COL:["colombia"],COD:["congo"],ENG:["england"],CRO:["croatia"],GHA:["ghana"],PAN:["panama"]};
+function nrm(x){return (x||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"")}
+function tMatch(name,code){const n=nrm(name);return (ALIAS[code]||[]).some(a=>n.includes(a))}
+async function fetchScores(){
+ try{
+  const r=await fetch("https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?dates=20260611-20260719&limit=300");
+  if(!r.ok)return;
+  const j=await r.json();
+  (j.events||[]).forEach(ev=>{
+   const c=ev.competitions&&ev.competitions[0];if(!c)return;
+   const H=(c.competitors||[]).find(x=>x.homeAway==="home"),A=(c.competitors||[]).find(x=>x.homeAway==="away");
+   if(!H||!A)return;
+   const ets=new Date(ev.date).getTime();
+   const cand=M.filter(m=>Math.abs(new Date(m[1]).getTime()-ets)<9e6);
+   let m=cand.find(m=>TM[m[4]]&&TM[m[5]]&&((tMatch(H.team.displayName,m[4])&&tMatch(A.team.displayName,m[5]))||(tMatch(H.team.displayName,m[5])&&tMatch(A.team.displayName,m[4]))));
+   if(!m){const ko=cand.filter(x=>!TM[x[4]]||!TM[x[5]]);if(ko.length===1)m=ko[0]}
+   if(!m)return;
+   SCORES[m[0]]={hs:H.score,as:A.score,st:ev.status&&ev.status.type?ev.status.type.state:"pre",
+    clock:ev.status?ev.status.displayClock:"",hn:H.team.shortDisplayName,an:A.team.shortDisplayName,
+    swap:!!(TM[m[4]]&&tMatch(H.team.displayName,m[5]))}});
+  render();
+ }catch(e){}}
+fetchScores();setInterval(fetchScores,6e4);
 // ===== 每張卡的開賽倒數（依用戶時區自動計算）
 function fmtCd(dl){
  const dd=Math.floor(dl/864e5);dl%=864e5;
