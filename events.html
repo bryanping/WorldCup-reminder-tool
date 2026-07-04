@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-    
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#0b1220">
@@ -15,578 +14,116 @@
   gtag('js', new Date());
   gtag('config', 'G-1Z3FMHJKJ3');
 </script>
-<title>時事活動 · 2026 世界盃賽事提醒 | Secalender</title>
+<title>時事活動 · 公開活動日曆集合 | Secalender</title>
+<meta name="description" content="集合各種網路公開活動日曆（ICS）：賽事、假日、發表會，一鍵訂閱到 iPhone、Google 日曆或加入 Secalender App。">
 <style>
-:root{--bg:#0b1220;--card:#131c30;--card2:#1a2742;--tx:#e8eefc;--mut:#8fa3c8;--ac:#4f8cff;--ac2:#22c55e;--gold:#fbbf24;--bd:#243352;--red:#ef4444}
+:root{--bg:#0b1220;--card:#131c30;--card2:#1a2742;--tx:#e8eefc;--mut:#8fa3c8;--ac:#4f8cff;--ac2:#22c55e;--gold:#fbbf24;--bd:#243352}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans TC","Noto Sans JP",sans-serif;min-height:100vh}
+body{background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans TC",sans-serif;min-height:100vh}
 .wrap{max-width:880px;margin:0 auto;padding:16px}
-header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 0 4px;flex-wrap:wrap}
-h1{font-size:1.35rem;display:flex;align-items:center;gap:8px}
-.sub{color:var(--mut);font-size:.82rem;margin:4px 0 10px}
-select,input[type=text]{background:var(--card2);color:var(--tx);border:1px solid var(--bd);border-radius:10px;padding:8px 10px;font-size:.9rem;outline:none}
-select:focus,input:focus{border-color:var(--ac)}
-#langSel{font-weight:600}
-.bar{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
-.bar input[type=text]{flex:1;min-width:160px}
-.chips{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 12px}
-.chip{background:var(--card2);border:1px solid var(--bd);color:var(--mut);border-radius:999px;padding:5px 12px;font-size:.8rem;cursor:pointer;user-select:none}
+nav{background:#0e1730;border-bottom:1px solid var(--bd);padding:10px 16px;display:flex;align-items:center;gap:16px;position:sticky;top:0;z-index:50}
+nav .brand{color:var(--ac);font-weight:700;text-decoration:none;font-size:1.05rem}
+nav a{color:var(--mut);text-decoration:none;font-size:.9rem}
+nav a.on{color:var(--tx);border-bottom:2px solid var(--ac);padding-bottom:2px}
+h1{font-size:1.5rem;margin:22px 0 6px}
+.sub{color:var(--mut);font-size:.9rem;margin-bottom:18px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 16px}
+.chip{background:var(--card2);border:1px solid var(--bd);color:var(--mut);border-radius:999px;padding:5px 14px;font-size:.82rem;cursor:pointer;user-select:none}
 .chip.on{background:var(--ac);border-color:var(--ac);color:#fff}
-.chip.star{color:var(--gold)}
-.chip.star.on{background:var(--gold);border-color:var(--gold);color:#1a1200}
-.flags{display:flex;gap:4px;overflow-x:auto;padding:6px 2px;margin:2px 0 4px;scrollbar-width:thin}
-.fbtn{flex:0 0 auto;font-size:1.35rem;line-height:1;background:var(--card2);border:2px solid var(--bd);border-radius:10px;padding:6px 8px;cursor:pointer;user-select:none;opacity:.85}
-.fbtn:hover{border-color:var(--ac);opacity:1}
-.fbtn.on{border-color:var(--gold);background:#2a2410;opacity:1}
-.next{background:linear-gradient(120deg,#16244a,#0e3a2e);border:1px solid var(--bd);border-radius:14px;padding:12px 16px;margin:4px 0 14px;display:none}
-.next.show{display:block}
-.next .nt{color:var(--mut);font-size:.75rem;margin-bottom:4px}
-.next .nm{font-weight:700;font-size:1.02rem}
-.next .cd{font-variant-numeric:tabular-nums;color:var(--ac2);font-weight:700;font-size:1.1rem;margin-top:4px}
-.dhead{color:var(--mut);font-size:.85rem;font-weight:700;margin:18px 0 8px;border-bottom:1px solid var(--bd);padding-bottom:6px;position:sticky;top:0;background:var(--bg);z-index:2}
-.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:12px 14px;margin-bottom:10px}
-.card.starred{border-color:var(--gold)}
-.row1{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
-.badge{font-size:.68rem;color:var(--mut);background:var(--card2);border-radius:6px;padding:2px 8px;letter-spacing:.4px}
-.badge.live{background:var(--red);color:#fff;animation:pl 1.2s infinite}
-@keyframes pl{50%{opacity:.55}}
-.time{font-weight:700;color:var(--ac);font-size:.92rem;font-variant-numeric:tabular-nums}
-.teams{display:flex;align-items:center;gap:10px;margin:10px 0 6px;font-size:1.02rem;font-weight:600;flex-wrap:wrap}
-.fl{font-size:1.3rem}
-.vs{color:var(--mut);font-weight:400;font-size:.8rem}
-.loc{color:var(--mut);font-size:.78rem;margin-bottom:10px}
-.cdwn{display:inline-block;color:var(--ac2);font-weight:700;font-size:.82rem;font-variant-numeric:tabular-nums;background:#0e2a1e;border-radius:7px;padding:2px 8px;margin-left:8px}
-.sc{color:var(--gold);font-size:1.15rem;font-variant-numeric:tabular-nums;padding:0 4px}
-.doneSec{margin-bottom:14px}
-.doneSec summary{cursor:pointer;color:var(--mut);font-size:.88rem;font-weight:700;background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:10px 14px;user-select:none;list-style:none}
-.doneSec summary::-webkit-details-marker{display:none}
-.doneSec summary:hover{border-color:var(--ac)}
-.doneSec[open] summary{margin-bottom:8px}
-.doneSec .card{opacity:.7}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin-bottom:32px}
+.c{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:10px}
+.c .top{display:flex;align-items:center;gap:10px}
+.c .ic{font-size:1.6rem}
+.c h3{font-size:1rem}
+.c .tag{margin-left:auto;font-size:.68rem;color:var(--mut);background:var(--card2);border-radius:6px;padding:2px 8px}
+.c p{color:var(--mut);font-size:.82rem;line-height:1.5;flex:1}
+.c .hot{color:var(--gold);font-size:.72rem}
 .acts{display:flex;gap:8px;flex-wrap:wrap}
-.btn{border:1px solid var(--bd);background:var(--card2);color:var(--tx);border-radius:9px;padding:6px 12px;font-size:.8rem;cursor:pointer;display:inline-flex;align-items:center;gap:6px;text-decoration:none}
-.btn:hover{border-color:var(--ac)}
-.btn.star{font-weight:700}
-.btn.star.on{background:var(--gold);color:#1a1200;border-color:var(--gold)}
-.empty{color:var(--mut);text-align:center;padding:40px 0}
-footer{color:var(--mut);font-size:.75rem;text-align:center;padding:24px 0 16px}
-.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--ac2);color:#06250f;font-weight:700;padding:10px 18px;border-radius:12px;font-size:.85rem;opacity:0;transition:.3s;pointer-events:none;z-index:9}
-.toast.show{opacity:1}
-.kfModal{position:fixed;inset:0;background:rgba(0,0,0,.65);display:none;align-items:center;justify-content:center;z-index:50;padding:14px}
-.kfModal.show{display:flex}
-.kfBox{background:#f9f9f9;border-radius:16px;max-width:420px;width:100%;max-height:88vh;overflow:auto;box-shadow:0 18px 60px rgba(0,0,0,.5)}
-.kfTop{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 14px;color:#222;font-weight:700;font-size:.9rem}
-.kfSkip{border:1px solid #ccc;background:#fff;color:#555;border-radius:8px;padding:5px 14px;font-size:.8rem;cursor:pointer;flex:0 0 auto}
-.kfSkip:hover{background:#eee}
-/* ===== 手機版 ===== */
-@media(max-width:600px){
- .wrap{padding:10px}
- h1{font-size:1.05rem}
- .sub{font-size:.74rem}
- #langSel{padding:6px 8px;font-size:.82rem}
- .bar{gap:6px}
- .bar input[type=text]{flex:1 1 100%;min-width:0;font-size:16px}
- #teamSel{flex:1 1 56%;min-width:0;max-width:100%}
- #leadSel{flex:1 1 38%;min-width:0}
- select{font-size:.82rem;padding:8px 6px}
- .chips{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;margin:4px 0 8px;scrollbar-width:thin}
- .chip{flex:0 0 auto;font-size:.76rem;padding:6px 11px;white-space:nowrap}
- .fbtn{font-size:1.2rem;padding:5px 7px}
- .dhead{font-size:.76rem}
- .next{padding:10px 12px}
- .next .nm{font-size:.9rem}
- .next .cd{font-size:1rem}
- .card{padding:10px 11px;border-radius:12px}
- .teams{font-size:.92rem;gap:6px;margin:8px 0 5px}
- .fl{font-size:1.15rem}
- .sc{font-size:1.02rem}
- .time{font-size:.82rem}
- .badge{font-size:.62rem}
- .loc{font-size:.72rem}
- .cdwn{font-size:.74rem;padding:2px 6px;margin-left:6px;display:inline-block;margin-top:4px}
- .acts{gap:6px}
- .acts .btn{padding:7px 10px;font-size:.74rem;min-height:34px}
- .doneSec summary{padding:9px 12px;font-size:.8rem}
- .kfBox{max-height:92vh}
- #kofiframe{height:460px}
- footer{font-size:.68rem}
-}
+.b{flex:1;min-width:90px;text-align:center;text-decoration:none;font-size:.8rem;font-weight:600;padding:8px 10px;border-radius:10px;border:1px solid var(--bd);color:var(--tx);background:var(--card2)}
+.b.main{background:var(--ac);border-color:var(--ac);color:#fff}
+.b.g{color:var(--ac2)}
+.note{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:14px 16px;color:var(--mut);font-size:.82rem;line-height:1.7;margin-bottom:28px}
+.note b{color:var(--tx)}
+footer{border-top:1px solid var(--bd);color:var(--mut);font-size:.78rem;text-align:center;padding:24px 16px;line-height:1.8}
+footer a{color:var(--ac);text-decoration:none}
 </style>
 </head>
 <body>
-<!-- 修改内容：Secalender 站點導覽（時事活動頁） -->
-<nav style="background:#0e1730;border-bottom:1px solid #243352;padding:10px 16px;display:flex;align-items:center;gap:16px;position:sticky;top:0;z-index:50">
- <a href="/" style="color:#4f8cff;font-weight:700;text-decoration:none;font-size:1.05rem">Secalender</a>
- <a href="/" style="color:#8fa3c8;text-decoration:none;font-size:.9rem">首頁</a>
- <a href="/events.html" style="color:#e8eefc;text-decoration:none;font-size:.9rem;border-bottom:2px solid #4f8cff;padding-bottom:2px">時事活動</a>
+<nav>
+ <a class="brand" href="/">Secalender</a>
+ <a href="/">首頁</a>
+ <a class="on" href="/events.html">時事活動</a>
 </nav>
 
 <div class="wrap">
-<header>
-  <h1>⚽ <span id="tTitle"></span></h1>
-  <select id="langSel">
-    <option value="zh">繁體中文</option><option value="en">English</option>
-    <option value="es">Español</option><option value="ja">日本語</option>
-    <option value="fr">Français</option><option value="ar">العربية</option>
-  </select>
-</header>
-<div class="sub" id="tSub"></div>
-<div class="flags" id="flagBar"></div>
-<div class="next" id="nextBox"><div class="nt" id="nextLbl"></div><div class="nm" id="nextMatch"></div><div class="cd" id="nextCd"></div></div>
-<div class="bar">
-  <input type="text" id="q" >
-  <select id="teamSel"></select>
-  <select id="leadSel"></select>
-</div>
-<div class="chips" id="stageChips"></div>
-<div class="chips">
-  <span class="chip star" id="myChip">★ <span id="tMy"></span> (<span id="myCount">0</span>)</span>
-  <span class="chip" id="selAllChip">☑ <span id="tSelAll"></span></span>
-  <span class="chip" id="unselAllChip">✕ <span id="tUnselAll"></span></span>
-  <span class="chip" id="exportChip">📥 <span id="tExport"></span></span>
-  <span class="chip" id="notifChip">🔔 <span id="tNotif"></span></span>
-  <span style="display:inline-flex;align-items:center">
-   <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Support me', '#72a4f2', 'K6Q021981L');kofiwidget2.draw();</script>
-  </span>
-</div>
-<div id="list"></div>
-<footer><span id="tTz"></span> <b id="tzName"></b> · <span id="tData"></span></footer>
-</div>
-<div class="toast" id="toast"></div>
-<div class="kfModal" id="kfModal">
- <div class="kfBox">
-  <div class="kfTop"><span id="kfMsg"></span><button class="kfSkip" id="kfClose"></button></div>
-  <iframe id="kofiframe" data-src="https://ko-fi.com/bryanping/?hidefeed=true&widget=true&embed=true&preview=true" style="border:none;width:100%;padding:4px;background:#f9f9f9;" height="560" title="bryanping"></iframe>
+ <h1>📡 時事活動日曆集合</h1>
+ <div class="sub">集合網路上的公開活動日曆（ICS）——賽事、假日、科技發表會。一鍵訂閱到 iPhone / Google 日曆，或加入 Secalender App。</div>
+
+ <div class="chips" id="chips"></div>
+ <div class="grid" id="grid"></div>
+
+ <div class="note">
+  <b>怎麼加入？</b><br>
+  ⚡ <b>加入 App 行事曆</b>：開啟 Secalender App 檢視日曆內容，勾選想要的活動後加入你的行事曆（推薦）。<br>
+  📱 <b>訂閱</b>：以 webcal 開啟系統行事曆整份訂閱，自動保持更新。<br>
+  🟦 <b>Google</b>：在 Google 日曆網頁版加入該日曆。
  </div>
 </div>
+
+<footer>
+ <div>Secalender · 時事活動</div>
+ <div><a href="/">首頁</a> · <a href="/events.html">時事活動</a> · <a href="/worldcup.html">世界盃 2026</a></div>
+</footer>
+
 <script>
-// ===== 收益設定（只改這裡）=====
-const CFG={
- adsense:"ca-pub-1966935992240369"
-};
-// ===== teams: code -> [flag, en, zh, ja, es, fr, ar]
-const TM={
-MEX:["🇲🇽","Mexico","墨西哥","メキシコ","México","Mexique","المكسيك"],
-RSA:["🇿🇦","South Africa","南非","南アフリカ","Sudáfrica","Afrique du Sud","جنوب أفريقيا"],
-KOR:["🇰🇷","South Korea","南韓","韓国","Corea del Sur","Corée du Sud","كوريا الجنوبية"],
-CZE:["🇨🇿","Czechia","捷克","チェコ","Chequia","Tchéquie","التشيك"],
-CAN:["🇨🇦","Canada","加拿大","カナダ","Canadá","Canada","كندا"],
-SUI:["🇨🇭","Switzerland","瑞士","スイス","Suiza","Suisse","سويسرا"],
-QAT:["🇶🇦","Qatar","卡達","カタール","Catar","Qatar","قطر"],
-BIH:["🇧🇦","Bosnia & Herzegovina","波士尼亞","ボスニア・ヘルツェゴビナ","Bosnia","Bosnie","البوسنة"],
-BRA:["🇧🇷","Brazil","巴西","ブラジル","Brasil","Brésil","البرازيل"],
-MAR:["🇲🇦","Morocco","摩洛哥","モロッコ","Marruecos","Maroc","المغرب"],
-HAI:["🇭🇹","Haiti","海地","ハイチ","Haití","Haïti","هايتي"],
-SCO:["🏴󠁧󠁢󠁳󠁣󠁴󠁿","Scotland","蘇格蘭","スコットランド","Escocia","Écosse","اسكتلندا"],
-USA:["🇺🇸","USA","美國","アメリカ","EE. UU.","États-Unis","أمريكا"],
-PAR:["🇵🇾","Paraguay","巴拉圭","パラグアイ","Paraguay","Paraguay","باراغواي"],
-AUS:["🇦🇺","Australia","澳洲","オーストラリア","Australia","Australie","أستراليا"],
-TUR:["🇹🇷","Türkiye","土耳其","トルコ","Turquía","Turquie","تركيا"],
-GER:["🇩🇪","Germany","德國","ドイツ","Alemania","Allemagne","ألمانيا"],
-CUW:["🇨🇼","Curaçao","古拉索","キュラソー","Curazao","Curaçao","كوراساو"],
-CIV:["🇨🇮","Côte d'Ivoire","象牙海岸","コートジボワール","Costa de Marfil","Côte d'Ivoire","ساحل العاج"],
-ECU:["🇪🇨","Ecuador","厄瓜多","エクアドル","Ecuador","Équateur","الإكوادور"],
-NED:["🇳🇱","Netherlands","荷蘭","オランダ","Países Bajos","Pays-Bas","هولندا"],
-JPN:["🇯🇵","Japan","日本","日本","Japón","Japon","اليابان"],
-TUN:["🇹🇳","Tunisia","突尼西亞","チュニジア","Túnez","Tunisie","تونس"],
-SWE:["🇸🇪","Sweden","瑞典","スウェーデン","Suecia","Suède","السويد"],
-BEL:["🇧🇪","Belgium","比利時","ベルギー","Bélgica","Belgique","بلجيكا"],
-EGY:["🇪🇬","Egypt","埃及","エジプト","Egipto","Égypte","مصر"],
-IRN:["🇮🇷","Iran","伊朗","イラン","Irán","Iran","إيران"],
-NZL:["🇳🇿","New Zealand","紐西蘭","ニュージーランド","Nueva Zelanda","Nouvelle-Zélande","نيوزيلندا"],
-ESP:["🇪🇸","Spain","西班牙","スペイン","España","Espagne","إسبانيا"],
-CPV:["🇨🇻","Cabo Verde","維德角","カーボベルデ","Cabo Verde","Cap-Vert","الرأس الأخضر"],
-KSA:["🇸🇦","Saudi Arabia","沙烏地阿拉伯","サウジアラビア","Arabia Saudita","Arabie saoudite","السعودية"],
-URU:["🇺🇾","Uruguay","烏拉圭","ウルグアイ","Uruguay","Uruguay","أوروغواي"],
-FRA:["🇫🇷","France","法國","フランス","Francia","France","فرنسا"],
-SEN:["🇸🇳","Senegal","塞內加爾","セネガル","Senegal","Sénégal","السنغال"],
-NOR:["🇳🇴","Norway","挪威","ノルウェー","Noruega","Norvège","النرويج"],
-IRQ:["🇮🇶","Iraq","伊拉克","イラク","Irak","Irak","العراق"],
-ARG:["🇦🇷","Argentina","阿根廷","アルゼンチン","Argentina","Argentine","الأرجنتين"],
-ALG:["🇩🇿","Algeria","阿爾及利亞","アルジェリア","Argelia","Algérie","الجزائر"],
-AUT:["🇦🇹","Austria","奧地利","オーストリア","Austria","Autriche","النمسا"],
-JOR:["🇯🇴","Jordan","約旦","ヨルダン","Jordania","Jordanie","الأردن"],
-POR:["🇵🇹","Portugal","葡萄牙","ポルトガル","Portugal","Portugal","البرتغال"],
-UZB:["🇺🇿","Uzbekistan","烏茲別克","ウズベキスタン","Uzbekistán","Ouzbékistan","أوزبكستان"],
-COL:["🇨🇴","Colombia","哥倫比亞","コロンビア","Colombia","Colombie","كولومبيا"],
-COD:["🇨🇩","DR Congo","民主剛果","コンゴ民主共和国","RD del Congo","RD Congo","الكونغو الديمقراطية"],
-ENG:["🏴󠁧󠁢󠁥󠁮󠁧󠁿","England","英格蘭","イングランド","Inglaterra","Angleterre","إنجلترا"],
-CRO:["🇭🇷","Croatia","克羅埃西亞","クロアチア","Croacia","Croatie","كرواتيا"],
-GHA:["🇬🇭","Ghana","迦納","ガーナ","Ghana","Ghana","غانا"],
-PAN:["🇵🇦","Panama","巴拿馬","パナマ","Panamá","Panama","بنما"]};
-// ===== cities: key -> [en, zh]
-const CT={MXC:["Mexico City","墨西哥城"],GDL:["Guadalajara","瓜達拉哈拉"],MTY:["Monterrey","蒙特雷"],TOR:["Toronto","多倫多"],VAN:["Vancouver","溫哥華"],LAX:["Los Angeles","洛杉磯"],SFO:["SF Bay Area","舊金山灣區"],SEA:["Seattle","西雅圖"],NYC:["New York/New Jersey","紐約/新澤西"],BOS:["Boston","波士頓"],PHI:["Philadelphia","費城"],MIA:["Miami","邁阿密"],ATL:["Atlanta","亞特蘭大"],DAL:["Dallas","達拉斯"],HOU:["Houston","休士頓"],KCY:["Kansas City","堪薩斯城"]};
-// ===== matches: [no, utcISO, stage, group, home, away, venue, cityKey]
-const M=[
-[1,"2026-06-11T19:00Z","g","A","MEX","RSA","Estadio Azteca","MXC"],
-[2,"2026-06-12T02:00Z","g","A","KOR","CZE","Estadio Akron","GDL"],
-[3,"2026-06-12T19:00Z","g","B","CAN","BIH","BMO Field","TOR"],
-[4,"2026-06-13T01:00Z","g","D","USA","PAR","SoFi Stadium","LAX"],
-[5,"2026-06-14T01:00Z","g","C","HAI","SCO","Gillette Stadium","BOS"],
-[6,"2026-06-14T04:00Z","g","D","AUS","TUR","BC Place","VAN"],
-[7,"2026-06-13T22:00Z","g","C","BRA","MAR","MetLife Stadium","NYC"],
-[8,"2026-06-13T19:00Z","g","B","QAT","SUI","Levi's Stadium","SFO"],
-[9,"2026-06-14T23:00Z","g","E","CIV","ECU","Lincoln Financial Field","PHI"],
-[10,"2026-06-14T17:00Z","g","E","GER","CUW","NRG Stadium","HOU"],
-[11,"2026-06-14T20:00Z","g","F","NED","JPN","AT&T Stadium","DAL"],
-[12,"2026-06-15T02:00Z","g","F","SWE","TUN","Estadio BBVA","MTY"],
-[13,"2026-06-15T22:00Z","g","H","KSA","URU","Hard Rock Stadium","MIA"],
-[14,"2026-06-15T16:00Z","g","H","ESP","CPV","Mercedes-Benz Stadium","ATL"],
-[15,"2026-06-16T01:00Z","g","G","IRN","NZL","SoFi Stadium","LAX"],
-[16,"2026-06-15T19:00Z","g","G","BEL","EGY","Lumen Field","SEA"],
-[17,"2026-06-16T19:00Z","g","I","FRA","SEN","MetLife Stadium","NYC"],
-[18,"2026-06-16T22:00Z","g","I","IRQ","NOR","Gillette Stadium","BOS"],
-[19,"2026-06-17T01:00Z","g","J","ARG","ALG","Arrowhead Stadium","KCY"],
-[20,"2026-06-17T04:00Z","g","J","AUT","JOR","Levi's Stadium","SFO"],
-[21,"2026-06-17T23:00Z","g","L","GHA","PAN","BMO Field","TOR"],
-[22,"2026-06-17T20:00Z","g","L","ENG","CRO","AT&T Stadium","DAL"],
-[23,"2026-06-17T17:00Z","g","K","POR","COD","NRG Stadium","HOU"],
-[24,"2026-06-18T02:00Z","g","K","UZB","COL","Estadio Azteca","MXC"],
-[25,"2026-06-18T16:00Z","g","A","CZE","RSA","Mercedes-Benz Stadium","ATL"],
-[26,"2026-06-18T19:00Z","g","B","SUI","BIH","SoFi Stadium","LAX"],
-[27,"2026-06-18T22:00Z","g","B","CAN","QAT","BC Place","VAN"],
-[28,"2026-06-19T01:00Z","g","A","MEX","KOR","Estadio Akron","GDL"],
-[29,"2026-06-20T01:00Z","g","C","BRA","HAI","Lincoln Financial Field","PHI"],
-[30,"2026-06-19T22:00Z","g","C","SCO","MAR","Gillette Stadium","BOS"],
-[31,"2026-06-20T03:00Z","g","D","TUR","PAR","Levi's Stadium","SFO"],
-[32,"2026-06-19T19:00Z","g","D","USA","AUS","Lumen Field","SEA"],
-[33,"2026-06-20T20:00Z","g","E","GER","CIV","BMO Field","TOR"],
-[34,"2026-06-21T00:00Z","g","E","ECU","CUW","Arrowhead Stadium","KCY"],
-[35,"2026-06-20T17:00Z","g","F","NED","SWE","NRG Stadium","HOU"],
-[36,"2026-06-21T04:00Z","g","F","TUN","JPN","Estadio BBVA","MTY"],
-[37,"2026-06-21T22:00Z","g","H","URU","CPV","Hard Rock Stadium","MIA"],
-[38,"2026-06-21T16:00Z","g","H","ESP","KSA","Mercedes-Benz Stadium","ATL"],
-[39,"2026-06-21T19:00Z","g","G","BEL","IRN","SoFi Stadium","LAX"],
-[40,"2026-06-22T01:00Z","g","G","NZL","EGY","BC Place","VAN"],
-[41,"2026-06-23T00:00Z","g","I","NOR","SEN","MetLife Stadium","NYC"],
-[42,"2026-06-22T21:00Z","g","I","FRA","IRQ","Lincoln Financial Field","PHI"],
-[43,"2026-06-22T17:00Z","g","J","ARG","AUT","AT&T Stadium","DAL"],
-[44,"2026-06-23T03:00Z","g","J","JOR","ALG","Levi's Stadium","SFO"],
-[45,"2026-06-23T20:00Z","g","L","ENG","GHA","Gillette Stadium","BOS"],
-[46,"2026-06-23T23:00Z","g","L","PAN","CRO","BMO Field","TOR"],
-[47,"2026-06-23T17:00Z","g","K","POR","UZB","NRG Stadium","HOU"],
-[48,"2026-06-24T02:00Z","g","K","COL","COD","Estadio Akron","GDL"],
-[49,"2026-06-24T22:00Z","g","C","SCO","BRA","Hard Rock Stadium","MIA"],
-[50,"2026-06-24T22:00Z","g","C","MAR","HAI","Mercedes-Benz Stadium","ATL"],
-[51,"2026-06-24T19:00Z","g","B","SUI","CAN","BC Place","VAN"],
-[52,"2026-06-24T19:00Z","g","B","BIH","QAT","Lumen Field","SEA"],
-[53,"2026-06-25T01:00Z","g","A","CZE","MEX","Estadio Azteca","MXC"],
-[54,"2026-06-25T01:00Z","g","A","RSA","KOR","Estadio BBVA","MTY"],
-[55,"2026-06-25T20:00Z","g","E","CUW","CIV","Lincoln Financial Field","PHI"],
-[56,"2026-06-25T20:00Z","g","E","ECU","GER","MetLife Stadium","NYC"],
-[57,"2026-06-25T23:00Z","g","F","JPN","SWE","AT&T Stadium","DAL"],
-[58,"2026-06-25T23:00Z","g","F","TUN","NED","Arrowhead Stadium","KCY"],
-[59,"2026-06-26T02:00Z","g","D","TUR","USA","SoFi Stadium","LAX"],
-[60,"2026-06-26T02:00Z","g","D","PAR","AUS","Levi's Stadium","SFO"],
-[61,"2026-06-26T19:00Z","g","I","NOR","FRA","Gillette Stadium","BOS"],
-[62,"2026-06-26T19:00Z","g","I","SEN","IRQ","BMO Field","TOR"],
-[63,"2026-06-27T03:00Z","g","G","EGY","IRN","Lumen Field","SEA"],
-[64,"2026-06-27T03:00Z","g","G","NZL","BEL","BC Place","VAN"],
-[65,"2026-06-27T00:00Z","g","H","CPV","KSA","NRG Stadium","HOU"],
-[66,"2026-06-27T00:00Z","g","H","URU","ESP","Estadio Akron","GDL"],
-[67,"2026-06-27T21:00Z","g","L","PAN","ENG","MetLife Stadium","NYC"],
-[68,"2026-06-27T21:00Z","g","L","CRO","GHA","Lincoln Financial Field","PHI"],
-[69,"2026-06-28T02:00Z","g","J","ALG","AUT","Arrowhead Stadium","KCY"],
-[70,"2026-06-28T02:00Z","g","J","JOR","ARG","AT&T Stadium","DAL"],
-[71,"2026-06-27T23:30Z","g","K","COL","POR","Hard Rock Stadium","MIA"],
-[72,"2026-06-27T23:30Z","g","K","COD","UZB","Mercedes-Benz Stadium","ATL"],
-[73,"2026-06-28T19:00Z","r32","","2A","2B","SoFi Stadium","LAX"],
-[74,"2026-06-29T20:30Z","r32","","1E","3ABCDF","Gillette Stadium","BOS"],
-[75,"2026-06-30T01:00Z","r32","","1F","2C","Estadio BBVA","MTY"],
-[76,"2026-06-29T17:00Z","r32","","1C","2F","NRG Stadium","HOU"],
-[77,"2026-06-30T21:00Z","r32","","1I","3CDFGH","MetLife Stadium","NYC"],
-[78,"2026-06-30T17:00Z","r32","","2E","2I","AT&T Stadium","DAL"],
-[79,"2026-07-01T01:00Z","r32","","1A","3CEFHI","Estadio Azteca","MXC"],
-[80,"2026-07-01T16:00Z","r32","","1L","3EHIJK","Mercedes-Benz Stadium","ATL"],
-[81,"2026-07-02T00:00Z","r32","","1D","3BEFIJ","Levi's Stadium","SFO"],
-[82,"2026-07-01T20:00Z","r32","","1G","3AEHIJ","Lumen Field","SEA"],
-[83,"2026-07-02T23:00Z","r32","","2K","2L","BMO Field","TOR"],
-[84,"2026-07-02T19:00Z","r32","","1H","2J","SoFi Stadium","LAX"],
-[85,"2026-07-03T03:00Z","r32","","1B","3EFGIJ","BC Place","VAN"],
-[86,"2026-07-03T22:00Z","r32","","1J","2H","Hard Rock Stadium","MIA"],
-[87,"2026-07-04T01:30Z","r32","","1K","3DEIJL","Arrowhead Stadium","KCY"],
-[88,"2026-07-03T18:00Z","r32","","2D","2G","AT&T Stadium","DAL"],
-[89,"2026-07-04T21:00Z","r16","","W74","W77","Lincoln Financial Field","PHI"],
-[90,"2026-07-04T17:00Z","r16","","W73","W75","NRG Stadium","HOU"],
-[91,"2026-07-05T20:00Z","r16","","W76","W78","MetLife Stadium","NYC"],
-[92,"2026-07-06T00:00Z","r16","","W79","W80","Estadio Azteca","MXC"],
-[93,"2026-07-06T19:00Z","r16","","W83","W84","AT&T Stadium","DAL"],
-[94,"2026-07-07T00:00Z","r16","","W81","W82","Lumen Field","SEA"],
-[95,"2026-07-07T16:00Z","r16","","W86","W88","Mercedes-Benz Stadium","ATL"],
-[96,"2026-07-07T20:00Z","r16","","W85","W87","BC Place","VAN"],
-[97,"2026-07-09T20:00Z","qf","","W89","W90","Gillette Stadium","BOS"],
-[98,"2026-07-10T19:00Z","qf","","W93","W94","SoFi Stadium","LAX"],
-[99,"2026-07-11T21:00Z","qf","","W91","W92","Hard Rock Stadium","MIA"],
-[100,"2026-07-12T01:00Z","qf","","W95","W96","Arrowhead Stadium","KCY"],
-[101,"2026-07-14T19:00Z","sf","","W97","W98","AT&T Stadium","DAL"],
-[102,"2026-07-15T19:00Z","sf","","W99","W100","Mercedes-Benz Stadium","ATL"],
-[103,"2026-07-18T21:00Z","tp","","L101","L102","Hard Rock Stadium","MIA"],
-[104,"2026-07-19T19:00Z","f","","W101","W102","MetLife Stadium","NYC"]];
-// ===== UI strings
-const T={
-zh:{title:"2026 世界盃賽事提醒",sub:"美國・加拿大・墨西哥 · 6月11日–7月19日 · 104 場比賽",search:"搜尋球隊…",allTeams:"全部球隊",all:"全部",g:"小組賽",r32:"32 強",r16:"16 強",qf:"8 強",sf:"準決賽",tp:"季軍戰",f:"決賽",my:"我的提醒",add:"提醒",added:"已加入",gcal:"Google 日曆",ics:".ics",notif:"啟用通知",notifOn:"通知已啟用",notifNo:"通知被封鎖",exp:"匯出全部 (.ics)",none:"沒有符合的賽事",tz:"所有時間已自動換算為你的時區：",next:"下一場提醒倒數",live:"進行中",done:"已結束",grp:"組",mt:"第 {n} 場",w:"第 {n} 場勝者",l:"第 {n} 場敗者",p1:"{g} 組第一",p2:"{g} 組第二",p3:"小組第三 ({g})",lead:["提前 10 分鐘","提前 30 分鐘","提前 1 小時","提前 3 小時"],noti:"即將開賽",data:"資料：FIFA 2026 官方賽程",expEmpty:"尚未加入任何提醒",selAll:"全選目前清單",unselAll:"取消全選",selDone:"已全選 {n} 場",coffee:"請我喝咖啡",watch:"觀看直播",aff:"含聯盟連結，本站可能獲得分潤",kfMsg:"覺得好用嗎？請我喝杯咖啡支持 ☕",kfSkip:"跳過"},
-en:{title:"World Cup 2026 Match Reminders",sub:"USA · Canada · Mexico · Jun 11 – Jul 19 · 104 matches",search:"Search team…",allTeams:"All teams",all:"All",g:"Groups",r32:"R32",r16:"R16",qf:"QF",sf:"Semis",tp:"3rd place",f:"Final",my:"My reminders",add:"Remind",added:"Added",gcal:"Google Calendar",ics:".ics",notif:"Enable alerts",notifOn:"Alerts on",notifNo:"Alerts blocked",exp:"Export all (.ics)",none:"No matches found",tz:"All times shown in your timezone:",next:"Next reminder countdown",live:"LIVE",done:"Finished",grp:"Group",mt:"Match {n}",w:"Winner M{n}",l:"Loser M{n}",p1:"Group {g} winners",p2:"Group {g} runners-up",p3:"3rd place ({g})",lead:["10 min before","30 min before","1 hour before","3 hours before"],noti:"Kick-off soon",data:"Data: official FIFA 2026 schedule",expEmpty:"No reminders added yet",selAll:"Select all listed",unselAll:"Unselect all",selDone:"{n} matches selected",coffee:"Buy me a coffee",watch:"Watch live",aff:"Contains affiliate links; we may earn a commission",kfMsg:"Find this useful? Support with a coffee ☕",kfSkip:"Skip"},
-es:{title:"Recordatorios Mundial 2026",sub:"EE. UU. · Canadá · México · 11 jun – 19 jul · 104 partidos",search:"Buscar equipo…",allTeams:"Todos los equipos",all:"Todos",g:"Grupos",r32:"16avos",r16:"Octavos",qf:"Cuartos",sf:"Semis",tp:"3er puesto",f:"Final",my:"Mis recordatorios",add:"Recordar",added:"Añadido",gcal:"Google Calendar",ics:".ics",notif:"Activar avisos",notifOn:"Avisos activados",notifNo:"Avisos bloqueados",exp:"Exportar todo (.ics)",none:"Sin partidos",tz:"Horarios en tu zona horaria:",next:"Próximo recordatorio",live:"EN VIVO",done:"Finalizado",grp:"Grupo",mt:"Partido {n}",w:"Ganador P{n}",l:"Perdedor P{n}",p1:"1.º Grupo {g}",p2:"2.º Grupo {g}",p3:"3.º de grupo ({g})",lead:["10 min antes","30 min antes","1 hora antes","3 horas antes"],noti:"Comienza pronto",data:"Datos: calendario oficial FIFA 2026",expEmpty:"Aún no hay recordatorios",selAll:"Seleccionar todo",unselAll:"Quitar todo",selDone:"{n} partidos seleccionados",coffee:"Invítame un café",watch:"Ver en vivo",aff:"Contiene enlaces de afiliados; podemos recibir comisión",kfMsg:"¿Te resulta útil? Apóyame con un café ☕",kfSkip:"Omitir"},
-ja:{title:"2026 ワールドカップ試合リマインダー",sub:"アメリカ・カナダ・メキシコ · 6/11–7/19 · 全104試合",search:"チームを検索…",allTeams:"全チーム",all:"すべて",g:"グループ",r32:"R32",r16:"R16",qf:"準々決勝",sf:"準決勝",tp:"3位決定戦",f:"決勝",my:"マイリマインダー",add:"通知",added:"追加済み",gcal:"Google カレンダー",ics:".ics",notif:"通知を有効化",notifOn:"通知オン",notifNo:"通知がブロック",exp:"すべて書き出す (.ics)",none:"該当する試合がありません",tz:"時刻はあなたのタイムゾーンで表示:",next:"次のリマインダーまで",live:"試合中",done:"終了",grp:"グループ",mt:"第{n}試合",w:"第{n}試合の勝者",l:"第{n}試合の敗者",p1:"グループ{g} 1位",p2:"グループ{g} 2位",p3:"3位チーム ({g})",lead:["10分前","30分前","1時間前","3時間前"],noti:"まもなくキックオフ",data:"データ: FIFA 2026 公式日程",expEmpty:"リマインダーがありません",selAll:"表示中を全選択",unselAll:"全選択解除",selDone:"{n}試合を選択",coffee:"コーヒーをおごる",watch:"ライブ視聴",aff:"アフィリエイトリンクを含みます",kfMsg:"役に立ちましたか？コーヒーで応援 ☕",kfSkip:"スキップ"},
-fr:{title:"Rappels Coupe du Monde 2026",sub:"USA · Canada · Mexique · 11 juin – 19 juil · 104 matchs",search:"Rechercher une équipe…",allTeams:"Toutes les équipes",all:"Tous",g:"Groupes",r32:"16es",r16:"8es",qf:"Quarts",sf:"Demies",tp:"3e place",f:"Finale",my:"Mes rappels",add:"Rappel",added:"Ajouté",gcal:"Google Agenda",ics:".ics",notif:"Activer alertes",notifOn:"Alertes activées",notifNo:"Alertes bloquées",exp:"Tout exporter (.ics)",none:"Aucun match trouvé",tz:"Heures affichées dans votre fuseau :",next:"Prochain rappel dans",live:"EN DIRECT",done:"Terminé",grp:"Groupe",mt:"Match {n}",w:"Vainqueur M{n}",l:"Perdant M{n}",p1:"1er groupe {g}",p2:"2e groupe {g}",p3:"3e de groupe ({g})",lead:["10 min avant","30 min avant","1 h avant","3 h avant"],noti:"Coup d'envoi imminent",data:"Données : calendrier officiel FIFA 2026",expEmpty:"Aucun rappel ajouté",selAll:"Tout sélectionner",unselAll:"Tout désélectionner",selDone:"{n} matchs sélectionnés",coffee:"Offrez-moi un café",watch:"Regarder en direct",aff:"Contient des liens affiliés ; nous pouvons toucher une commission",kfMsg:"Utile ? Soutenez-moi avec un café ☕",kfSkip:"Passer"},
-ar:{title:"تذكير مباريات كأس العالم 2026",sub:"أمريكا · كندا · المكسيك · 11 يونيو – 19 يوليو · 104 مباراة",search:"ابحث عن منتخب…",allTeams:"كل المنتخبات",all:"الكل",g:"المجموعات",r32:"دور الـ32",r16:"دور الـ16",qf:"ربع النهائي",sf:"نصف النهائي",tp:"المركز الثالث",f:"النهائي",my:"تذكيراتي",add:"تذكير",added:"تمت الإضافة",gcal:"تقويم Google",ics:".ics",notif:"تفعيل التنبيهات",notifOn:"التنبيهات مفعلة",notifNo:"التنبيهات محظورة",exp:"تصدير الكل (.ics)",none:"لا توجد مباريات",tz:"الأوقات حسب منطقتك الزمنية:",next:"العد التنازلي للتذكير التالي",live:"مباشر",done:"انتهت",grp:"المجموعة",mt:"المباراة {n}",w:"الفائز م{n}",l:"الخاسر م{n}",p1:"متصدر المجموعة {g}",p2:"وصيف المجموعة {g}",p3:"ثالث المجموعات ({g})",lead:["قبل 10 دقائق","قبل 30 دقيقة","قبل ساعة","قبل 3 ساعات"],noti:"المباراة على وشك البدء",data:"البيانات: جدول فيفا 2026 الرسمي",expEmpty:"لا توجد تذكيرات",selAll:"تحديد كل القائمة",unselAll:"إلغاء التحديد",selDone:"تم تحديد {n} مباراة",coffee:"اشترِ لي قهوة",watch:"شاهد البث",aff:"يحتوي على روابط شراكة وقد نحصل على عمولة",kfMsg:"هل أفادك الموقع؟ ادعمني بقهوة ☕",kfSkip:"تخطي"}};
-const LOC={zh:"zh-TW",en:"en",es:"es",ja:"ja",fr:"fr",ar:"ar"};
-const TI={en:1,zh:2,ja:3,es:4,fr:5,ar:6};
-const LEADS=[10,30,60,180];
-// ===== state
-let lang=localStorage.getItem("wc_lang")||(navigator.language||"en").slice(0,2);
-if(!T[lang])lang=/^zh/.test(navigator.language)?"zh":"en";
-let stage=localStorage.getItem("wc_stage")||"all";
-let team="all",query="",myOnly=false;
-let stars=new Set(JSON.parse(localStorage.getItem("wc_stars")||"[]"));
-let lead=+localStorage.getItem("wc_lead")||30;
-let SCORES={},doneOpen=false;
-const $=id=>document.getElementById(id);
-const t=()=>T[lang];
-function tn(c){return TM[c]?TM[c][TI[lang]]:phName(c)}
-function fl(c){return TM[c]?TM[c][0]:"🏆"}
-function phName(c){
- const s=t();
- if(/^1[A-L]$/.test(c))return s.p1.replace("{g}",c[1]);
- if(/^2[A-L]$/.test(c))return s.p2.replace("{g}",c[1]);
- if(/^3/.test(c))return s.p3.replace("{g}",c.slice(1).split("").join("/"));
- if(/^W/.test(c))return s.w.replace("{n}",c.slice(1));
- if(/^L/.test(c))return s.l.replace("{n}",c.slice(1));
- return c}
-function cityName(k){return lang==="zh"?CT[k][1]:CT[k][0]}
-function fmtDateH(d){return d.toLocaleDateString(LOC[lang],{weekday:"long",month:"long",day:"numeric"})}
-function fmtTime(d){return d.toLocaleTimeString(LOC[lang],{hour:"2-digit",minute:"2-digit"})}
-function pad(n){return String(n).padStart(2,"0")}
-function icsDate(d){return d.getUTCFullYear()+pad(d.getUTCMonth()+1)+pad(d.getUTCDate())+"T"+pad(d.getUTCHours())+pad(d.getUTCMinutes())+"00Z"}
-function evTitle(m){return `⚽ ${tn(m[4])} vs ${tn(m[5])} — FIFA World Cup 2026`}
-function evLoc(m){return `${m[6]}, ${CT[m[7]][0]}`}
-// 修改内容：加入 Secalender App（深鏈 secalender://addevent；App 內確認後寫入 time_items）
-function appUrl(m){
- const a=new Date(m[1]),b=new Date(a.getTime()+72e5);
- const iso=d=>d.toISOString().replace(/\.\d{3}Z$/,"Z");
- return "secalender://addevent?title="+encodeURIComponent("⚽ "+evTitle(m))+"&start="+encodeURIComponent(iso(a))+"&end="+encodeURIComponent(iso(b))+"&location="+encodeURIComponent(evLoc(m));
-}
-function gcalUrl(m){
- const a=new Date(m[1]),b=new Date(a.getTime()+72e5);
- return "https://calendar.google.com/calendar/render?action=TEMPLATE&text="+encodeURIComponent(evTitle(m))+"&dates="+icsDate(a)+"/"+icsDate(b)+"&location="+encodeURIComponent(evLoc(m))+"&details="+encodeURIComponent(t().mt.replace("{n}",m[0]))}
-function icsEvent(m){
- const a=new Date(m[1]),b=new Date(a.getTime()+72e5);
- return ["BEGIN:VEVENT","UID:wc26-m"+m[0]+"@secalender.com","DTSTAMP:"+icsDate(new Date()),"DTSTART:"+icsDate(a),"DTEND:"+icsDate(b),"SUMMARY:"+evTitle(m).replace(/,/g,"\\,"),"LOCATION:"+evLoc(m).replace(/,/g,"\\,"),"BEGIN:VALARM","ACTION:DISPLAY","DESCRIPTION:"+t().noti,"TRIGGER:-PT"+lead+"M","END:VALARM","END:VEVENT"].join("\r\n")}
-function dlIcs(ms,name){
- const ics=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//secalender//WC26//EN",...ms.map(icsEvent),"END:VCALENDAR"].join("\r\n");
- const u=URL.createObjectURL(new Blob([ics],{type:"text/calendar"}));
- const a=document.createElement("a");a.href=u;a.download=name;a.click();URL.revokeObjectURL(u);maybeKofi()}
-function toast(msg){const e=$("toast");e.textContent=msg;e.classList.add("show");setTimeout(()=>e.classList.remove("show"),1800)}
-// Ko-fi 面板：匯出/加日曆後適時彈出，每 24h 最多一次，可跳過
-function maybeKofi(){
- if(Date.now()-(+localStorage.getItem("wc_kofi")||0)<864e5)return;
- localStorage.setItem("wc_kofi",Date.now());
- setTimeout(()=>{
-  $("kfMsg").textContent=t().kfMsg;$("kfClose").textContent=t().kfSkip;
-  const f=$("kofiframe");if(!f.src)f.src=f.dataset.src;
-  $("kfModal").classList.add("show")},800)}
-$("kfClose").onclick=()=>$("kfModal").classList.remove("show");
-$("kfModal").onclick=e=>{if(e.target.id==="kfModal")$("kfModal").classList.remove("show")};
-// ===== render
-function applyStatic(){
- const s=t();
- document.documentElement.lang=LOC[lang];
- document.documentElement.dir=lang==="ar"?"rtl":"ltr";
- document.title=s.title;
- $("tTitle").textContent=s.title;$("tSub").textContent=s.sub;
- $("q").placeholder=s.search;$("tMy").textContent=s.my;$("tExport").textContent=s.exp;
- $("tNotif").textContent=Notification&&Notification.permission==="granted"?s.notifOn:s.notif;
- $("tSelAll").textContent=s.selAll;$("tUnselAll").textContent=s.unselAll;
- $("tTz").textContent=s.tz;$("tzName").textContent=Intl.DateTimeFormat().resolvedOptions().timeZone;
- $("tData").textContent=s.data;$("nextLbl").textContent=s.next;
- const ts=$("teamSel");ts.innerHTML="";
- const o0=document.createElement("option");o0.value="all";o0.textContent=s.allTeams;ts.appendChild(o0);
- Object.keys(TM).map(c=>[c,tn(c)]).sort((a,b)=>a[1].localeCompare(b[1],LOC[lang])).forEach(([c,n])=>{
-  const o=document.createElement("option");o.value=c;o.textContent=fl(c)+" "+n;ts.appendChild(o)});
- ts.value=team;
- const ls=$("leadSel");ls.innerHTML="";
- LEADS.forEach((v,i)=>{const o=document.createElement("option");o.value=v;o.textContent="🔔 "+s.lead[i];ls.appendChild(o)});
- ls.value=lead;
- const sc=$("stageChips");sc.innerHTML="";
- [["all",s.all],["g",s.g],["r32",s.r32],["r16",s.r16],["qf",s.qf],["sf",s.sf],["tp",s.tp],["f",s.f]].forEach(([k,n])=>{
-  const c=document.createElement("span");c.className="chip"+(stage===k?" on":"");c.textContent=n;
-  c.onclick=()=>{stage=k;localStorage.setItem("wc_stage",k);applyStatic();render()};sc.appendChild(c)});
- $("myChip").classList.toggle("on",myOnly);
- $("myCount").textContent=stars.size;
- const fb=$("flagBar");fb.innerHTML="";
- Object.keys(TM).forEach(c=>{
-  const b=document.createElement("span");
-  b.className="fbtn"+(team===c?" on":"");
-  b.textContent=fl(c);b.title=tn(c);
-  b.onclick=()=>{team=team===c?"all":c;$("teamSel").value=team;applyStatic();render()};
-  fb.appendChild(b)});
-}
-function filtered(){
- const q=query.trim().toLowerCase();
- return M.filter(m=>{
-  if(stage!=="all"&&m[2]!==stage)return false;
-  if(myOnly&&!stars.has(m[0]))return false;
-  if(team!=="all"&&m[4]!==team&&m[5]!==team)return false;
-  if(q){const hay=[tn(m[4]),tn(m[5]),TM[m[4]]?.[1]||"",TM[m[5]]?.[1]||"",m[6],cityName(m[7])].join(" ").toLowerCase();
-   if(!hay.includes(q))return false}
-  return true})}
-function mstate(m,now){
- const ts=new Date(m[1]).getTime(),sc=SCORES[m[0]];
- const past=sc?sc.st==="post":now>=ts+72e5;
- const live=!past&&(sc?sc.st==="in":(now>=ts&&now<ts+72e5));
- return{ts,sc,past,live}}
-function mkCard(m,now){
- const s=t(),d=new Date(m[1]),{ts,sc,past,live}=mstate(m,now);
- const card=document.createElement("div");card.className="card"+(stars.has(m[0])?" starred":"");
- const badge=m[2]==="g"?(s.g+" · "+m[3]):s[m[2]];
- const hN=TM[m[4]]?tn(m[4]):(sc?(sc.swap?sc.an:sc.hn):tn(m[4]));
- const aN=TM[m[5]]?tn(m[5]):(sc?(sc.swap?sc.hn:sc.an):tn(m[5]));
- const hS=sc?(sc.swap?sc.as:sc.hs):"",aS=sc?(sc.swap?sc.hs:sc.as):"";
- const mid=(sc&&sc.st!=="pre")?`<b class="sc">${hS} – ${aS}</b>`:`<span class="vs">vs</span>`;
- const liveTxt=s.live+(sc&&sc.clock&&sc.st==="in"?" · "+sc.clock:"");
- card.innerHTML=`<div class="row1"><span class="badge${live?" live":""}">${live?"🔴 "+liveTxt:badge+" · "+s.mt.replace("{n}",m[0])}</span><span class="time">${past?s.done:fmtTime(d)}</span></div>
- <div class="teams"><span class="fl">${fl(m[4])}</span>${hN}${mid}<span class="fl">${fl(m[5])}</span>${aN}</div>
- <div class="loc">📍 ${m[6]} · ${cityName(m[7])}${past||live?"":`<span class="cdwn" data-ts="${ts}"></span>`}</div>
- <div class="acts">
-  <button class="btn star${stars.has(m[0])?" on":""}" data-star="${m[0]}">★ ${stars.has(m[0])?s.added:s.add}</button>
-  <a class="btn" data-g="1" target="_blank" rel="noopener" href="${gcalUrl(m)}">📅 ${s.gcal}</a>
-  <a class="btn" href="${appUrl(m)}">📲 加入 App</a>
-  <button class="btn" data-ics="${m[0]}">📥 ${s.ics}</button>
- </div>`;
- return card}
+// ===== 公開日曆目錄（新增活動只要加一筆）=====
+// type: "page"=站內專頁; "gcal_id"=Google 公共日曆（自動產 ics/webcal/gcal 連結）; "ics"=外部 ics 網址
+const CATALOG=[
+ {icon:"⚽",title:"2026 世界盃",cat:"運動",hot:"🔥 進行中熱門",desc:"美加墨 104 場完整賽程，逐場提醒、時區自動換算，可逐場加入 App。",type:"page",href:"/worldcup.html"},
+ {icon:"🇹🇼",title:"台灣國定假日",cat:"假日",desc:"台灣國定假日與補班日，Google 官方公共日曆，自動更新。",type:"gcal_id",id:"zh_tw.taiwan#holiday@group.v.calendar.google.com"},
+ {icon:"🇯🇵",title:"日本國定假日",cat:"假日",desc:"日本祝日官方公共日曆，旅日排程必備。",type:"gcal_id",id:"ja.japanese#holiday@group.v.calendar.google.com"},
+ {icon:"🇺🇸",title:"美國國定假日",cat:"假日",desc:"美國聯邦假日公共日曆。",type:"gcal_id",id:"en.usa#holiday@group.v.calendar.google.com"},
+ {icon:"🇭🇰",title:"香港公眾假期",cat:"假日",desc:"香港公眾假期公共日曆。",type:"gcal_id",id:"zh.hong_kong#holiday@group.v.calendar.google.com"},
+ {icon:"🌙",title:"月相日曆",cat:"生活",desc:"滿月、新月等月相時間，Google 公共日曆。",type:"gcal_id",id:"ht3jlfaac5lfd6263ulfh4tql8@group.calendar.google.com"},
+ {icon:"🏀",title:"NBA / 更多賽事",cat:"運動",desc:"更多賽事日曆整理中，之後陸續上線。想先看哪個？歡迎許願。",type:"soon"},
+ {icon:"🍎",title:"科技發表會",cat:"科技",desc:"Apple、Google 等大型發表會時間線，整理中。",type:"soon"}
+];
+
+const grid=document.getElementById("grid");
+const chipsEl=document.getElementById("chips");
+let activeCat="全部";
+
+function icsUrl(id){return "https://calendar.google.com/calendar/ical/"+encodeURIComponent(id)+"/public/basic.ics"}
+function webcalUrl(id){return icsUrl(id).replace(/^https:/,"webcal:")}
+function gcalUrl(id){return "https://calendar.google.com/calendar/r?cid="+encodeURIComponent(id)}
+// 修改内容：加入 App 行事曆 — 深鏈開啟 Secalender 檢視 ICS 內容並勾選加入
+function appCalUrl(ics,title){return "secalender://addcalendar?url="+encodeURIComponent(ics)+"&title="+encodeURIComponent(title)}
+
 function render(){
- const s=t(),list=$("list");list.innerHTML="";
- const now=Date.now();
- const rows=filtered();
- if(!rows.length){list.innerHTML='<div class="empty">'+s.none+'</div>';updateNext();return}
- const doneRows=rows.filter(m=>mstate(m,now).past);
- const actRows=rows.filter(m=>!mstate(m,now).past);
- if(doneRows.length){
-  const det=document.createElement("details");det.className="doneSec";det.open=doneOpen;
-  det.innerHTML=`<summary>✅ ${s.done} (${doneRows.length})</summary>`;
-  det.addEventListener("toggle",()=>{doneOpen=det.open});
-  let ld="";
-  doneRows.forEach(m=>{const d=new Date(m[1]);
-   if(d.toDateString()!==ld){ld=d.toDateString();const h=document.createElement("div");h.className="dhead";h.textContent=fmtDateH(d);det.appendChild(h)}
-   det.appendChild(mkCard(m,now))});
-  list.appendChild(det)}
- let lastDay="";
- actRows.forEach(m=>{const d=new Date(m[1]);
-  if(d.toDateString()!==lastDay){lastDay=d.toDateString();const h=document.createElement("div");h.className="dhead";h.textContent=fmtDateH(d);list.appendChild(h)}
-  list.appendChild(mkCard(m,now))});
- list.querySelectorAll("[data-star]").forEach(b=>b.onclick=()=>{
-  const n=+b.dataset.star;
-  stars.has(n)?stars.delete(n):stars.add(n);
-  localStorage.setItem("wc_stars",JSON.stringify([...stars]));
-  if(stars.has(n)&&Notification&&Notification.permission==="default")Notification.requestPermission().then(applyStatic);
-  scheduleNotifs();applyStatic();render()});
- list.querySelectorAll("[data-ics]").forEach(b=>b.onclick=()=>{
-  const m=M.find(x=>x[0]===+b.dataset.ics);dlIcs([m],"wc26-match-"+m[0]+".ics")});
- updateNext()}
-// ===== countdown
-let cdT=null;
-function updateNext(){
- clearInterval(cdT);
- const now=Date.now();
- const pool=M.filter(m=>stars.has(m[0])&&new Date(m[1]).getTime()>now);
- const box=$("nextBox");
- if(!pool.length){box.classList.remove("show");return}
- const m=pool.sort((a,b)=>new Date(a[1])-new Date(b[1]))[0];
- box.classList.add("show");
- $("nextMatch").textContent=`${fl(m[4])} ${tn(m[4])} vs ${fl(m[5])} ${tn(m[5])} · ${fmtTime(new Date(m[1]))}`;
- const tick=()=>{
-  let dl=new Date(m[1]).getTime()-Date.now();
-  if(dl<0){updateNext();render();return}
-  const dd=Math.floor(dl/864e5);dl%=864e5;
-  const hh=Math.floor(dl/36e5);dl%=36e5;
-  const mm=Math.floor(dl/6e4),ss=Math.floor(dl%6e4/1e3);
-  $("nextCd").textContent=(dd?dd+"d ":"")+pad(hh)+":"+pad(mm)+":"+pad(ss)};
- tick();cdT=setInterval(tick,1000)}
-// ===== notifications (while page open)
-let nT=[];
-function scheduleNotifs(){
- nT.forEach(clearTimeout);nT=[];
- if(!("Notification"in window)||Notification.permission!=="granted")return;
- const now=Date.now();
- M.filter(m=>stars.has(m[0])).forEach(m=>{
-  const fire=new Date(m[1]).getTime()-lead*6e4-now;
-  if(fire>0&&fire<864e5*7)nT.push(setTimeout(()=>{
-   new Notification(t().noti,{body:`${tn(m[4])} vs ${tn(m[5])} · ${fmtTime(new Date(m[1]))} · ${evLoc(m)}`})},fire))})}
-// ===== events
-$("list").addEventListener("click",e=>{if(e.target.closest("a[data-g]"))maybeKofi()});
-$("langSel").value=lang;
-$("langSel").onchange=e=>{lang=e.target.value;localStorage.setItem("wc_lang",lang);applyStatic();render()};
-$("q").oninput=e=>{query=e.target.value;render()};
-$("teamSel").onchange=e=>{team=e.target.value;applyStatic();render()};
-$("leadSel").onchange=e=>{lead=+e.target.value;localStorage.setItem("wc_lead",lead);scheduleNotifs()};
-$("myChip").onclick=()=>{myOnly=!myOnly;applyStatic();render()};
-$("selAllChip").onclick=()=>{
- const ms=filtered();
- ms.forEach(m=>stars.add(m[0]));
- localStorage.setItem("wc_stars",JSON.stringify([...stars]));
- if(ms.length&&Notification&&Notification.permission==="default")Notification.requestPermission().then(applyStatic);
- scheduleNotifs();applyStatic();render();
- toast(t().selDone.replace("{n}",ms.length))};
-$("unselAllChip").onclick=()=>{
- filtered().forEach(m=>stars.delete(m[0]));
- localStorage.setItem("wc_stars",JSON.stringify([...stars]));
- scheduleNotifs();applyStatic();render()};
-$("exportChip").onclick=()=>{
- const ms=M.filter(m=>stars.has(m[0]));
- if(!ms.length){toast(t().expEmpty);return}
- dlIcs(ms,"worldcup2026-reminders.ics")};
-$("notifChip").onclick=()=>{
- if(!("Notification"in window))return;
- Notification.requestPermission().then(p=>{
-  toast(p==="granted"?t().notifOn:t().notifNo);applyStatic();scheduleNotifs()})};
-// ===== Google AdSense（填 CFG.adsense 後自動啟用；單一版位在列表底部）
-if(CFG.adsense){
- const ins=document.createElement("ins");
- ins.className="adsbygoogle";ins.style.display="block";
- ins.setAttribute("data-ad-client",CFG.adsense);
- ins.setAttribute("data-ad-format","auto");
- ins.setAttribute("data-full-width-responsive","true");
- $("list").insertAdjacentElement("afterend",ins);
- (window.adsbygoogle=window.adsbygoogle||[]).push({});
+ const cats=["全部",...new Set(CATALOG.map(c=>c.cat))];
+ chipsEl.innerHTML=cats.map(c=>'<span class="chip'+(c===activeCat?" on":"")+'" onclick="setCat(\''+c+'\')">'+c+'</span>').join("");
+ grid.innerHTML=CATALOG.filter(c=>activeCat==="全部"||c.cat===activeCat).map(c=>{
+  let acts="";
+  if(c.type==="page"){
+   acts='<a class="b main" href="'+c.href+'">開啟專頁 →</a>';
+  }else if(c.type==="gcal_id"){
+   // 修改内容：主按鈕改為在 App 檢視並選擇加入；訂閱/Google 日曆為次要
+   acts='<a class="b main" href="'+appCalUrl(icsUrl(c.id),c.title)+'">⚡ 加入 App 行事曆</a>'
+       +'<a class="b" href="'+webcalUrl(c.id)+'">📱 訂閱</a>'
+       +'<a class="b g" target="_blank" rel="noopener" href="'+gcalUrl(c.id)+'">🟦 Google</a>';
+  }else if(c.type==="ics"){
+   acts='<a class="b main" href="'+appCalUrl(c.href,c.title)+'">⚡ 加入 App 行事曆</a>'
+       +'<a class="b" href="'+c.href.replace(/^https:/,"webcal:")+'">📱 訂閱</a>';
+  }else{
+   acts='<span class="b" style="opacity:.5">即將上線</span>';
+  }
+  return '<div class="c"><div class="top"><span class="ic">'+c.icon+'</span><h3>'+c.title+'</h3><span class="tag">'+c.cat+'</span></div>'
+   +(c.hot?'<div class="hot">'+c.hot+'</div>':'')
+   +'<p>'+c.desc+'</p><div class="acts">'+acts+'</div></div>';
+ }).join("");
 }
-// ===== 即時比分（ESPN 公開 API，免金鑰；失敗時靜默退回時間判斷）
-const ALIAS={MEX:["mexico"],RSA:["south africa"],KOR:["south korea","korea republic"],CZE:["czech"],CAN:["canada"],SUI:["switzerland"],QAT:["qatar"],BIH:["bosnia"],BRA:["brazil"],MAR:["morocco"],HAI:["haiti"],SCO:["scotland"],USA:["usa","united states"],PAR:["paraguay"],AUS:["australia"],TUR:["turkiye","turkey"],GER:["germany"],CUW:["curacao"],CIV:["cote d'ivoire","ivory coast"],ECU:["ecuador"],NED:["netherlands"],JPN:["japan"],TUN:["tunisia"],SWE:["sweden"],BEL:["belgium"],EGY:["egypt"],IRN:["iran"],NZL:["new zealand"],ESP:["spain"],CPV:["cabo verde","cape verde"],KSA:["saudi"],URU:["uruguay"],FRA:["france"],SEN:["senegal"],NOR:["norway"],IRQ:["iraq"],ARG:["argentina"],ALG:["algeria"],AUT:["austria"],JOR:["jordan"],POR:["portugal"],UZB:["uzbekistan"],COL:["colombia"],COD:["congo"],ENG:["england"],CRO:["croatia"],GHA:["ghana"],PAN:["panama"]};
-function nrm(x){return (x||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"")}
-function tMatch(name,code){const n=nrm(name);return (ALIAS[code]||[]).some(a=>n.includes(a))}
-async function fetchScores(){
- try{
-  const r=await fetch("https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?dates=20260611-20260719&limit=300");
-  if(!r.ok)return;
-  const j=await r.json();
-  (j.events||[]).forEach(ev=>{
-   const c=ev.competitions&&ev.competitions[0];if(!c)return;
-   const H=(c.competitors||[]).find(x=>x.homeAway==="home"),A=(c.competitors||[]).find(x=>x.homeAway==="away");
-   if(!H||!A)return;
-   const ets=new Date(ev.date).getTime();
-   const cand=M.filter(m=>Math.abs(new Date(m[1]).getTime()-ets)<9e6);
-   let m=cand.find(m=>TM[m[4]]&&TM[m[5]]&&((tMatch(H.team.displayName,m[4])&&tMatch(A.team.displayName,m[5]))||(tMatch(H.team.displayName,m[5])&&tMatch(A.team.displayName,m[4]))));
-   if(!m){const ko=cand.filter(x=>!TM[x[4]]||!TM[x[5]]);if(ko.length===1)m=ko[0]}
-   if(!m)return;
-   SCORES[m[0]]={hs:H.score,as:A.score,st:ev.status&&ev.status.type?ev.status.type.state:"pre",
-    clock:ev.status?ev.status.displayClock:"",hn:H.team.shortDisplayName,an:A.team.shortDisplayName,
-    swap:!!(TM[m[4]]&&tMatch(H.team.displayName,m[5]))}});
-  render();
- }catch(e){}}
-fetchScores();setInterval(fetchScores,6e4);
-// ===== 每張卡的開賽倒數（依用戶時區自動計算）
-function fmtCd(dl){
- const dd=Math.floor(dl/864e5);dl%=864e5;
- const hh=Math.floor(dl/36e5);dl%=36e5;
- return (dd?dd+"d ":"")+pad(hh)+":"+pad(Math.floor(dl/6e4))+":"+pad(Math.floor(dl%6e4/1e3))}
-setInterval(()=>{
- const now=Date.now();let expired=false;
- document.querySelectorAll(".cdwn").forEach(e=>{
-  const dl=+e.dataset.ts-now;
-  if(dl<=0){expired=true;return}
-  e.textContent="⏳ "+fmtCd(dl)});
- if(expired)render()},1000);
-applyStatic();render();scheduleNotifs();
-setInterval(render,6e4);
+function setCat(c){activeCat=c;render()}
+render();
 </script>
 </body>
 </html>
