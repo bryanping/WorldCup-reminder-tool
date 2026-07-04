@@ -1,0 +1,1042 @@
+[
+ {
+  "id": "wc2026_001",
+  "title": "⚽ 世界盃小組賽（A 組）：🇲🇽墨西哥 vs 🇿🇦南非",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 1,
+  "startAt": "2026-06-11T19:00:00Z",
+  "endAt": "2026-06-11T21:00:00Z",
+  "location": "Estadio Azteca · 墨西哥城"
+ },
+ {
+  "id": "wc2026_002",
+  "title": "⚽ 世界盃小組賽（A 組）：🇰🇷南韓 vs 🇨🇿捷克",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 2,
+  "startAt": "2026-06-12T02:00:00Z",
+  "endAt": "2026-06-12T04:00:00Z",
+  "location": "Estadio Akron · 瓜達拉哈拉"
+ },
+ {
+  "id": "wc2026_003",
+  "title": "⚽ 世界盃小組賽（B 組）：🇨🇦加拿大 vs 🇧🇦波士尼亞",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 3,
+  "startAt": "2026-06-12T19:00:00Z",
+  "endAt": "2026-06-12T21:00:00Z",
+  "location": "BMO Field · 多倫多"
+ },
+ {
+  "id": "wc2026_004",
+  "title": "⚽ 世界盃小組賽（D 組）：🇺🇸美國 vs 🇵🇾巴拉圭",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 4,
+  "startAt": "2026-06-13T01:00:00Z",
+  "endAt": "2026-06-13T03:00:00Z",
+  "location": "SoFi Stadium · 洛杉磯"
+ },
+ {
+  "id": "wc2026_005",
+  "title": "⚽ 世界盃小組賽（C 組）：🇭🇹海地 vs 🏴󠁧󠁢󠁳󠁣󠁴󠁿蘇格蘭",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 5,
+  "startAt": "2026-06-14T01:00:00Z",
+  "endAt": "2026-06-14T03:00:00Z",
+  "location": "Gillette Stadium · 波士頓"
+ },
+ {
+  "id": "wc2026_006",
+  "title": "⚽ 世界盃小組賽（D 組）：🇦🇺澳洲 vs 🇹🇷土耳其",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 6,
+  "startAt": "2026-06-14T04:00:00Z",
+  "endAt": "2026-06-14T06:00:00Z",
+  "location": "BC Place · 溫哥華"
+ },
+ {
+  "id": "wc2026_007",
+  "title": "⚽ 世界盃小組賽（C 組）：🇧🇷巴西 vs 🇲🇦摩洛哥",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 7,
+  "startAt": "2026-06-13T22:00:00Z",
+  "endAt": "2026-06-14T00:00:00Z",
+  "location": "MetLife Stadium · 紐約/新澤西"
+ },
+ {
+  "id": "wc2026_008",
+  "title": "⚽ 世界盃小組賽（B 組）：🇶🇦卡達 vs 🇨🇭瑞士",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 8,
+  "startAt": "2026-06-13T19:00:00Z",
+  "endAt": "2026-06-13T21:00:00Z",
+  "location": "Levi's Stadium · 舊金山灣區"
+ },
+ {
+  "id": "wc2026_009",
+  "title": "⚽ 世界盃小組賽（E 組）：🇨🇮象牙海岸 vs 🇪🇨厄瓜多",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 9,
+  "startAt": "2026-06-14T23:00:00Z",
+  "endAt": "2026-06-15T01:00:00Z",
+  "location": "Lincoln Financial Field · 費城"
+ },
+ {
+  "id": "wc2026_010",
+  "title": "⚽ 世界盃小組賽（E 組）：🇩🇪德國 vs 🇨🇼古拉索",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 10,
+  "startAt": "2026-06-14T17:00:00Z",
+  "endAt": "2026-06-14T19:00:00Z",
+  "location": "NRG Stadium · 休士頓"
+ },
+ {
+  "id": "wc2026_011",
+  "title": "⚽ 世界盃小組賽（F 組）：🇳🇱荷蘭 vs 🇯🇵日本",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 11,
+  "startAt": "2026-06-14T20:00:00Z",
+  "endAt": "2026-06-14T22:00:00Z",
+  "location": "AT&T Stadium · 達拉斯"
+ },
+ {
+  "id": "wc2026_012",
+  "title": "⚽ 世界盃小組賽（F 組）：🇸🇪瑞典 vs 🇹🇳突尼西亞",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 12,
+  "startAt": "2026-06-15T02:00:00Z",
+  "endAt": "2026-06-15T04:00:00Z",
+  "location": "Estadio BBVA · 蒙特雷"
+ },
+ {
+  "id": "wc2026_013",
+  "title": "⚽ 世界盃小組賽（H 組）：🇸🇦沙烏地阿拉伯 vs 🇺🇾烏拉圭",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 13,
+  "startAt": "2026-06-15T22:00:00Z",
+  "endAt": "2026-06-16T00:00:00Z",
+  "location": "Hard Rock Stadium · 邁阿密"
+ },
+ {
+  "id": "wc2026_014",
+  "title": "⚽ 世界盃小組賽（H 組）：🇪🇸西班牙 vs 🇨🇻維德角",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 14,
+  "startAt": "2026-06-15T16:00:00Z",
+  "endAt": "2026-06-15T18:00:00Z",
+  "location": "Mercedes-Benz Stadium · 亞特蘭大"
+ },
+ {
+  "id": "wc2026_015",
+  "title": "⚽ 世界盃小組賽（G 組）：🇮🇷伊朗 vs 🇳🇿紐西蘭",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 15,
+  "startAt": "2026-06-16T01:00:00Z",
+  "endAt": "2026-06-16T03:00:00Z",
+  "location": "SoFi Stadium · 洛杉磯"
+ },
+ {
+  "id": "wc2026_016",
+  "title": "⚽ 世界盃小組賽（G 組）：🇧🇪比利時 vs 🇪🇬埃及",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 16,
+  "startAt": "2026-06-15T19:00:00Z",
+  "endAt": "2026-06-15T21:00:00Z",
+  "location": "Lumen Field · 西雅圖"
+ },
+ {
+  "id": "wc2026_017",
+  "title": "⚽ 世界盃小組賽（I 組）：🇫🇷法國 vs 🇸🇳塞內加爾",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 17,
+  "startAt": "2026-06-16T19:00:00Z",
+  "endAt": "2026-06-16T21:00:00Z",
+  "location": "MetLife Stadium · 紐約/新澤西"
+ },
+ {
+  "id": "wc2026_018",
+  "title": "⚽ 世界盃小組賽（I 組）：🇮🇶伊拉克 vs 🇳🇴挪威",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 18,
+  "startAt": "2026-06-16T22:00:00Z",
+  "endAt": "2026-06-17T00:00:00Z",
+  "location": "Gillette Stadium · 波士頓"
+ },
+ {
+  "id": "wc2026_019",
+  "title": "⚽ 世界盃小組賽（J 組）：🇦🇷阿根廷 vs 🇩🇿阿爾及利亞",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 19,
+  "startAt": "2026-06-17T01:00:00Z",
+  "endAt": "2026-06-17T03:00:00Z",
+  "location": "Arrowhead Stadium · 堪薩斯城"
+ },
+ {
+  "id": "wc2026_020",
+  "title": "⚽ 世界盃小組賽（J 組）：🇦🇹奧地利 vs 🇯🇴約旦",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 20,
+  "startAt": "2026-06-17T04:00:00Z",
+  "endAt": "2026-06-17T06:00:00Z",
+  "location": "Levi's Stadium · 舊金山灣區"
+ },
+ {
+  "id": "wc2026_021",
+  "title": "⚽ 世界盃小組賽（L 組）：🇬🇭迦納 vs 🇵🇦巴拿馬",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 21,
+  "startAt": "2026-06-17T23:00:00Z",
+  "endAt": "2026-06-18T01:00:00Z",
+  "location": "BMO Field · 多倫多"
+ },
+ {
+  "id": "wc2026_022",
+  "title": "⚽ 世界盃小組賽（L 組）：🏴󠁧󠁢󠁥󠁮󠁧󠁿英格蘭 vs 🇭🇷克羅埃西亞",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 22,
+  "startAt": "2026-06-17T20:00:00Z",
+  "endAt": "2026-06-17T22:00:00Z",
+  "location": "AT&T Stadium · 達拉斯"
+ },
+ {
+  "id": "wc2026_023",
+  "title": "⚽ 世界盃小組賽（K 組）：🇵🇹葡萄牙 vs 🇨🇩民主剛果",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 23,
+  "startAt": "2026-06-17T17:00:00Z",
+  "endAt": "2026-06-17T19:00:00Z",
+  "location": "NRG Stadium · 休士頓"
+ },
+ {
+  "id": "wc2026_024",
+  "title": "⚽ 世界盃小組賽（K 組）：🇺🇿烏茲別克 vs 🇨🇴哥倫比亞",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 24,
+  "startAt": "2026-06-18T02:00:00Z",
+  "endAt": "2026-06-18T04:00:00Z",
+  "location": "Estadio Azteca · 墨西哥城"
+ },
+ {
+  "id": "wc2026_025",
+  "title": "⚽ 世界盃小組賽（A 組）：🇨🇿捷克 vs 🇿🇦南非",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 25,
+  "startAt": "2026-06-18T16:00:00Z",
+  "endAt": "2026-06-18T18:00:00Z",
+  "location": "Mercedes-Benz Stadium · 亞特蘭大"
+ },
+ {
+  "id": "wc2026_026",
+  "title": "⚽ 世界盃小組賽（B 組）：🇨🇭瑞士 vs 🇧🇦波士尼亞",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 26,
+  "startAt": "2026-06-18T19:00:00Z",
+  "endAt": "2026-06-18T21:00:00Z",
+  "location": "SoFi Stadium · 洛杉磯"
+ },
+ {
+  "id": "wc2026_027",
+  "title": "⚽ 世界盃小組賽（B 組）：🇨🇦加拿大 vs 🇶🇦卡達",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 27,
+  "startAt": "2026-06-18T22:00:00Z",
+  "endAt": "2026-06-19T00:00:00Z",
+  "location": "BC Place · 溫哥華"
+ },
+ {
+  "id": "wc2026_028",
+  "title": "⚽ 世界盃小組賽（A 組）：🇲🇽墨西哥 vs 🇰🇷南韓",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 28,
+  "startAt": "2026-06-19T01:00:00Z",
+  "endAt": "2026-06-19T03:00:00Z",
+  "location": "Estadio Akron · 瓜達拉哈拉"
+ },
+ {
+  "id": "wc2026_029",
+  "title": "⚽ 世界盃小組賽（C 組）：🇧🇷巴西 vs 🇭🇹海地",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 29,
+  "startAt": "2026-06-20T01:00:00Z",
+  "endAt": "2026-06-20T03:00:00Z",
+  "location": "Lincoln Financial Field · 費城"
+ },
+ {
+  "id": "wc2026_030",
+  "title": "⚽ 世界盃小組賽（C 組）：🏴󠁧󠁢󠁳󠁣󠁴󠁿蘇格蘭 vs 🇲🇦摩洛哥",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 30,
+  "startAt": "2026-06-19T22:00:00Z",
+  "endAt": "2026-06-20T00:00:00Z",
+  "location": "Gillette Stadium · 波士頓"
+ },
+ {
+  "id": "wc2026_031",
+  "title": "⚽ 世界盃小組賽（D 組）：🇹🇷土耳其 vs 🇵🇾巴拉圭",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 31,
+  "startAt": "2026-06-20T03:00:00Z",
+  "endAt": "2026-06-20T05:00:00Z",
+  "location": "Levi's Stadium · 舊金山灣區"
+ },
+ {
+  "id": "wc2026_032",
+  "title": "⚽ 世界盃小組賽（D 組）：🇺🇸美國 vs 🇦🇺澳洲",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 32,
+  "startAt": "2026-06-19T19:00:00Z",
+  "endAt": "2026-06-19T21:00:00Z",
+  "location": "Lumen Field · 西雅圖"
+ },
+ {
+  "id": "wc2026_033",
+  "title": "⚽ 世界盃小組賽（E 組）：🇩🇪德國 vs 🇨🇮象牙海岸",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 33,
+  "startAt": "2026-06-20T20:00:00Z",
+  "endAt": "2026-06-20T22:00:00Z",
+  "location": "BMO Field · 多倫多"
+ },
+ {
+  "id": "wc2026_034",
+  "title": "⚽ 世界盃小組賽（E 組）：🇪🇨厄瓜多 vs 🇨🇼古拉索",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 34,
+  "startAt": "2026-06-21T00:00:00Z",
+  "endAt": "2026-06-21T02:00:00Z",
+  "location": "Arrowhead Stadium · 堪薩斯城"
+ },
+ {
+  "id": "wc2026_035",
+  "title": "⚽ 世界盃小組賽（F 組）：🇳🇱荷蘭 vs 🇸🇪瑞典",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 35,
+  "startAt": "2026-06-20T17:00:00Z",
+  "endAt": "2026-06-20T19:00:00Z",
+  "location": "NRG Stadium · 休士頓"
+ },
+ {
+  "id": "wc2026_036",
+  "title": "⚽ 世界盃小組賽（F 組）：🇹🇳突尼西亞 vs 🇯🇵日本",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 36,
+  "startAt": "2026-06-21T04:00:00Z",
+  "endAt": "2026-06-21T06:00:00Z",
+  "location": "Estadio BBVA · 蒙特雷"
+ },
+ {
+  "id": "wc2026_037",
+  "title": "⚽ 世界盃小組賽（H 組）：🇺🇾烏拉圭 vs 🇨🇻維德角",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 37,
+  "startAt": "2026-06-21T22:00:00Z",
+  "endAt": "2026-06-22T00:00:00Z",
+  "location": "Hard Rock Stadium · 邁阿密"
+ },
+ {
+  "id": "wc2026_038",
+  "title": "⚽ 世界盃小組賽（H 組）：🇪🇸西班牙 vs 🇸🇦沙烏地阿拉伯",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 38,
+  "startAt": "2026-06-21T16:00:00Z",
+  "endAt": "2026-06-21T18:00:00Z",
+  "location": "Mercedes-Benz Stadium · 亞特蘭大"
+ },
+ {
+  "id": "wc2026_039",
+  "title": "⚽ 世界盃小組賽（G 組）：🇧🇪比利時 vs 🇮🇷伊朗",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 39,
+  "startAt": "2026-06-21T19:00:00Z",
+  "endAt": "2026-06-21T21:00:00Z",
+  "location": "SoFi Stadium · 洛杉磯"
+ },
+ {
+  "id": "wc2026_040",
+  "title": "⚽ 世界盃小組賽（G 組）：🇳🇿紐西蘭 vs 🇪🇬埃及",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 40,
+  "startAt": "2026-06-22T01:00:00Z",
+  "endAt": "2026-06-22T03:00:00Z",
+  "location": "BC Place · 溫哥華"
+ },
+ {
+  "id": "wc2026_041",
+  "title": "⚽ 世界盃小組賽（I 組）：🇳🇴挪威 vs 🇸🇳塞內加爾",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 41,
+  "startAt": "2026-06-23T00:00:00Z",
+  "endAt": "2026-06-23T02:00:00Z",
+  "location": "MetLife Stadium · 紐約/新澤西"
+ },
+ {
+  "id": "wc2026_042",
+  "title": "⚽ 世界盃小組賽（I 組）：🇫🇷法國 vs 🇮🇶伊拉克",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 42,
+  "startAt": "2026-06-22T21:00:00Z",
+  "endAt": "2026-06-22T23:00:00Z",
+  "location": "Lincoln Financial Field · 費城"
+ },
+ {
+  "id": "wc2026_043",
+  "title": "⚽ 世界盃小組賽（J 組）：🇦🇷阿根廷 vs 🇦🇹奧地利",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 43,
+  "startAt": "2026-06-22T17:00:00Z",
+  "endAt": "2026-06-22T19:00:00Z",
+  "location": "AT&T Stadium · 達拉斯"
+ },
+ {
+  "id": "wc2026_044",
+  "title": "⚽ 世界盃小組賽（J 組）：🇯🇴約旦 vs 🇩🇿阿爾及利亞",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 44,
+  "startAt": "2026-06-23T03:00:00Z",
+  "endAt": "2026-06-23T05:00:00Z",
+  "location": "Levi's Stadium · 舊金山灣區"
+ },
+ {
+  "id": "wc2026_045",
+  "title": "⚽ 世界盃小組賽（L 組）：🏴󠁧󠁢󠁥󠁮󠁧󠁿英格蘭 vs 🇬🇭迦納",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 45,
+  "startAt": "2026-06-23T20:00:00Z",
+  "endAt": "2026-06-23T22:00:00Z",
+  "location": "Gillette Stadium · 波士頓"
+ },
+ {
+  "id": "wc2026_046",
+  "title": "⚽ 世界盃小組賽（L 組）：🇵🇦巴拿馬 vs 🇭🇷克羅埃西亞",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 46,
+  "startAt": "2026-06-23T23:00:00Z",
+  "endAt": "2026-06-24T01:00:00Z",
+  "location": "BMO Field · 多倫多"
+ },
+ {
+  "id": "wc2026_047",
+  "title": "⚽ 世界盃小組賽（K 組）：🇵🇹葡萄牙 vs 🇺🇿烏茲別克",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 47,
+  "startAt": "2026-06-23T17:00:00Z",
+  "endAt": "2026-06-23T19:00:00Z",
+  "location": "NRG Stadium · 休士頓"
+ },
+ {
+  "id": "wc2026_048",
+  "title": "⚽ 世界盃小組賽（K 組）：🇨🇴哥倫比亞 vs 🇨🇩民主剛果",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 48,
+  "startAt": "2026-06-24T02:00:00Z",
+  "endAt": "2026-06-24T04:00:00Z",
+  "location": "Estadio Akron · 瓜達拉哈拉"
+ },
+ {
+  "id": "wc2026_049",
+  "title": "⚽ 世界盃小組賽（C 組）：🏴󠁧󠁢󠁳󠁣󠁴󠁿蘇格蘭 vs 🇧🇷巴西",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 49,
+  "startAt": "2026-06-24T22:00:00Z",
+  "endAt": "2026-06-25T00:00:00Z",
+  "location": "Hard Rock Stadium · 邁阿密"
+ },
+ {
+  "id": "wc2026_050",
+  "title": "⚽ 世界盃小組賽（C 組）：🇲🇦摩洛哥 vs 🇭🇹海地",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 50,
+  "startAt": "2026-06-24T22:00:00Z",
+  "endAt": "2026-06-25T00:00:00Z",
+  "location": "Mercedes-Benz Stadium · 亞特蘭大"
+ },
+ {
+  "id": "wc2026_051",
+  "title": "⚽ 世界盃小組賽（B 組）：🇨🇭瑞士 vs 🇨🇦加拿大",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 51,
+  "startAt": "2026-06-24T19:00:00Z",
+  "endAt": "2026-06-24T21:00:00Z",
+  "location": "BC Place · 溫哥華"
+ },
+ {
+  "id": "wc2026_052",
+  "title": "⚽ 世界盃小組賽（B 組）：🇧🇦波士尼亞 vs 🇶🇦卡達",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 52,
+  "startAt": "2026-06-24T19:00:00Z",
+  "endAt": "2026-06-24T21:00:00Z",
+  "location": "Lumen Field · 西雅圖"
+ },
+ {
+  "id": "wc2026_053",
+  "title": "⚽ 世界盃小組賽（A 組）：🇨🇿捷克 vs 🇲🇽墨西哥",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 53,
+  "startAt": "2026-06-25T01:00:00Z",
+  "endAt": "2026-06-25T03:00:00Z",
+  "location": "Estadio Azteca · 墨西哥城"
+ },
+ {
+  "id": "wc2026_054",
+  "title": "⚽ 世界盃小組賽（A 組）：🇿🇦南非 vs 🇰🇷南韓",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 54,
+  "startAt": "2026-06-25T01:00:00Z",
+  "endAt": "2026-06-25T03:00:00Z",
+  "location": "Estadio BBVA · 蒙特雷"
+ },
+ {
+  "id": "wc2026_055",
+  "title": "⚽ 世界盃小組賽（E 組）：🇨🇼古拉索 vs 🇨🇮象牙海岸",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 55,
+  "startAt": "2026-06-25T20:00:00Z",
+  "endAt": "2026-06-25T22:00:00Z",
+  "location": "Lincoln Financial Field · 費城"
+ },
+ {
+  "id": "wc2026_056",
+  "title": "⚽ 世界盃小組賽（E 組）：🇪🇨厄瓜多 vs 🇩🇪德國",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 56,
+  "startAt": "2026-06-25T20:00:00Z",
+  "endAt": "2026-06-25T22:00:00Z",
+  "location": "MetLife Stadium · 紐約/新澤西"
+ },
+ {
+  "id": "wc2026_057",
+  "title": "⚽ 世界盃小組賽（F 組）：🇯🇵日本 vs 🇸🇪瑞典",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 57,
+  "startAt": "2026-06-25T23:00:00Z",
+  "endAt": "2026-06-26T01:00:00Z",
+  "location": "AT&T Stadium · 達拉斯"
+ },
+ {
+  "id": "wc2026_058",
+  "title": "⚽ 世界盃小組賽（F 組）：🇹🇳突尼西亞 vs 🇳🇱荷蘭",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 58,
+  "startAt": "2026-06-25T23:00:00Z",
+  "endAt": "2026-06-26T01:00:00Z",
+  "location": "Arrowhead Stadium · 堪薩斯城"
+ },
+ {
+  "id": "wc2026_059",
+  "title": "⚽ 世界盃小組賽（D 組）：🇹🇷土耳其 vs 🇺🇸美國",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 59,
+  "startAt": "2026-06-26T02:00:00Z",
+  "endAt": "2026-06-26T04:00:00Z",
+  "location": "SoFi Stadium · 洛杉磯"
+ },
+ {
+  "id": "wc2026_060",
+  "title": "⚽ 世界盃小組賽（D 組）：🇵🇾巴拉圭 vs 🇦🇺澳洲",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 60,
+  "startAt": "2026-06-26T02:00:00Z",
+  "endAt": "2026-06-26T04:00:00Z",
+  "location": "Levi's Stadium · 舊金山灣區"
+ },
+ {
+  "id": "wc2026_061",
+  "title": "⚽ 世界盃小組賽（I 組）：🇳🇴挪威 vs 🇫🇷法國",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 61,
+  "startAt": "2026-06-26T19:00:00Z",
+  "endAt": "2026-06-26T21:00:00Z",
+  "location": "Gillette Stadium · 波士頓"
+ },
+ {
+  "id": "wc2026_062",
+  "title": "⚽ 世界盃小組賽（I 組）：🇸🇳塞內加爾 vs 🇮🇶伊拉克",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 62,
+  "startAt": "2026-06-26T19:00:00Z",
+  "endAt": "2026-06-26T21:00:00Z",
+  "location": "BMO Field · 多倫多"
+ },
+ {
+  "id": "wc2026_063",
+  "title": "⚽ 世界盃小組賽（G 組）：🇪🇬埃及 vs 🇮🇷伊朗",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 63,
+  "startAt": "2026-06-27T03:00:00Z",
+  "endAt": "2026-06-27T05:00:00Z",
+  "location": "Lumen Field · 西雅圖"
+ },
+ {
+  "id": "wc2026_064",
+  "title": "⚽ 世界盃小組賽（G 組）：🇳🇿紐西蘭 vs 🇧🇪比利時",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 64,
+  "startAt": "2026-06-27T03:00:00Z",
+  "endAt": "2026-06-27T05:00:00Z",
+  "location": "BC Place · 溫哥華"
+ },
+ {
+  "id": "wc2026_065",
+  "title": "⚽ 世界盃小組賽（H 組）：🇨🇻維德角 vs 🇸🇦沙烏地阿拉伯",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 65,
+  "startAt": "2026-06-27T00:00:00Z",
+  "endAt": "2026-06-27T02:00:00Z",
+  "location": "NRG Stadium · 休士頓"
+ },
+ {
+  "id": "wc2026_066",
+  "title": "⚽ 世界盃小組賽（H 組）：🇺🇾烏拉圭 vs 🇪🇸西班牙",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 66,
+  "startAt": "2026-06-27T00:00:00Z",
+  "endAt": "2026-06-27T02:00:00Z",
+  "location": "Estadio Akron · 瓜達拉哈拉"
+ },
+ {
+  "id": "wc2026_067",
+  "title": "⚽ 世界盃小組賽（L 組）：🇵🇦巴拿馬 vs 🏴󠁧󠁢󠁥󠁮󠁧󠁿英格蘭",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 67,
+  "startAt": "2026-06-27T21:00:00Z",
+  "endAt": "2026-06-27T23:00:00Z",
+  "location": "MetLife Stadium · 紐約/新澤西"
+ },
+ {
+  "id": "wc2026_068",
+  "title": "⚽ 世界盃小組賽（L 組）：🇭🇷克羅埃西亞 vs 🇬🇭迦納",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 68,
+  "startAt": "2026-06-27T21:00:00Z",
+  "endAt": "2026-06-27T23:00:00Z",
+  "location": "Lincoln Financial Field · 費城"
+ },
+ {
+  "id": "wc2026_069",
+  "title": "⚽ 世界盃小組賽（J 組）：🇩🇿阿爾及利亞 vs 🇦🇹奧地利",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 69,
+  "startAt": "2026-06-28T02:00:00Z",
+  "endAt": "2026-06-28T04:00:00Z",
+  "location": "Arrowhead Stadium · 堪薩斯城"
+ },
+ {
+  "id": "wc2026_070",
+  "title": "⚽ 世界盃小組賽（J 組）：🇯🇴約旦 vs 🇦🇷阿根廷",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 70,
+  "startAt": "2026-06-28T02:00:00Z",
+  "endAt": "2026-06-28T04:00:00Z",
+  "location": "AT&T Stadium · 達拉斯"
+ },
+ {
+  "id": "wc2026_071",
+  "title": "⚽ 世界盃小組賽（K 組）：🇨🇴哥倫比亞 vs 🇵🇹葡萄牙",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 71,
+  "startAt": "2026-06-27T23:30:00Z",
+  "endAt": "2026-06-28T01:30:00Z",
+  "location": "Hard Rock Stadium · 邁阿密"
+ },
+ {
+  "id": "wc2026_072",
+  "title": "⚽ 世界盃小組賽（K 組）：🇨🇩民主剛果 vs 🇺🇿烏茲別克",
+  "category": "worldcup2026",
+  "stage": "g",
+  "matchNo": 72,
+  "startAt": "2026-06-27T23:30:00Z",
+  "endAt": "2026-06-28T01:30:00Z",
+  "location": "Mercedes-Benz Stadium · 亞特蘭大"
+ },
+ {
+  "id": "wc2026_073",
+  "title": "⚽ 世界盃32 強：A組第二 vs B組第二",
+  "category": "worldcup2026",
+  "stage": "r32",
+  "matchNo": 73,
+  "startAt": "2026-06-28T19:00:00Z",
+  "endAt": "2026-06-28T21:00:00Z",
+  "location": "SoFi Stadium · 洛杉磯"
+ },
+ {
+  "id": "wc2026_074",
+  "title": "⚽ 世界盃32 強：E組第一 vs 小組第三（ABCDF）",
+  "category": "worldcup2026",
+  "stage": "r32",
+  "matchNo": 74,
+  "startAt": "2026-06-29T20:30:00Z",
+  "endAt": "2026-06-29T22:30:00Z",
+  "location": "Gillette Stadium · 波士頓"
+ },
+ {
+  "id": "wc2026_075",
+  "title": "⚽ 世界盃32 強：F組第一 vs C組第二",
+  "category": "worldcup2026",
+  "stage": "r32",
+  "matchNo": 75,
+  "startAt": "2026-06-30T01:00:00Z",
+  "endAt": "2026-06-30T03:00:00Z",
+  "location": "Estadio BBVA · 蒙特雷"
+ },
+ {
+  "id": "wc2026_076",
+  "title": "⚽ 世界盃32 強：C組第一 vs F組第二",
+  "category": "worldcup2026",
+  "stage": "r32",
+  "matchNo": 76,
+  "startAt": "2026-06-29T17:00:00Z",
+  "endAt": "2026-06-29T19:00:00Z",
+  "location": "NRG Stadium · 休士頓"
+ },
+ {
+  "id": "wc2026_077",
+  "title": "⚽ 世界盃32 強：I組第一 vs 小組第三（CDFGH）",
+  "category": "worldcup2026",
+  "stage": "r32",
+  "matchNo": 77,
+  "startAt": "2026-06-30T21:00:00Z",
+  "endAt": "2026-06-30T23:00:00Z",
+  "location": "MetLife Stadium · 紐約/新澤西"
+ },
+ {
+  "id": "wc2026_078",
+  "title": "⚽ 世界盃32 強：E組第二 vs I組第二",
+  "category": "worldcup2026",
+  "stage": "r32",
+  "matchNo": 78,
+  "startAt": "2026-06-30T17:00:00Z",
+  "endAt": "2026-06-30T19:00:00Z",
+  "location": "AT&T Stadium · 達拉斯"
+ },
+ {
+  "id": "wc2026_079",
+  "title": "⚽ 世界盃32 強：A組第一 vs 小組第三（CEFHI）",
+  "category": "worldcup2026",
+  "stage": "r32",
+  "matchNo": 79,
+  "startAt": "2026-07-01T01:00:00Z",
+  "endAt": "2026-07-01T03:00:00Z",
+  "location": "Estadio Azteca · 墨西哥城"
+ },
+ {
+  "id": "wc2026_080",
+  "title": "⚽ 世界盃32 強：L組第一 vs 小組第三（EHIJK）",
+  "category": "worldcup2026",
+  "stage": "r32",
+  "matchNo": 80,
+  "startAt": "2026-07-01T16:00:00Z",
+  "endAt": "2026-07-01T18:00:00Z",
+  "location": "Mercedes-Benz Stadium · 亞特蘭大"
+ },
+ {
+  "id": "wc2026_081",
+  "title": "⚽ 世界盃32 強：D組第一 vs 小組第三（BEFIJ）",
+  "category": "worldcup2026",
+  "stage": "r32",
+  "matchNo": 81,
+  "startAt": "2026-07-02T00:00:00Z",
+  "endAt": "2026-07-02T02:00:00Z",
+  "location": "Levi's Stadium · 舊金山灣區"
+ },
+ {
+  "id": "wc2026_082",
+  "title": "⚽ 世界盃32 強：G組第一 vs 小組第三（AEHIJ）",
+  "category": "worldcup2026",
+  "stage": "r32",
+  "matchNo": 82,
+  "startAt": "2026-07-01T20:00:00Z",
+  "endAt": "2026-07-01T22:00:00Z",
+  "location": "Lumen Field · 西雅圖"
+ },
+ {
+  "id": "wc2026_083",
+  "title": "⚽ 世界盃32 強：K組第二 vs L組第二",
+  "category": "worldcup2026",
+  "stage": "r32",
+  "matchNo": 83,
+  "startAt": "2026-07-02T23:00:00Z",
+  "endAt": "2026-07-03T01:00:00Z",
+  "location": "BMO Field · 多倫多"
+ },
+ {
+  "id": "wc2026_084",
+  "title": "⚽ 世界盃32 強：H組第一 vs J組第二",
+  "category": "worldcup2026",
+  "stage": "r32",
+  "matchNo": 84,
+  "startAt": "2026-07-02T19:00:00Z",
+  "endAt": "2026-07-02T21:00:00Z",
+  "location": "SoFi Stadium · 洛杉磯"
+ },
+ {
+  "id": "wc2026_085",
+  "title": "⚽ 世界盃32 強：B組第一 vs 小組第三（EFGIJ）",
+  "category": "worldcup2026",
+  "stage": "r32",
+  "matchNo": 85,
+  "startAt": "2026-07-03T03:00:00Z",
+  "endAt": "2026-07-03T05:00:00Z",
+  "location": "BC Place · 溫哥華"
+ },
+ {
+  "id": "wc2026_086",
+  "title": "⚽ 世界盃32 強：J組第一 vs H組第二",
+  "category": "worldcup2026",
+  "stage": "r32",
+  "matchNo": 86,
+  "startAt": "2026-07-03T22:00:00Z",
+  "endAt": "2026-07-04T00:00:00Z",
+  "location": "Hard Rock Stadium · 邁阿密"
+ },
+ {
+  "id": "wc2026_087",
+  "title": "⚽ 世界盃32 強：K組第一 vs 小組第三（DEIJL）",
+  "category": "worldcup2026",
+  "stage": "r32",
+  "matchNo": 87,
+  "startAt": "2026-07-04T01:30:00Z",
+  "endAt": "2026-07-04T03:30:00Z",
+  "location": "Arrowhead Stadium · 堪薩斯城"
+ },
+ {
+  "id": "wc2026_088",
+  "title": "⚽ 世界盃32 強：D組第二 vs G組第二",
+  "category": "worldcup2026",
+  "stage": "r32",
+  "matchNo": 88,
+  "startAt": "2026-07-03T18:00:00Z",
+  "endAt": "2026-07-03T20:00:00Z",
+  "location": "AT&T Stadium · 達拉斯"
+ },
+ {
+  "id": "wc2026_089",
+  "title": "⚽ 世界盃16 強：第74場勝者 vs 第77場勝者",
+  "category": "worldcup2026",
+  "stage": "r16",
+  "matchNo": 89,
+  "startAt": "2026-07-04T21:00:00Z",
+  "endAt": "2026-07-04T23:00:00Z",
+  "location": "Lincoln Financial Field · 費城"
+ },
+ {
+  "id": "wc2026_090",
+  "title": "⚽ 世界盃16 強：第73場勝者 vs 第75場勝者",
+  "category": "worldcup2026",
+  "stage": "r16",
+  "matchNo": 90,
+  "startAt": "2026-07-04T17:00:00Z",
+  "endAt": "2026-07-04T19:00:00Z",
+  "location": "NRG Stadium · 休士頓"
+ },
+ {
+  "id": "wc2026_091",
+  "title": "⚽ 世界盃16 強：第76場勝者 vs 第78場勝者",
+  "category": "worldcup2026",
+  "stage": "r16",
+  "matchNo": 91,
+  "startAt": "2026-07-05T20:00:00Z",
+  "endAt": "2026-07-05T22:00:00Z",
+  "location": "MetLife Stadium · 紐約/新澤西"
+ },
+ {
+  "id": "wc2026_092",
+  "title": "⚽ 世界盃16 強：第79場勝者 vs 第80場勝者",
+  "category": "worldcup2026",
+  "stage": "r16",
+  "matchNo": 92,
+  "startAt": "2026-07-06T00:00:00Z",
+  "endAt": "2026-07-06T02:00:00Z",
+  "location": "Estadio Azteca · 墨西哥城"
+ },
+ {
+  "id": "wc2026_093",
+  "title": "⚽ 世界盃16 強：第83場勝者 vs 第84場勝者",
+  "category": "worldcup2026",
+  "stage": "r16",
+  "matchNo": 93,
+  "startAt": "2026-07-06T19:00:00Z",
+  "endAt": "2026-07-06T21:00:00Z",
+  "location": "AT&T Stadium · 達拉斯"
+ },
+ {
+  "id": "wc2026_094",
+  "title": "⚽ 世界盃16 強：第81場勝者 vs 第82場勝者",
+  "category": "worldcup2026",
+  "stage": "r16",
+  "matchNo": 94,
+  "startAt": "2026-07-07T00:00:00Z",
+  "endAt": "2026-07-07T02:00:00Z",
+  "location": "Lumen Field · 西雅圖"
+ },
+ {
+  "id": "wc2026_095",
+  "title": "⚽ 世界盃16 強：第86場勝者 vs 第88場勝者",
+  "category": "worldcup2026",
+  "stage": "r16",
+  "matchNo": 95,
+  "startAt": "2026-07-07T16:00:00Z",
+  "endAt": "2026-07-07T18:00:00Z",
+  "location": "Mercedes-Benz Stadium · 亞特蘭大"
+ },
+ {
+  "id": "wc2026_096",
+  "title": "⚽ 世界盃16 強：第85場勝者 vs 第87場勝者",
+  "category": "worldcup2026",
+  "stage": "r16",
+  "matchNo": 96,
+  "startAt": "2026-07-07T20:00:00Z",
+  "endAt": "2026-07-07T22:00:00Z",
+  "location": "BC Place · 溫哥華"
+ },
+ {
+  "id": "wc2026_097",
+  "title": "⚽ 世界盃8 強：第89場勝者 vs 第90場勝者",
+  "category": "worldcup2026",
+  "stage": "qf",
+  "matchNo": 97,
+  "startAt": "2026-07-09T20:00:00Z",
+  "endAt": "2026-07-09T22:00:00Z",
+  "location": "Gillette Stadium · 波士頓"
+ },
+ {
+  "id": "wc2026_098",
+  "title": "⚽ 世界盃8 強：第93場勝者 vs 第94場勝者",
+  "category": "worldcup2026",
+  "stage": "qf",
+  "matchNo": 98,
+  "startAt": "2026-07-10T19:00:00Z",
+  "endAt": "2026-07-10T21:00:00Z",
+  "location": "SoFi Stadium · 洛杉磯"
+ },
+ {
+  "id": "wc2026_099",
+  "title": "⚽ 世界盃8 強：第91場勝者 vs 第92場勝者",
+  "category": "worldcup2026",
+  "stage": "qf",
+  "matchNo": 99,
+  "startAt": "2026-07-11T21:00:00Z",
+  "endAt": "2026-07-11T23:00:00Z",
+  "location": "Hard Rock Stadium · 邁阿密"
+ },
+ {
+  "id": "wc2026_100",
+  "title": "⚽ 世界盃8 強：第95場勝者 vs 第96場勝者",
+  "category": "worldcup2026",
+  "stage": "qf",
+  "matchNo": 100,
+  "startAt": "2026-07-12T01:00:00Z",
+  "endAt": "2026-07-12T03:00:00Z",
+  "location": "Arrowhead Stadium · 堪薩斯城"
+ },
+ {
+  "id": "wc2026_101",
+  "title": "⚽ 世界盃準決賽：第97場勝者 vs 第98場勝者",
+  "category": "worldcup2026",
+  "stage": "sf",
+  "matchNo": 101,
+  "startAt": "2026-07-14T19:00:00Z",
+  "endAt": "2026-07-14T21:00:00Z",
+  "location": "AT&T Stadium · 達拉斯"
+ },
+ {
+  "id": "wc2026_102",
+  "title": "⚽ 世界盃準決賽：第99場勝者 vs 第100場勝者",
+  "category": "worldcup2026",
+  "stage": "sf",
+  "matchNo": 102,
+  "startAt": "2026-07-15T19:00:00Z",
+  "endAt": "2026-07-15T21:00:00Z",
+  "location": "Mercedes-Benz Stadium · 亞特蘭大"
+ },
+ {
+  "id": "wc2026_103",
+  "title": "⚽ 世界盃季軍戰：第101場敗者 vs 第102場敗者",
+  "category": "worldcup2026",
+  "stage": "tp",
+  "matchNo": 103,
+  "startAt": "2026-07-18T21:00:00Z",
+  "endAt": "2026-07-18T23:00:00Z",
+  "location": "Hard Rock Stadium · 邁阿密"
+ },
+ {
+  "id": "wc2026_104",
+  "title": "⚽ 世界盃決賽：第101場勝者 vs 第102場勝者",
+  "category": "worldcup2026",
+  "stage": "f",
+  "matchNo": 104,
+  "startAt": "2026-07-19T19:00:00Z",
+  "endAt": "2026-07-19T21:00:00Z",
+  "location": "MetLife Stadium · 紐約/新澤西"
+ }
+]

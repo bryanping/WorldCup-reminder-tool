@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b1220">
+<title>Secalender 行程確認</title>
+<meta property="og:title" content="Secalender 行程確認">
+<meta property="og:description" content="有人與你分享了一份時間安排，點開查看詳情">
+<style>
+:root{--bg:#0b1220;--card:#131c30;--card2:#1a2742;--tx:#e8eefc;--mut:#8fa3c8;--ac:#4f8cff;--ac2:#22c55e;--bd:#243352}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans TC",sans-serif;min-height:100vh}
+.wrap{max-width:640px;margin:0 auto;padding:20px 16px}
+.logo{display:flex;align-items:center;gap:8px;color:var(--mut);font-size:.85rem;margin-bottom:18px}
+.logo b{color:var(--ac);font-size:1rem}
+h1{font-size:1.4rem;margin-bottom:6px}
+.by{color:var(--mut);font-size:.85rem;margin-bottom:18px}
+.dhead{color:var(--mut);font-size:.85rem;font-weight:700;margin:18px 0 8px;border-bottom:1px solid var(--bd);padding-bottom:6px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:12px 14px;margin-bottom:10px;display:flex;gap:12px}
+.time{color:var(--ac);font-weight:700;font-size:.9rem;font-variant-numeric:tabular-nums;white-space:nowrap;min-width:84px}
+.tt{font-weight:600;font-size:.98rem}
+.loc,.notes{color:var(--mut);font-size:.8rem;margin-top:4px}
+.untimed .time{color:var(--mut)}
+.state{color:var(--mut);text-align:center;padding:48px 0;font-size:.95rem}
+.foot{margin-top:28px;text-align:center;color:var(--mut);font-size:.8rem}
+.foot a{color:var(--ac);text-decoration:none}
+.badge{display:inline-block;background:var(--card2);border:1px solid var(--bd);color:var(--ac2);border-radius:999px;padding:3px 12px;font-size:.75rem;margin-bottom:12px}
+</style>
+</head>
+<body>
+<nav style="background:#0e1730;border-bottom:1px solid #243352;padding:10px 16px;display:flex;align-items:center;gap:16px">
+ <a href="/" style="color:#4f8cff;font-weight:700;text-decoration:none;font-size:1.05rem">Secalender</a>
+ <a href="/" style="color:#8fa3c8;text-decoration:none;font-size:.9rem">首頁</a>
+ <a href="/events.html" style="color:#8fa3c8;text-decoration:none;font-size:.9rem">時事活動</a>
+</nav>
+
+<div class="wrap">
+  <div class="logo"><b>Secalender</b><span>行程確認</span></div>
+  <div id="app"><div class="state">載入中…</div></div>
+  <div class="foot">由 <a href="https://secalender.com">Secalender</a> 生成 · 下載 App 一鍵加入你的行事曆</div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<script>
+// Secalender Firebase（僅公開讀取 shared_plans；規則層限制寫入）
+firebase.initializeApp({
+  apiKey: "AIzaSyDqygpAI_PsuJJssBCmKvwN3yLIZ3zemko",
+  projectId: "elevated-pod-406203"
+});
+const db = firebase.firestore();
+const app = document.getElementById("app");
+
+function esc(s){const d=document.createElement("div");d.textContent=s||"";return d.innerHTML;}
+function fmtTime(ts){
+  const d = ts.toDate();
+  return d.toLocaleTimeString("zh-TW",{hour:"2-digit",minute:"2-digit",hour12:false});
+}
+function fmtDay(ts){
+  const d = ts.toDate();
+  return d.toLocaleDateString("zh-TW",{month:"long",day:"numeric",weekday:"short"});
+}
+
+async function load(){
+  const id = new URLSearchParams(location.search).get("id");
+  if(!id){ app.innerHTML = '<div class="state">連結無效：缺少安排編號</div>'; return; }
+  try{
+    const doc = await db.collection("shared_plans").doc(id).get();
+    if(!doc.exists){ app.innerHTML = '<div class="state">找不到這份安排，可能已被移除</div>'; return; }
+    render(doc.data());
+  }catch(e){
+    app.innerHTML = '<div class="state">載入失敗，請稍後再試</div>';
+    console.error(e);
+  }
+}
+
+function render(data){
+  let html = "";
+  html += '<div class="badge">待成員確認</div>';
+  html += "<h1>"+esc(data.title||"時間安排")+"</h1>";
+  if(data.creatorName){ html += '<div class="by">由 '+esc(data.creatorName)+" 發起</div>"; }
+  document.title = (data.title||"時間安排")+" · Secalender";
+
+  const items = data.items||[];
+  const timed = items.filter(i=>i.startAt).sort((a,b)=>a.startAt.seconds-b.startAt.seconds);
+  const untimed = items.filter(i=>!i.startAt);
+
+  let lastDay = "";
+  for(const it of timed){
+    const day = fmtDay(it.startAt);
+    if(day !== lastDay){ html += '<div class="dhead">'+day+"</div>"; lastDay = day; }
+    const t = fmtTime(it.startAt) + (it.endAt ? "–"+fmtTime(it.endAt) : "");
+    html += '<div class="card"><div class="time">'+t+'</div><div><div class="tt">'+esc(it.title)+"</div>";
+    if(it.location){ html += '<div class="loc">📍 '+esc(it.location)+"</div>"; }
+    if(it.notes){ html += '<div class="notes">'+esc(it.notes)+"</div>"; }
+    html += "</div></div>";
+  }
+  if(untimed.length){
+    html += '<div class="dhead">待安排</div>';
+    for(const it of untimed){
+      const d = it.durationMin ? "約 "+it.durationMin+" 分" : "";
+      html += '<div class="card untimed"><div class="time">'+d+'</div><div><div class="tt">'+esc(it.title)+"</div></div></div>";
+    }
+  }
+  if(!items.length){ html += '<div class="state">這份安排沒有內容</div>'; }
+  app.innerHTML = html;
+}
+load();
+</script>
+</body>
+</html>
