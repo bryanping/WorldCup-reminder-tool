@@ -8,82 +8,98 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1966935992240369" crossorigin="anonymous"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-1Z3FMHJKJ3"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1Z3FMHJKJ3');</script>
-<title>Secalender — AI 時間工作流 ｜ 一句話，AI 幫你排好時間</title>
-<meta name="description" content="Secalender 是以行程條目為核心的 AI 行事曆與協作工具：一句話生成行程、目標拆解排進空檔、多人時間協調、跨平台分享。iOS TestFlight 公測中。">
+<title>Secalender — 公開活動日曆一站訂閱｜賽事、假日、發表會</title>
+<meta name="description" content="搜尋並訂閱公開活動日曆：2026 世界盃 104 場賽程、各國國定假日、月相、科技發表會。一鍵加入 iPhone／Google 日曆，或用 Secalender App 逐場挑選加入行程。">
 <link rel="canonical" href="https://secalender.com/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://secalender.com/">
-<meta property="og:title" content="Secalender — AI 時間工作流">
-<meta property="og:description" content="一句話描述，AI 幫你排好時間。行程規劃、任務拆解、多人協調、時事活動提醒。">
+<meta property="og:title" content="Secalender — 公開活動日曆一站訂閱">
+<meta property="og:description" content="賽事、假日、發表會日曆一站搜尋與訂閱，並可用 AI 排進你的行程。">
 <meta property="og:image" content="https://secalender.com/assets/og.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="/assets/site.css">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Secalender","applicationCategory":"ProductivityApplication","operatingSystem":"iOS","url":"https://secalender.com/","description":"以行程條目為核心的 AI 行事曆與協作工具","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"上海活動曆創意服務有限公司","url":"https://huodonli.com"}}
+{"@context":"https://schema.org","@type":"WebSite","name":"Secalender","url":"https://secalender.com/","description":"公開活動日曆目錄與 AI 行程規劃","publisher":{"@type":"Organization","name":"上海活動曆創意服務有限公司","url":"https://huodonli.com"},"potentialAction":{"@type":"SearchAction","target":"https://secalender.com/?q={search_term_string}","query-input":"required name=search_term_string"}}
 </script>
 </head>
 <body>
-<nav>
+
+<nav class="site">
  <a class="brand" href="/">Secalender</a>
- <a class="on" href="/">首頁</a>
- <a href="/events.html">時事活動</a>
+ <a class="on" href="/">日曆</a>
+ <a href="/#templates">模板</a>
  <a href="/support.html">支援</a>
- <a href="/#download">下載</a>
+ <span class="sp"></span>
+ <a class="navcta" href="https://testflight.apple.com/join/K3JKca9n">取得 App</a>
 </nav>
 
-<div class="hero">
- <h1>一句話描述，<b>AI 幫你排好時間</b></h1>
- <p>Secalender 是以行程條目為核心的 AI 行事曆與協作工具：行程規劃、目標拆解、塞進空檔、家庭分工、多人時間協調——說一句話，剩下交給 AI。</p>
- <a class="cta" href="https://testflight.apple.com/join/K3JKca9n">加入 iOS 公測</a>
- <a class="cta ghost" href="/events.html">看時事活動 →</a>
- <div class="note">iOS TestFlight 公測中 · 支援繁中／簡中／英／日／西／法／德</div>
-</div>
-
-<div class="wrap">
- <div class="live">
-  <div class="lt">
-   <h3>📡 時事活動日曆集合</h3>
-   <p>賽事、假日、發表會等公開日曆一站訂閱 · 🔥 進行中：2026 世界盃 104 場賽程</p>
+<section class="stage">
+ <canvas id="bgcanvas" aria-hidden="true"></canvas>
+ <span class="veil" aria-hidden="true"></span>
+ <div class="inner">
+  <span class="kicker"><span class="dot"></span>2026 世界盃賽程已上線</span>
+  <h1>把世界上<b>正在發生的事</b>，放進你的行事曆</h1>
+  <p class="lede">賽事、假日、發表會的公開日曆，一站搜尋與訂閱。挑你要的那幾場，其餘不打擾。</p>
+  <div class="search">
+   <span class="mag" aria-hidden="true">🔍</span>
+   <label for="calSearch" class="sr-only" style="position:absolute;left:-9999px">搜尋日曆</label>
+   <input id="calSearch" type="search" autocomplete="off" placeholder="搜尋日曆：世界盃、假日、月相…">
   </div>
-  <a href="/events.html">瀏覽日曆 →</a>
+  <div class="chips" id="calChips"></div>
  </div>
+</section>
 
- <div class="sec">核心功能</div>
- <div class="grid">
-  <div class="f"><div class="ic">💬</div><h3>一句話智能規劃</h3><p>「三天東京親子行程」「一週內完成報告」——AI 理解意圖，直接生成可套用的時間安排。</p></div>
-  <div class="f"><div class="ic">✈️</div><h3>旅遊行程規劃</h3><p>目的地、偏好、興趣景點四步驟，生成含交通與餐廳的完整行程時間軸。</p></div>
-  <div class="f"><div class="ic">🎯</div><h3>目標拆解 &amp; 排進空檔</h3><p>大目標拆成可執行步驟，AI 自動塞進你行事曆的空檔，衝突自動檢測。</p></div>
-  <div class="f"><div class="ic">👥</div><h3>多人時間協調</h3><p>找共同時間、家庭分工、家教排課——收集大家空檔、交集出最佳時段，一鍵發送成員確認。</p></div>
-  <div class="f"><div class="ic">🏠</div><h3>生活工作流</h3><p>買菜、打掃、餵狗照顧——內建步驟模板，勾一勾就排進近期空檔，每日事項自動重複。</p></div>
-  <div class="f"><div class="ic">🔗</div><h3>跨平台行程分享</h3><p>安排生成網頁連結，成員在任何平台點開即可查看確認，並可一鍵加回自己的 App。</p></div>
+<section class="board">
+ <div class="boardhead">
+  <h2>公開日曆目錄</h2>
+  <span class="n"><span id="calCount">0</span> 個日曆</span>
  </div>
+ <div class="cals" id="calGrid"></div>
+ <p class="emptyhint" id="calEmpty" hidden>沒有符合的日曆。換個關鍵字，或來信告訴我們想要哪一個。</p>
+</section>
 
- <div class="sec">怎麼用</div>
+<section class="stats" data-reveal>
+ <div class="stat"><div class="v"><span data-count="104">0</span></div><div class="k">世界盃賽程場次</div></div>
+ <div class="stat"><div class="v"><span data-count="8">0</span></div><div class="k">上線中的公開日曆</div></div>
+ <div class="stat"><div class="v"><span data-count="7">0</span></div><div class="k">介面語言</div></div>
+ <div class="stat"><div class="v"><span data-count="30">0</span><small>天</small></div><div class="k">邀請連結有效期</div></div>
+</section>
+
+<section class="railwrap" id="templates">
+ <div class="sechead" style="padding:0" data-reveal>
+  <h2>行程模板庫</h2>
+  <span class="n" style="color:var(--mut);font-size:.82rem">拖曳瀏覽 · 陸續開放</span>
+ </div>
+ <div class="rail" id="tplRail" data-reveal></div>
+</section>
+
+<section>
+ <div class="sechead" data-reveal><h2>訂閱之後怎麼用</h2></div>
  <div class="steps">
-  <div class="step"><h3>說出你的安排</h3><p>用一句自然語言描述：「下週和三個朋友找時間吃飯」「三天京都自由行」「這個月讀完兩本書」。</p></div>
-  <div class="step"><h3>AI 生成時間軸</h3><p>系統拆解成行程條目、配上地點與交通，避開你既有行事曆的衝突，排進真正的空檔。</p></div>
-  <div class="step"><h3>分享與確認</h3><p>生成分享連結或好友邀請，對方免安裝即可在網頁查看，確認後一鍵加回自己的行事曆。</p></div>
+  <div class="step" data-reveal style="--d:0"><span class="glow" aria-hidden="true"></span><span class="no">1</span><h3>訂閱或加入 App</h3><p>整份訂閱交給系統行事曆自動更新；想只挑幾場，就用 App 開啟日曆逐項勾選。</p></div>
+  <div class="step" data-reveal style="--d:1"><span class="glow" aria-hidden="true"></span><span class="no">2</span><h3>讓 AI 排進空檔</h3><p>說一句「賽前兩小時提醒我、當天別排會議」，Secalender 會把相關安排補上並避開衝突。</p></div>
+  <div class="step" data-reveal style="--d:2"><span class="glow" aria-hidden="true"></span><span class="no">3</span><h3>約人一起看</h3><p>產生分享連結，朋友免安裝就能在網頁確認時間，回覆結果直接回到你的 App。</p></div>
  </div>
+</section>
 
- <div class="sec" id="download">取得 Secalender</div>
- <div class="grid">
-  <div class="f"><div class="ic">📱</div><h3>iOS App（公測中）</h3><p>透過 TestFlight 取得最新版本，行程、任務、建議收件匣、今日工作台完整體驗。<br><a class="cta" style="margin-top:12px;padding:10px 20px;font-size:.85rem" href="https://testflight.apple.com/join/K3JKca9n">加入 TestFlight</a></p></div>
-  <div class="f"><div class="ic">🌐</div><h3>網頁版</h3><p>行程確認頁已上線（分享連結免安裝開啟）；網頁版規劃功能可於活動曆帳號登入使用。<br><a class="cta ghost" style="margin-top:12px;padding:10px 20px;font-size:.85rem" href="https://huodonli.com/login">前往網頁版</a></p></div>
+<section class="appcta" data-reveal>
+ <div class="box">
+  <h2>不只是訂閱日曆</h2>
+  <p>Secalender 是以行程條目為核心的 AI 行事曆：一句話生成行程、目標拆解排進空檔、多人時間協調，全都在同一個 App 裡。</p>
+  <a class="cta" data-magnet href="https://testflight.apple.com/join/K3JKca9n">加入 iOS 公測</a>
+  <a class="cta ghost" data-magnet href="https://huodonli.com/login">開啟網頁版</a>
+  <div class="note">支援繁中／簡中／英／日／西／法／德</div>
  </div>
-
- <div class="sec">常見問題</div>
- <details class="qa"><summary>Secalender 和一般行事曆有什麼不同？</summary><p>一般行事曆只負責「記錄」已決定的事；Secalender 負責「決定」——你描述目標，AI 幫你拆解步驟、找出空檔、處理多人時間交集，最後才寫進行事曆。</p></details>
- <details class="qa"><summary>需要付費嗎？</summary><p>公測期間核心功能免費。未來會推出進階方案（更高額度的 AI 規劃、進階協作），既有內容不會被鎖。</p></details>
- <details class="qa"><summary>沒有安裝 App 的朋友能看到我分享的行程嗎？</summary><p>可以。分享連結會生成網頁行程頁，任何平台的瀏覽器都能打開查看與確認；安裝 App 後可一鍵加回自己的行事曆。</p></details>
- <details class="qa"><summary>支援哪些語言？</summary><p>繁體中文、簡體中文、English、日本語、Español、Français、Deutsch。</p></details>
- <details class="qa"><summary>我的行程資料安全嗎？</summary><p>資料以加密傳輸儲存於雲端，僅你與你明確分享的對象可見。詳見<a href="/privacy.html">隱私政策</a>。</p></details>
- <details class="qa"><summary>如何刪除帳號？</summary><p>App 內「我的 → 設定 → 帳號 → 刪除帳號」，或參考<a href="/delete-account.html">帳號刪除說明</a>提交申請。</p></details>
-</div>
+</section>
 
 <footer>
  <div class="fl"><a href="/">首頁</a> · <a href="/events.html">時事活動</a> · <a href="/support.html">支援中心</a> · <a href="/privacy.html">隱私政策</a> · <a href="/terms.html">服務條款</a> · <a href="/delete-account.html">刪除帳號</a></div>
- <div>Secalender · AI 時間工作流 · <a href="mailto:linping@huodonli.com">linping@huodonli.com</a></div>
+ <div>Secalender · <a href="mailto:linping@huodonli.com">linping@huodonli.com</a></div>
  <div>© 上海活動曆創意服務有限公司 · <a href="https://huodonli.com">huodonli.com</a></div>
 </footer>
+
+<script src="/assets/catalog.js"></script>
+<script src="/assets/bg.js"></script>
+<script src="/assets/app.js"></script>
 </body>
 </html>
