@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /invite/
+Disallow: /friend/
+Disallow: /_to_delete/
+
+Sitemap: https://secalender.com/sitemap.xml

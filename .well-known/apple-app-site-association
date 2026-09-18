@@ -1,0 +1,16 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "K6N38A5JS6.com.Lin-ping.Secalender",
+        "paths": [
+          "/invite/*",
+          "/friend/*",
+          "/event/*",
+          "/group/*"
+        ]
+      }
+    ]
+  }
+}
