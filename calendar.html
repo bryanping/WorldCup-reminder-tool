@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#ffffff">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1Z3FMHJKJ3"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1Z3FMHJKJ3');</script>
+<title>我的日曆 · Secalender</title>
+<meta name="description" content="登入後在網頁檢視你的行程，對比好友與社群的公開行程，一鍵加入自己的行事曆。">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="/assets/ui.css">
+</head>
+<body>
+
+<nav class="nav">
+ <div class="in">
+  <a class="brand" href="/">Secalender</a>
+  <a href="/#intro">介紹</a>
+  <a href="/#templates">模板</a>
+  <a href="/calendar.html">日曆</a>
+  <a href="/support.html">聯繫我們</a>
+  <span class="sp"></span>
+  <a class="btn" href="https://testflight.apple.com/join/K3JKca9n">取得 App</a>
+ </div>
+</nav>
+
+<section class="band tight">
+
+ <div class="in narrow" id="gate">
+  <div class="gate">
+   <h1>登入以檢視你的日曆</h1>
+   <p>登入後可以看到自己的行程，並和好友、社群的公開行程並排對比，直接把想參加的加進自己的行事曆。</p>
+   <button class="btn" id="btnGoogle" type="button">使用 Google 登入</button>
+   <button class="btn quiet" id="btnApple" type="button">使用 Apple 登入</button>
+   <p class="note">與 Secalender App 同一組帳號。我們只讀取你自己的行程，以及好友設為公開的行程。</p>
+  </div>
+ </div>
+
+ <div class="in" id="calApp" hidden>
+  <div class="calbar">
+   <h1 id="weekLabel">本週</h1>
+   <span class="who" id="who"></span>
+   <button class="icobtn" id="prevW" type="button" aria-label="上一週">‹</button>
+   <button class="btn quiet sm" id="todayW" type="button">今天</button>
+   <button class="icobtn" id="nextW" type="button" aria-label="下一週">›</button>
+   <button class="btn quiet sm" id="btnOut" type="button">登出</button>
+  </div>
+
+  <div class="calwrap">
+   <div class="gridcard">
+    <div class="grid-h" id="gridHead"></div>
+    <div class="grid-b" id="gridBody"></div>
+   </div>
+
+   <aside class="side">
+    <div class="side-tabs">
+     <button class="side-tab on" data-t="friend" type="button">好友行程</button>
+     <button class="side-tab" data-t="group" type="button">社群行程</button>
+    </div>
+    <div class="side-list" id="friendList"><p class="side-empty">載入中…</p></div>
+    <div class="side-list" id="groupList" hidden><p class="side-empty">載入中…</p></div>
+   </aside>
+  </div>
+ </div>
+
+</section>
+
+<div class="foot">
+ <div class="in">
+  <div class="row"><a href="/">首頁</a><a href="/#templates">模板</a><a href="/calendar.html">日曆</a><a href="/support.html">聯繫我們</a><a href="/privacy.html">隱私政策</a><a href="/terms.html">服務條款</a><a href="/delete-account.html">刪除帳號</a></div>
+  <div>© 上海活動曆創意服務有限公司 · <a href="https://huodonli.com">huodonli.com</a></div>
+ </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<script src="/assets/fb.js"></script>
+<script src="/assets/ui.js"></script>
+<script src="/assets/cal.js"></script>
+</body>
+</html>

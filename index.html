@@ -42,10 +42,10 @@
 <nav class="nav">
  <div class="in">
   <a class="brand" href="/">Secalender</a>
+  <a href="#intro">介紹</a>
   <a href="#templates">模板</a>
-  <a href="#calendars">日曆</a>
-  <a href="#features">功能</a>
-  <a href="/support.html">支援</a>
+  <a href="/calendar.html">日曆</a>
+  <a href="/support.html">聯繫我們</a>
   <span class="sp"></span>
   <a class="btn" href="https://testflight.apple.com/join/K3JKca9n">取得 App</a>
  </div>
@@ -66,6 +66,21 @@
   <div class="pv-item"><div class="pt">12:30</div><div><div class="pn"><span class="dot"></span>午餐・休息</div><div class="pl">園區餐廳 · 60 分鐘</div></div></div>
   <div class="pv-item"><div class="pt">14:30</div><div><div class="pn"><span class="dot"></span>國立科學博物館</div><div class="pl">上野 · 120 分鐘</div></div></div>
   <div class="pv-item"><div class="pt">17:30</div><div><div class="pn"><span class="dot"></span>回飯店休息</div><div class="pl">90 分鐘</div></div></div>
+ </div>
+</section>
+
+<section class="band" id="intro">
+ <div class="in center">
+  <h2 class="title" data-in>網頁看得到，App 做得更多。</h2>
+ </div>
+ <div class="in">
+  <div class="bento">
+   <div class="tile" data-in><span class="ic">💬</span><h3>一句話生成行程</h3><p>「三天京都自由行」「一週內完成報告」——AI 拆解成可執行的行程條目，附上時間與地點。</p></div>
+   <div class="tile" data-in style="--d:1"><span class="ic">🎯</span><h3>排進真正的空檔</h3><p>讀取你的行事曆，把新安排放進沒有衝突的時段，並自動避開你標記為不可用的區間。</p></div>
+   <div class="tile" data-in style="--d:2"><span class="ic">👥</span><h3>多人時間協調</h3><p>收集每個人的空檔、交集出最佳時段，一鍵發送確認，回覆即時回到你的 App。</p></div>
+   <div class="tile wide" data-in style="--d:3"><span class="ic">🔗</span><h3>分享連結，對方免安裝</h3><p>每份安排都能生成網頁行程頁，朋友在任何瀏覽器都能查看與確認；安裝 App 後一鍵加回自己的行事曆。</p></div>
+   <div class="tile" data-in style="--d:4"><span class="ic">🌏</span><h3>七種語言</h3><p>繁中、簡中、英、日、西、法、德，介面與 AI 回覆都跟著切換。</p></div>
+  </div>
  </div>
 </section>
 
@@ -93,24 +108,13 @@
   <div class="cals" id="calGrid"></div>
   <p class="small center" id="calEmpty" hidden style="padding:40px 0">沒有符合的日曆。換個關鍵字，或來信告訴我們想要哪一個。</p>
  </div>
-</section>
-
-<section class="band alt" id="features">
- <div class="in center">
-  <h2 class="title" data-in>網頁看得到，App 做得更多。</h2>
- </div>
- <div class="in">
-  <div class="bento">
-   <div class="tile" data-in><span class="ic">💬</span><h3>一句話生成行程</h3><p>「三天京都自由行」「一週內完成報告」——AI 拆解成可執行的行程條目，附上時間與地點。</p></div>
-   <div class="tile" data-in style="--d:1"><span class="ic">🎯</span><h3>排進真正的空檔</h3><p>讀取你的行事曆，把新安排放進沒有衝突的時段，並自動避開你標記為不可用的區間。</p></div>
-   <div class="tile" data-in style="--d:2"><span class="ic">👥</span><h3>多人時間協調</h3><p>收集每個人的空檔、交集出最佳時段，一鍵發送確認，回覆即時回到你的 App。</p></div>
-   <div class="tile wide" data-in style="--d:3"><span class="ic">🔗</span><h3>分享連結，對方免安裝</h3><p>每份安排都能生成網頁行程頁，朋友在任何瀏覽器都能查看與確認；安裝 App 後一鍵加回自己的行事曆。</p></div>
-   <div class="tile" data-in style="--d:4"><span class="ic">🌏</span><h3>七種語言</h3><p>繁中、簡中、英、日、西、法、德，介面與 AI 回覆都跟著切換。</p></div>
+  <div class="in center" style="margin-top:38px">
+   <a class="btn" href="/calendar.html">開啟我的日曆</a>
+   <p class="small" style="margin-top:12px">登入後檢視自己的行程，並和好友、社群的行程對比後直接加入。</p>
   </div>
- </div>
 </section>
 
-<section class="band">
+<section class="band alt">
  <div class="in narrow center">
   <h2 class="title" data-in>把整個行程帶著走。</h2>
   <p class="lede wide" data-in style="--d:1">iOS 公測進行中，網頁版同步可用。</p>
@@ -121,9 +125,20 @@
  </div>
 </section>
 
+<section class="band" id="contact">
+ <div class="in narrow center">
+  <h2 class="title" data-in>需要幫忙？</h2>
+  <p class="lede wide" data-in style="--d:1">使用問題、日曆內容許願、合作提案，都可以直接寫信給我們，兩個工作日內回覆。</p>
+  <div class="cta-row" data-in style="--d:2;display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:28px">
+   <a class="btn" href="mailto:linping@huodonli.com">寫信給我們</a>
+   <a class="btn sec" href="/support.html">查看常見問題</a>
+  </div>
+ </div>
+</section>
+
 <div class="foot">
  <div class="in">
-  <div class="row"><a href="/">首頁</a><a href="#templates">模板</a><a href="/events.html">時事活動</a><a href="/support.html">支援中心</a><a href="/privacy.html">隱私政策</a><a href="/terms.html">服務條款</a><a href="/delete-account.html">刪除帳號</a></div>
+  <div class="row"><a href="/">介紹</a><a href="/#templates">模板</a><a href="/calendar.html">日曆</a><a href="/support.html">聯繫我們</a><a href="/events.html">時事活動</a><a href="/privacy.html">隱私政策</a><a href="/terms.html">服務條款</a><a href="/delete-account.html">刪除帳號</a></div>
   <div>Secalender · <a href="mailto:linping@huodonli.com">linping@huodonli.com</a></div>
   <div>© 上海活動曆創意服務有限公司 · <a href="https://huodonli.com">huodonli.com</a></div>
  </div>
