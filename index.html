@@ -3,103 +3,135 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#0b1220">
+<meta name="theme-color" content="#ffffff">
 <meta name='impact-site-verification' value='e8845c05-d384-4968-9272-03ab97bd03b6'>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1966935992240369" crossorigin="anonymous"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-1Z3FMHJKJ3"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1Z3FMHJKJ3');</script>
-<title>Secalender — 公開活動日曆一站訂閱｜賽事、假日、發表會</title>
-<meta name="description" content="搜尋並訂閱公開活動日曆：2026 世界盃 104 場賽程、各國國定假日、月相、科技發表會。一鍵加入 iPhone／Google 日曆，或用 Secalender App 逐場挑選加入行程。">
+<title>Secalender — 行程模板與公開日曆，一鍵加入行事曆</title>
+<meta name="description" content="瀏覽現成行程模板與公開活動日曆，選一個開始日期就能整份加入 iPhone、Google 或 Outlook 行事曆。世界盃賽程、各國假日、旅遊與備賽模板。">
 <link rel="canonical" href="https://secalender.com/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://secalender.com/">
-<meta property="og:title" content="Secalender — 公開活動日曆一站訂閱">
-<meta property="og:description" content="賽事、假日、發表會日曆一站搜尋與訂閱，並可用 AI 排進你的行程。">
+<meta property="og:title" content="Secalender — 一鍵把行程放進行事曆">
+<meta property="og:description" content="現成行程模板與公開活動日曆，選日期就能加入你的行事曆。">
 <meta property="og:image" content="https://secalender.com/assets/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/ui.css">
+<style>
+.hero{padding:84px 22px 72px;text-align:center;background:linear-gradient(180deg,#fbfbfd 0%,#ffffff 100%)}
+.hero .cta-row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+.preview{max-width:420px;margin:56px auto 0;background:#fff;border-radius:var(--r-l);box-shadow:0 20px 60px rgba(0,0,0,.12);
+  padding:24px;text-align:left;transform:perspective(1200px) rotateX(6deg);transition:transform .6s cubic-bezier(.22,1,.36,1)}
+.preview:hover{transform:perspective(1200px) rotateX(0deg) translateY(-4px)}
+.preview .ph{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:16px}
+.preview .ph b{font-size:1.05rem;letter-spacing:-.01em}
+.preview .ph span{font-size:.78rem;color:var(--tx3)}
+.pv-item{display:grid;grid-template-columns:52px 1fr;gap:12px;padding:11px 0;border-top:1px solid var(--line2);align-items:start}
+.pv-item .pt{font-size:.82rem;color:var(--tx2);font-variant-numeric:tabular-nums}
+.pv-item .pn{font-size:.94rem;font-weight:500}
+.pv-item .pl{font-size:.8rem;color:var(--tx3)}
+.pv-item .dot{width:8px;height:8px;border-radius:50%;background:var(--ac);display:inline-block;margin-right:6px}
+</style>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","name":"Secalender","url":"https://secalender.com/","description":"公開活動日曆目錄與 AI 行程規劃","publisher":{"@type":"Organization","name":"上海活動曆創意服務有限公司","url":"https://huodonli.com"},"potentialAction":{"@type":"SearchAction","target":"https://secalender.com/?q={search_term_string}","query-input":"required name=search_term_string"}}
+{"@context":"https://schema.org","@type":"WebSite","name":"Secalender","url":"https://secalender.com/","publisher":{"@type":"Organization","name":"上海活動曆創意服務有限公司","url":"https://huodonli.com"}}
 </script>
 </head>
 <body>
 
-<nav class="site">
- <a class="brand" href="/">Secalender</a>
- <a class="on" href="/">日曆</a>
- <a href="/#templates">模板</a>
- <a href="/support.html">支援</a>
- <span class="sp"></span>
- <a class="navcta" href="https://testflight.apple.com/join/K3JKca9n">取得 App</a>
+<nav class="nav">
+ <div class="in">
+  <a class="brand" href="/">Secalender</a>
+  <a href="#templates">模板</a>
+  <a href="#calendars">日曆</a>
+  <a href="#features">功能</a>
+  <a href="/support.html">支援</a>
+  <span class="sp"></span>
+  <a class="btn" href="https://testflight.apple.com/join/K3JKca9n">取得 App</a>
+ </div>
 </nav>
 
-<section class="stage">
- <canvas id="bgcanvas" aria-hidden="true"></canvas>
- <span class="veil" aria-hidden="true"></span>
- <div class="inner">
-  <span class="kicker"><span class="dot"></span>2026 世界盃賽程已上線</span>
-  <h1>把世界上<b>正在發生的事</b>，放進你的行事曆</h1>
-  <p class="lede">賽事、假日、發表會的公開日曆，一站搜尋與訂閱。挑你要的那幾場，其餘不打擾。</p>
-  <div class="search">
+<section class="hero">
+ <div class="in narrow">
+  <h1 class="display">行程，不用從空白開始。</h1>
+  <p class="lede wide">現成的行程模板與公開活動日曆，選一個開始日期，整份直接進你的行事曆。</p>
+  <div class="cta-row">
+   <a class="btn" href="#templates">瀏覽行程模板</a>
+   <a class="btn sec" href="#calendars">看公開日曆</a>
+  </div>
+ </div>
+ <div class="preview" data-in>
+  <div class="ph"><b>東京五日親子</b><span>第 2 天</span></div>
+  <div class="pv-item"><div class="pt">09:00</div><div><div class="pn"><span class="dot"></span>上野動物園</div><div class="pl">上野恩賜公園 · 180 分鐘</div></div></div>
+  <div class="pv-item"><div class="pt">12:30</div><div><div class="pn"><span class="dot"></span>午餐・休息</div><div class="pl">園區餐廳 · 60 分鐘</div></div></div>
+  <div class="pv-item"><div class="pt">14:30</div><div><div class="pn"><span class="dot"></span>國立科學博物館</div><div class="pl">上野 · 120 分鐘</div></div></div>
+  <div class="pv-item"><div class="pt">17:30</div><div><div class="pn"><span class="dot"></span>回飯店休息</div><div class="pl">90 分鐘</div></div></div>
+ </div>
+</section>
+
+<section class="band alt" id="templates">
+ <div class="in center">
+  <h2 class="title" data-in>挑一份行程，直接開始。</h2>
+  <p class="lede wide" data-in style="--d:1">旅遊、備賽、籌備、讀書計畫——每份模板都能檢視完整時間軸，選日期後一鍵加入行事曆。</p>
+ </div>
+ <div class="rail" id="tplRail" style="margin-top:44px"></div>
+ <div class="in center"><p class="small">左右拖曳瀏覽 · 全部模板免費</p></div>
+</section>
+
+<section class="band" id="calendars">
+ <div class="in center">
+  <h2 class="title" data-in>正在發生的事，也一起放進來。</h2>
+  <p class="lede wide" data-in style="--d:1">賽事、假日、發表會的公開日曆，整份訂閱或用 App 逐場挑選。</p>
+  <div class="search" data-in style="--d:2">
    <span class="mag" aria-hidden="true">🔍</span>
-   <label for="calSearch" class="sr-only" style="position:absolute;left:-9999px">搜尋日曆</label>
+   <label for="calSearch" style="position:absolute;left:-9999px">搜尋日曆</label>
    <input id="calSearch" type="search" autocomplete="off" placeholder="搜尋日曆：世界盃、假日、月相…">
   </div>
-  <div class="chips" id="calChips"></div>
+  <div class="chips" id="calChips" data-in style="--d:3"></div>
+ </div>
+ <div class="in">
+  <div class="cals" id="calGrid"></div>
+  <p class="small center" id="calEmpty" hidden style="padding:40px 0">沒有符合的日曆。換個關鍵字，或來信告訴我們想要哪一個。</p>
  </div>
 </section>
 
-<section class="board">
- <div class="boardhead">
-  <h2>公開日曆目錄</h2>
-  <span class="n"><span id="calCount">0</span> 個日曆</span>
+<section class="band alt" id="features">
+ <div class="in center">
+  <h2 class="title" data-in>網頁看得到，App 做得更多。</h2>
  </div>
- <div class="cals" id="calGrid"></div>
- <p class="emptyhint" id="calEmpty" hidden>沒有符合的日曆。換個關鍵字，或來信告訴我們想要哪一個。</p>
-</section>
-
-<section class="stats" data-reveal>
- <div class="stat"><div class="v"><span data-count="104">0</span></div><div class="k">世界盃賽程場次</div></div>
- <div class="stat"><div class="v"><span data-count="8">0</span></div><div class="k">上線中的公開日曆</div></div>
- <div class="stat"><div class="v"><span data-count="7">0</span></div><div class="k">介面語言</div></div>
- <div class="stat"><div class="v"><span data-count="30">0</span><small>天</small></div><div class="k">邀請連結有效期</div></div>
-</section>
-
-<section class="railwrap" id="templates">
- <div class="sechead" style="padding:0" data-reveal>
-  <h2>行程模板庫</h2>
-  <span class="n" style="color:var(--mut);font-size:.82rem">拖曳瀏覽 · 陸續開放</span>
- </div>
- <div class="rail" id="tplRail" data-reveal></div>
-</section>
-
-<section>
- <div class="sechead" data-reveal><h2>訂閱之後怎麼用</h2></div>
- <div class="steps">
-  <div class="step" data-reveal style="--d:0"><span class="glow" aria-hidden="true"></span><span class="no">1</span><h3>訂閱或加入 App</h3><p>整份訂閱交給系統行事曆自動更新；想只挑幾場，就用 App 開啟日曆逐項勾選。</p></div>
-  <div class="step" data-reveal style="--d:1"><span class="glow" aria-hidden="true"></span><span class="no">2</span><h3>讓 AI 排進空檔</h3><p>說一句「賽前兩小時提醒我、當天別排會議」，Secalender 會把相關安排補上並避開衝突。</p></div>
-  <div class="step" data-reveal style="--d:2"><span class="glow" aria-hidden="true"></span><span class="no">3</span><h3>約人一起看</h3><p>產生分享連結，朋友免安裝就能在網頁確認時間，回覆結果直接回到你的 App。</p></div>
+ <div class="in">
+  <div class="bento">
+   <div class="tile" data-in><span class="ic">💬</span><h3>一句話生成行程</h3><p>「三天京都自由行」「一週內完成報告」——AI 拆解成可執行的行程條目，附上時間與地點。</p></div>
+   <div class="tile" data-in style="--d:1"><span class="ic">🎯</span><h3>排進真正的空檔</h3><p>讀取你的行事曆，把新安排放進沒有衝突的時段，並自動避開你標記為不可用的區間。</p></div>
+   <div class="tile" data-in style="--d:2"><span class="ic">👥</span><h3>多人時間協調</h3><p>收集每個人的空檔、交集出最佳時段，一鍵發送確認，回覆即時回到你的 App。</p></div>
+   <div class="tile wide" data-in style="--d:3"><span class="ic">🔗</span><h3>分享連結，對方免安裝</h3><p>每份安排都能生成網頁行程頁，朋友在任何瀏覽器都能查看與確認；安裝 App 後一鍵加回自己的行事曆。</p></div>
+   <div class="tile" data-in style="--d:4"><span class="ic">🌏</span><h3>七種語言</h3><p>繁中、簡中、英、日、西、法、德，介面與 AI 回覆都跟著切換。</p></div>
+  </div>
  </div>
 </section>
 
-<section class="appcta" data-reveal>
- <div class="box">
-  <h2>不只是訂閱日曆</h2>
-  <p>Secalender 是以行程條目為核心的 AI 行事曆：一句話生成行程、目標拆解排進空檔、多人時間協調，全都在同一個 App 裡。</p>
-  <a class="cta" data-magnet href="https://testflight.apple.com/join/K3JKca9n">加入 iOS 公測</a>
-  <a class="cta ghost" data-magnet href="https://huodonli.com/login">開啟網頁版</a>
-  <div class="note">支援繁中／簡中／英／日／西／法／德</div>
+<section class="band">
+ <div class="in narrow center">
+  <h2 class="title" data-in>把整個行程帶著走。</h2>
+  <p class="lede wide" data-in style="--d:1">iOS 公測進行中，網頁版同步可用。</p>
+  <div class="cta-row" data-in style="--d:2;display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:28px">
+   <a class="btn" href="https://testflight.apple.com/join/K3JKca9n">加入 iOS 公測</a>
+   <a class="btn sec" href="https://huodonli.com/login">開啟網頁版</a>
+  </div>
  </div>
 </section>
 
-<footer>
- <div class="fl"><a href="/">首頁</a> · <a href="/events.html">時事活動</a> · <a href="/support.html">支援中心</a> · <a href="/privacy.html">隱私政策</a> · <a href="/terms.html">服務條款</a> · <a href="/delete-account.html">刪除帳號</a></div>
- <div>Secalender · <a href="mailto:linping@huodonli.com">linping@huodonli.com</a></div>
- <div>© 上海活動曆創意服務有限公司 · <a href="https://huodonli.com">huodonli.com</a></div>
-</footer>
+<div class="foot">
+ <div class="in">
+  <div class="row"><a href="/">首頁</a><a href="#templates">模板</a><a href="/events.html">時事活動</a><a href="/support.html">支援中心</a><a href="/privacy.html">隱私政策</a><a href="/terms.html">服務條款</a><a href="/delete-account.html">刪除帳號</a></div>
+  <div>Secalender · <a href="mailto:linping@huodonli.com">linping@huodonli.com</a></div>
+  <div>© 上海活動曆創意服務有限公司 · <a href="https://huodonli.com">huodonli.com</a></div>
+ </div>
+</div>
 
 <script src="/assets/catalog.js"></script>
-<script src="/assets/bg.js"></script>
-<script src="/assets/app.js"></script>
+<script src="/assets/templates.js"></script>
+<script src="/assets/ics.js"></script>
+<script src="/assets/ui.js"></script>
 </body>
 </html>

@@ -1,0 +1,180 @@
+/* Secalender Web — 淺色系統（Apple 風） */
+:root{
+  --bg:#ffffff; --bg2:#f5f5f7; --card:#ffffff;
+  --tx:#1d1d1f; --tx2:#6e6e73; --tx3:#86868b;
+  --line:#d2d2d7; --line2:#e8e8ed;
+  --ac:#0071e3; --ac-tx:#0066cc; --ok:#1d8a4a; --warn:#b25000;
+  --r-s:12px; --r-m:18px; --r-l:28px;
+  --sh:0 4px 16px rgba(0,0,0,.06);
+  --sh-h:0 10px 32px rgba(0,0,0,.10);
+  --f:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","PingFang TC","Noto Sans TC","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --nav-h:48px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--tx);font-family:var(--f);line-height:1.5;-webkit-font-smoothing:antialiased}
+img{max-width:100%}
+a{color:var(--ac-tx);text-decoration:none}
+a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--ac);outline-offset:3px;border-radius:6px}
+
+/* 導覽 */
+.nav{position:sticky;top:0;z-index:100;height:var(--nav-h);background:rgba(255,255,255,.72);
+  backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);
+  border-bottom:1px solid rgba(0,0,0,.08)}
+.nav .in{max-width:1024px;margin:0 auto;height:100%;padding:0 22px;display:flex;align-items:center;gap:26px}
+.nav a{color:var(--tx);font-size:.8rem;opacity:.85;text-decoration:none;transition:opacity .2s}
+.nav a:hover{opacity:1;text-decoration:none}
+.nav .brand{font-size:.95rem;font-weight:600;opacity:1;letter-spacing:-.01em}
+.nav .sp{flex:1}
+.nav .btn{background:var(--ac);color:#fff;padding:5px 13px;border-radius:980px;font-size:.78rem;opacity:1;font-weight:500}
+.nav .btn:hover{background:#0077ED}
+
+/* 版面 */
+.band{padding:88px 22px}
+.band.alt{background:var(--bg2)}
+.band.tight{padding:56px 22px}
+.in{max-width:1024px;margin:0 auto}
+.in.narrow{max-width:692px}
+.center{text-align:center}
+
+h1.display{font-size:clamp(2.4rem,6vw,3.5rem);font-weight:600;letter-spacing:-.025em;line-height:1.07;text-wrap:balance}
+h2.title{font-size:clamp(1.75rem,4vw,2.5rem);font-weight:600;letter-spacing:-.02em;line-height:1.12;text-wrap:balance}
+h3.sub{font-size:1.3rem;font-weight:600;letter-spacing:-.01em}
+.lede{font-size:clamp(1.05rem,2vw,1.3rem);color:var(--tx2);line-height:1.5;max-width:34ch;margin:18px auto 0}
+.lede.wide{max-width:52ch}
+.eyebrow{font-size:.95rem;font-weight:600;color:var(--ac-tx);letter-spacing:.01em;margin-bottom:8px}
+.small{font-size:.8rem;color:var(--tx3)}
+
+/* 按鈕 */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;background:var(--ac);color:#fff;
+  border:0;font-family:inherit;font-size:1rem;font-weight:400;padding:12px 23px;border-radius:980px;cursor:pointer;
+  transition:background .2s,transform .2s}
+.btn:hover{background:#0077ED;text-decoration:none;transform:translateY(-1px)}
+.btn:active{transform:none}
+.btn.sec{background:transparent;color:var(--ac-tx);border:1px solid var(--ac);}
+.btn.sec:hover{background:rgba(0,113,227,.06)}
+.btn.quiet{background:var(--bg2);color:var(--tx);border:1px solid var(--line)}
+.btn.quiet:hover{background:#eaeaef}
+.btn.sm{font-size:.85rem;padding:8px 16px}
+.btn[disabled]{opacity:.4;pointer-events:none}
+.linkarrow{font-size:1rem;display:inline-block}
+.linkarrow:after{content:" ›";transition:transform .2s}
+
+/* 卡片／Bento */
+.bento{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-top:40px}
+.tile{background:var(--card);border-radius:var(--r-l);padding:34px 30px;box-shadow:var(--sh);
+  transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s}
+.band.alt .tile{background:#fff}
+.tile:hover{transform:translateY(-4px);box-shadow:var(--sh-h)}
+.tile .ic{font-size:2rem;display:block;margin-bottom:14px}
+.tile h3{font-size:1.15rem;font-weight:600;letter-spacing:-.01em;margin-bottom:8px}
+.tile p{color:var(--tx2);font-size:.92rem;line-height:1.55}
+.tile.wide{grid-column:span 2}
+@media(max-width:700px){.tile.wide{grid-column:span 1}}
+
+/* 進場 */
+[data-in]{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1);transition-delay:calc(var(--d,0)*80ms)}
+[data-in].on{opacity:1;transform:none}
+
+/* 模板列 */
+.rail{display:flex;gap:18px;overflow-x:auto;padding:6px 22px 24px;scroll-snap-type:x mandatory;
+  scrollbar-width:none;cursor:grab}
+.rail::-webkit-scrollbar{display:none}
+.rail.drag{cursor:grabbing;scroll-snap-type:none}
+.tcard{flex:0 0 260px;scroll-snap-align:center;background:var(--card);border-radius:var(--r-l);overflow:hidden;
+  box-shadow:var(--sh);text-align:left;transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s;color:inherit}
+.tcard:hover{transform:translateY(-5px);box-shadow:var(--sh-h);text-decoration:none}
+.tcard .top{height:128px;display:flex;align-items:center;justify-content:center;font-size:3rem}
+.tcard .body{padding:18px 20px 22px}
+.tcard h3{font-size:1.05rem;font-weight:600;letter-spacing:-.01em;margin-bottom:4px}
+.tcard .meta{color:var(--tx3);font-size:.82rem}
+.tcard .go{color:var(--ac-tx);font-size:.85rem;margin-top:12px;display:inline-block}
+
+/* 行程時間軸 */
+.timeline{margin-top:28px}
+.daybar{position:sticky;top:var(--nav-h);background:rgba(255,255,255,.85);backdrop-filter:blur(12px);
+  font-size:.85rem;font-weight:600;color:var(--tx2);padding:12px 0 10px;border-bottom:1px solid var(--line2);z-index:5}
+.item{display:grid;grid-template-columns:76px 1fr;gap:16px;padding:18px 0;border-bottom:1px solid var(--line2)}
+.item .t{font-size:.9rem;color:var(--tx2);font-variant-numeric:tabular-nums;padding-top:1px}
+.item .t small{display:block;color:var(--tx3);font-size:.78rem}
+.item h4{font-size:1.02rem;font-weight:600;letter-spacing:-.01em;margin-bottom:3px}
+.item .loc{font-size:.86rem;color:var(--tx2)}
+.item .note{font-size:.86rem;color:var(--tx3);margin-top:4px;line-height:1.5}
+.item .chip{display:inline-block;font-size:.72rem;color:var(--tx2);background:var(--bg2);border-radius:999px;
+  padding:2px 9px;margin-top:6px}
+
+/* 加入行事曆卡 */
+.addbox{background:var(--bg2);border-radius:var(--r-l);padding:26px;margin-top:34px}
+.addbox h3{font-size:1.1rem;font-weight:600;margin-bottom:6px}
+.addbox p{color:var(--tx2);font-size:.9rem;margin-bottom:16px}
+.field{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.field label{font-size:.88rem;color:var(--tx2)}
+.field input[type=date]{font-family:inherit;font-size:1rem;padding:9px 13px;border:1px solid var(--line);
+  border-radius:var(--r-s);background:#fff;color:var(--tx)}
+.actions{display:flex;gap:10px;flex-wrap:wrap}
+.hint{font-size:.78rem;color:var(--tx3);margin-top:12px;line-height:1.6}
+.toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,16px);background:#1d1d1f;color:#fff;
+  font-size:.88rem;padding:11px 20px;border-radius:980px;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:200}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+
+/* 日曆目錄 */
+.search{max-width:520px;margin:34px auto 0;position:relative}
+.search input{width:100%;font-family:inherit;font-size:1rem;padding:13px 16px 13px 42px;border-radius:980px;
+  border:1px solid var(--line);background:#fff;color:var(--tx);outline:none;transition:border-color .2s,box-shadow .2s}
+.search input:focus{border-color:var(--ac);box-shadow:0 0 0 4px rgba(0,113,227,.12)}
+.search .mag{position:absolute;left:17px;top:50%;transform:translateY(-50%);color:var(--tx3);font-size:.95rem}
+.chips{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+.chip-b{font-family:inherit;font-size:.83rem;padding:6px 15px;border-radius:980px;border:1px solid var(--line);
+  background:#fff;color:var(--tx2);cursor:pointer;transition:all .2s}
+.chip-b:hover{border-color:var(--tx3);color:var(--tx)}
+.chip-b.on{background:var(--tx);border-color:var(--tx);color:#fff}
+.cals{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin-top:32px}
+.cal{background:#fff;border-radius:var(--r-m);padding:22px;box-shadow:var(--sh);opacity:0;transform:translateY(12px);
+  transition:opacity .4s ease,transform .4s cubic-bezier(.22,1,.36,1),box-shadow .3s;transition-delay:calc(var(--i,0)*40ms)}
+.cal.on{opacity:1;transform:none}
+.cal:hover{box-shadow:var(--sh-h)}
+.cal .hd{display:flex;align-items:center;gap:9px;margin-bottom:8px}
+.cal .ic{font-size:1.4rem}
+.cal h3{font-size:1rem;font-weight:600;flex:1}
+.cal .tag{font-size:.72rem;color:var(--tx3);border:1px solid var(--line);border-radius:999px;padding:2px 9px}
+.cal .hot{font-size:.78rem;color:var(--warn);margin-bottom:5px}
+.cal p{color:var(--tx2);font-size:.87rem;line-height:1.55;margin-bottom:14px}
+.cal .acts{display:flex;gap:8px;flex-wrap:wrap}
+.mini{font-size:.8rem;padding:7px 13px;border-radius:980px;border:1px solid var(--line);color:var(--tx);
+  background:#fff;transition:background .2s}
+.mini:hover{background:var(--bg2);text-decoration:none}
+.mini.main{background:var(--ac);border-color:var(--ac);color:#fff}
+.mini.main:hover{background:#0077ED}
+.mini.off{opacity:.45;pointer-events:none}
+
+/* 文件頁 */
+.doc h1{font-size:2rem;font-weight:600;letter-spacing:-.02em;margin-bottom:10px}
+.doc h2{font-size:1.2rem;font-weight:600;margin:34px 0 10px}
+.doc p,.doc li{color:var(--tx2);font-size:.96rem;line-height:1.75}
+.doc ul{padding-left:20px;margin:8px 0}
+details.qa{border-bottom:1px solid var(--line2);padding:16px 0}
+details.qa summary{cursor:pointer;font-size:1rem;font-weight:500;list-style:none;display:flex;justify-content:space-between;gap:12px}
+details.qa summary::-webkit-details-marker{display:none}
+details.qa summary:after{content:"＋";color:var(--ac-tx);font-weight:400}
+details.qa[open] summary:after{content:"－"}
+details.qa p{margin-top:10px;font-size:.92rem}
+
+/* 頁尾 */
+.foot{background:var(--bg2);padding:34px 22px;font-size:.76rem;color:var(--tx3);border-top:1px solid var(--line2)}
+.foot .in{display:flex;flex-direction:column;gap:8px}
+.foot a{color:var(--tx2)}
+.foot .row{display:flex;gap:6px;flex-wrap:wrap}
+.foot .row a:after{content:" ·";color:var(--line)}
+.foot .row a:last-child:after{content:""}
+
+@media (max-width:640px){
+  .band{padding:60px 20px}
+  .tile{padding:28px 24px}
+  .item{grid-template-columns:64px 1fr;gap:12px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{transition-duration:.001ms!important;animation-duration:.001ms!important}
+  [data-in],.cal{opacity:1;transform:none}
+}
