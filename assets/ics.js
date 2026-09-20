@@ -52,5 +52,36 @@ window.ICS=(function(){
     setTimeout(function(){URL.revokeObjectURL(url);a.remove()},1500);
     return r.count;
   }
-  return {build:build,download:download};
+  /* 由絕對時間事件清單建立（分享行程頁用） */
+  function buildEvents(title,list){
+    var L=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Secalender//Plan//ZH","CALSCALE:GREGORIAN","METHOD:PUBLISH",
+           "X-WR-CALNAME:"+esc(title)], stamp=z(new Date()), n=0;
+    for(var i=0;i<list.length;i++){
+      var it=list[i];
+      if(!it.start) continue;
+      var e=it.end||new Date(it.start.getTime()+60*60000);
+      n++;
+      L.push("BEGIN:VEVENT");
+      L.push("UID:plan-"+i+"-"+stamp+"@secalender.com");
+      L.push("DTSTAMP:"+stamp);
+      L.push("DTSTART:"+z(it.start));
+      L.push("DTEND:"+z(e));
+      L.push(fold("SUMMARY:"+esc(it.title)));
+      if(it.loc) L.push(fold("LOCATION:"+esc(it.loc)));
+      L.push(fold("DESCRIPTION:"+esc((it.note?it.note+"\n":"")+"來自 Secalender："+title)));
+      L.push("END:VEVENT");
+    }
+    L.push("END:VCALENDAR");
+    return {text:L.join("\r\n"),count:n};
+  }
+  function save(text,name){
+    var blob=new Blob([text],{type:"text/calendar;charset=utf-8"}),
+        url=URL.createObjectURL(blob), a=document.createElement("a");
+    a.href=url; a.download=name; document.body.appendChild(a); a.click();
+    setTimeout(function(){URL.revokeObjectURL(url);a.remove()},1500);
+  }
+  function downloadEvents(title,list,name){
+    var r=buildEvents(title,list); save(r.text,name||"secalender.ics"); return r.count;
+  }
+  return {build:build,download:download,buildEvents:buildEvents,downloadEvents:downloadEvents};
 })();
