@@ -11,6 +11,7 @@
   --nav-h:48px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none!important}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{background:var(--bg);color:var(--tx);font-family:var(--f);line-height:1.5;-webkit-font-smoothing:antialiased}
 img{max-width:100%}
