@@ -102,6 +102,12 @@
 .modal h3{font-size:1.15rem;font-weight:600;margin-bottom:8px}
 .modal p{font-size:.9rem;color:var(--tx2);line-height:1.6;margin-bottom:22px}
 .modal .btn{width:100%;margin-bottom:10px}
+.modal[data-mode="offline"] .m-login{display:none}
+.modal[data-mode="offline"] .m-dl{background:var(--ac);color:#fff;border-color:var(--ac)}
+.pc-h h3 .dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:8px;vertical-align:1px}
+.add.done{background:var(--bg2);color:var(--tx);border:1px solid var(--line)}
+.add.done:hover{background:#fff1ee;color:#c0392b;border-color:#f0c4bb}
+.add[disabled]{opacity:.6;pointer-events:none}
 
 @media(max-width:820px){
   .one{grid-template-columns:1fr;gap:36px}
@@ -217,9 +223,12 @@
 <div class="modal" id="addModal" hidden role="dialog" aria-modal="true" aria-labelledby="mTitle">
  <div class="box">
   <h3 class="m-t" id="mTitle">加入 App</h3>
-  <p>在手機上開啟 Secalender，就能逐場挑選要加入的活動。還沒有 App？先下載，或登入網頁版檢視你的日曆。</p>
-  <a class="btn m-dl" href="#">下載 App</a>
-  <a class="btn quiet" href="/calendar.html">登入網頁版</a>
+  <p class="m-p"></p>
+  <div class="m-login">
+   <button class="btn" type="button" data-login="google">使用 Google 登入</button>
+   <button class="btn quiet" type="button" data-login="apple">使用 Apple 登入</button>
+  </div>
+  <a class="btn quiet m-dl" href="#">沒有帳號？下載 App</a>
   <button class="btn quiet" type="button" data-close style="margin-bottom:0">稍後再說</button>
  </div>
 </div>

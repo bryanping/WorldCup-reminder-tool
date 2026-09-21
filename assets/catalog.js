@@ -1,14 +1,14 @@
 /* 公開日曆目錄 — 單一資料來源，index.html 與 events.html 共用 */
 /* type: page=站內專頁 · gcal_id=Google 公共日曆 · ics=外部 ics · soon=即將上線 */
 window.CATALOG=[
- {icon:"⚽",title:"2026 世界盃",cat:"運動",hot:"🔥 進行中熱門",desc:"美加墨 104 場完整賽程，逐場提醒、時區自動換算，可逐場加入 App。",type:"page",href:"/worldcup.html"},
- {icon:"🇹🇼",title:"台灣國定假日",cat:"假日",desc:"台灣國定假日與補班日，Google 官方公共日曆，自動更新。",type:"gcal_id",id:"zh_tw.taiwan#holiday@group.v.calendar.google.com"},
- {icon:"🇯🇵",title:"日本國定假日",cat:"假日",desc:"日本祝日官方公共日曆，旅日排程必備。",type:"gcal_id",id:"ja.japanese#holiday@group.v.calendar.google.com"},
- {icon:"🇺🇸",title:"美國國定假日",cat:"假日",desc:"美國聯邦假日公共日曆。",type:"gcal_id",id:"en.usa#holiday@group.v.calendar.google.com"},
- {icon:"🇭🇰",title:"香港公眾假期",cat:"假日",desc:"香港公眾假期公共日曆。",type:"gcal_id",id:"zh.hong_kong#holiday@group.v.calendar.google.com"},
- {icon:"🌙",title:"月相日曆",cat:"生活",desc:"滿月、新月等月相時間，Google 公共日曆。",type:"gcal_id",id:"ht3jlfaac5lfd6263ulfh4tql8@group.calendar.google.com"},
- {icon:"🏀",title:"NBA / 更多賽事",cat:"運動",desc:"更多賽事日曆整理中，之後陸續上線。想先看哪個？歡迎許願。",type:"soon"},
- {icon:"🍎",title:"科技發表會",cat:"科技",desc:"Apple、Google 等大型發表會時間線，整理中。",type:"soon"}
+ {icon:"⚽",title:"2026 世界盃",color:"#FF9500",cat:"運動",hot:"🔥 進行中熱門",desc:"美加墨 104 場完整賽程，逐場提醒、時區自動換算，可逐場加入 App。",type:"page",href:"/worldcup.html"},
+ {icon:"🇹🇼",title:"台灣國定假日",color:"#34C759",cat:"假日",desc:"台灣國定假日與補班日，Google 官方公共日曆，自動更新。",type:"gcal_id",id:"zh_tw.taiwan#holiday@group.v.calendar.google.com"},
+ {icon:"🇯🇵",title:"日本國定假日",color:"#FF2D55",cat:"假日",desc:"日本祝日官方公共日曆，旅日排程必備。",type:"gcal_id",id:"ja.japanese#holiday@group.v.calendar.google.com"},
+ {icon:"🇺🇸",title:"美國國定假日",color:"#007AFF",cat:"假日",desc:"美國聯邦假日公共日曆。",type:"gcal_id",id:"en.usa#holiday@group.v.calendar.google.com"},
+ {icon:"🇭🇰",title:"香港公眾假期",color:"#5856D6",cat:"假日",desc:"香港公眾假期公共日曆。",type:"gcal_id",id:"zh.hong_kong#holiday@group.v.calendar.google.com"},
+ {icon:"🌙",title:"月相日曆",color:"#AF52DE",cat:"生活",desc:"滿月、新月等月相時間，Google 公共日曆。",type:"gcal_id",id:"ht3jlfaac5lfd6263ulfh4tql8@group.calendar.google.com"},
+ {icon:"🏀",title:"NBA / 更多賽事",color:"#FF9500",cat:"運動",desc:"更多賽事日曆整理中，之後陸續上線。想先看哪個？歡迎許願。",type:"soon"},
+ {icon:"🍎",title:"科技發表會",color:"#8E8E93",cat:"科技",desc:"Apple、Google 等大型發表會時間線，整理中。",type:"soon"}
 ];
 window.CAL={
  ics:function(id){return "https://calendar.google.com/calendar/ical/"+encodeURIComponent(id)+"/public/basic.ics"},
