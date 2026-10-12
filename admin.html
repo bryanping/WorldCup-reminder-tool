@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Secalender 審核後台</title>
+<link rel="stylesheet" href="/assets/ui.css">
+<style>
+  /* 修改内容：審核後台（admin 帳號登入）— 認證審核／公開活動下架 */
+  body{background:var(--bg2)}
+  .wrap{max-width:960px;margin:0 auto;padding:24px 16px 80px}
+  .top{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+  .top h1{font-size:1.4rem;flex:1}
+  .btn{border:0;border-radius:10px;padding:8px 14px;font:600 .9rem var(--f);cursor:pointer;background:var(--ac);color:#fff}
+  .btn.ghost{background:#fff;color:var(--tx);border:1px solid var(--line)}
+  .btn.danger{background:#d70015}
+  .btn:disabled{opacity:.5;cursor:default}
+  .tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+  .tab{padding:8px 16px;border-radius:999px;background:#fff;border:1px solid var(--line);cursor:pointer;font:500 .9rem var(--f)}
+  .tab.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+  .card{background:#fff;border-radius:18px;padding:18px;margin-bottom:14px}
+  .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .pill{display:inline-block;padding:2px 10px;border-radius:999px;font-size:.78rem;background:#eef2ff;color:#3346c8}
+  .pill.warn{background:#fff4e5;color:#b25000}
+  .pill.ok{background:#e8f6ee;color:#1d8a4a}
+  .pill.bad{background:#fdecee;color:#d70015}
+  .kv{display:grid;grid-template-columns:110px 1fr;gap:4px 12px;margin:12px 0;font-size:.9rem}
+  .kv b{color:var(--tx2);font-weight:500}
+  .field{background:#f0f1fb;border-radius:12px;padding:12px}
+  .docs{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0}
+  .docs a{display:block;width:140px;font-size:.78rem;color:var(--tx2);text-align:center}
+  .docs img{width:140px;height:100px;object-fit:cover;border-radius:10px;border:1px solid var(--line2);display:block;margin-bottom:4px}
+  textarea{width:100%;min-height:60px;border-radius:12px;border:1px solid var(--line);padding:10px;font:inherit;margin:8px 0}
+  .muted{color:var(--tx2);font-size:.9rem}
+  .empty{text-align:center;color:var(--tx3);padding:40px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <h1>Secalender 審核後台</h1>
+    <span id="who" class="muted"></span>
+    <button id="loginBtn" class="btn">以 Google 登入</button>
+    <button id="logoutBtn" class="btn ghost" hidden>登出</button>
+  </div>
+
+  <div id="denied" class="card" hidden>
+    <p>此帳號不是管理者。請將以下 UID 加入 <code>roles/{uid}</code>（isAdmin: true）後重新登入：</p>
+    <p><code id="deniedUid"></code></p>
+  </div>
+
+  <div id="app" hidden>
+    <div class="tabs">
+      <button class="tab on" data-tab="pending">待審認證 <span id="cntPending"></span></button>
+      <button class="tab" data-tab="decided">已審紀錄</button>
+      <button class="tab" data-tab="listings">公開活動</button>
+      <button class="tab" data-tab="reports">檢舉 <span id="cntReports"></span></button>
+    </div>
+    <div id="panel"></div>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-functions-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-storage-compat.js"></script>
+<script src="/assets/fb.js"></script>
+<script>
+(function(){
+  const app = firebase.initializeApp(window.FB_CONFIG);
+  const auth = firebase.auth();
+  const db = firebase.firestore();
+  const fns = app.functions("asia-east1");
+  const storage = firebase.storage();
+  const $ = (id) => document.getElementById(id);
+  const esc = (s) => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  const fmt = (ts) => ts && ts.toDate ? ts.toDate().toLocaleString("zh-TW") : "";
+  const LV = {3:"L3 公開發布者",4:"L4 認證主辦者"};
+  const DOC = {id_front:"身分證正面",id_back:"身分證背面",company_registration:"登記證明",bank_account:"存摺",authorization_letter:"授權書"};
+  let tab = "pending";
+
+  $("loginBtn").onclick = () => auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+  $("logoutBtn").onclick = () => auth.signOut();
+  document.querySelectorAll(".tab").forEach(b => b.onclick = () => {
+    document.querySelectorAll(".tab").forEach(x => x.classList.remove("on"));
+    b.classList.add("on"); tab = b.dataset.tab; render();
+  });
+
+  auth.onAuthStateChanged(async (user) => {
+    $("loginBtn").hidden = !!user; $("logoutBtn").hidden = !user;
+    $("who").textContent = user ? (user.email || user.uid) : "";
+    $("app").hidden = true; $("denied").hidden = true;
+    if (!user) return;
+    await user.getIdToken(true);
+    try {
+      await db.collection("verification_requests").where("status","==","pending").limit(1).get();
+      try {   // 修改内容：待處理檢舉數
+        const r = await db.collection("reports").where("status","==","pending").limit(100).get();
+        $("cntReports").textContent = r.size ? "(" + r.size + (r.size >= 100 ? "+" : "") + ")" : "";
+      } catch {}
+      $("app").hidden = false; render();
+    } catch (e) {
+      $("denied").hidden = false; $("deniedUid").textContent = user.uid;
+    }
+  });
+
+  async function render(){
+    const panel = $("panel");
+    panel.innerHTML = '<p class="empty">載入中…</p>';
+    try {
+      if (tab === "pending") await renderPending(panel);
+      else if (tab === "decided") await renderDecided(panel);
+      else if (tab === "reports") await renderReports(panel);   // 修改内容：檢舉審核
+      else await renderListings(panel);
+    } catch (e) {
+      panel.innerHTML = '<p class="empty">載入失敗：' + esc(e.message) + '</p>';
+    }
+  }
+
+  async function userName(uid){
+    try { const u = (await db.collection("users").doc(uid).get()).data() || {};
+      return u.display_name || u.name || u.alias || u.email || uid; } catch { return uid; }
+  }
+
+  async function docLinks(docs){
+    const out = [];
+    for (const d of (docs || [])) {
+      try {
+        const url = await storage.ref(d.path).getDownloadURL();
+        const isPdf = String(d.contentType || "").includes("pdf");
+        out.push('<a href="' + esc(url) + '" target="_blank" rel="noopener">' +
+          (isPdf ? '<div class="field" style="height:100px;display:flex;align-items:center;justify-content:center">PDF</div>' : '<img src="' + esc(url) + '" alt="">') +
+          esc(DOC[d.kind] || d.kind) + '</a>');
+      } catch { out.push('<a>' + esc(DOC[d.kind] || d.kind) + '（已刪除）</a>'); }
+    }
+    return out.join("");
+  }
+
+  async function renderPending(panel){
+    const snap = await db.collection("verification_requests").where("status","==","pending").get();
+    const docs = snap.docs.sort((a,b) => (a.get("submittedAt")?.toMillis?.() || 0) - (b.get("submittedAt")?.toMillis?.() || 0));
+    $("cntPending").textContent = docs.length ? "(" + docs.length + ")" : "";
+    if (!docs.length) { panel.innerHTML = '<p class="empty">目前沒有待審申請</p>'; return; }
+    const html = [];
+    for (const d of docs) {
+      const x = d.data(), p = x.payload || {};
+      const name = await userName(x.uid);
+      const risk = Number(x.riskScore || 0);
+      html.push(
+        '<div class="card" data-id="' + esc(d.id) + '">' +
+        '<div class="row"><span class="pill">' + esc(LV[x.targetLevel] || ("L" + x.targetLevel)) + '</span>' +
+        '<span class="pill ' + (risk > 20 ? "warn" : "ok") + '">風險 ' + risk + '</span>' +
+        '<span class="muted">' + esc(fmt(x.submittedAt)) + '</span></div>' +
+        '<div class="kv">' +
+          '<b>申請人</b><span>' + esc(name) + ' <span class="muted">(' + esc(x.uid) + ')</span></span>' +
+          '<b>真實姓名</b><span>' + esc(p.realName) + '</span>' +
+          '<b>聯絡信箱</b><span>' + esc(p.contactEmail) + '</span>' +
+          (p.orgName ? '<b>社群／公司</b><span>' + esc(p.orgName) + '</span>' : '') +
+          (p.taxId ? '<b>登記號</b><span>' + esc(p.taxId) + '</span>' : '') +
+          (p.region ? '<b>地區</b><span>' + esc(p.region) + '</span>' : '') +
+          '<b>簡介</b><span>' + esc(p.intro) + '</span>' +
+          ((x.riskSignals || []).length ? '<b>風險訊號</b><span>' + esc((x.riskSignals || []).join("、")) + '</span>' : '') +
+        '</div>' +
+        '<div class="docs">' + await docLinks(x.documents) + '</div>' +
+        '<textarea placeholder="審核備註（退件必填，會顯示給申請人）"></textarea>' +
+        '<div class="row"><button class="btn" data-act="approve">核准</button>' +
+        '<button class="btn danger" data-act="reject">退件</button></div></div>');
+    }
+    panel.innerHTML = html.join("");
+    panel.querySelectorAll("button[data-act]").forEach(btn => btn.onclick = async () => {
+      const card = btn.closest(".card");
+      const note = card.querySelector("textarea").value.trim();
+      const decision = btn.dataset.act;
+      if (decision === "reject" && !note) { alert("退件請填寫原因"); return; }
+      if (!confirm(decision === "approve" ? "確定核准？" : "確定退件？")) return;
+      card.querySelectorAll("button").forEach(b => b.disabled = true);
+      try {
+        await fns.httpsCallable("reviewVerification")({ requestId: card.dataset.id, decision, note });
+        card.remove();
+        const left = panel.querySelectorAll(".card").length;
+        $("cntPending").textContent = left ? "(" + left + ")" : "";
+        if (!left) panel.innerHTML = '<p class="empty">目前沒有待審申請</p>';
+      } catch (e) {
+        alert("失敗：" + e.message);
+        card.querySelectorAll("button").forEach(b => b.disabled = false);
+      }
+    });
+  }
+
+  async function renderDecided(panel){
+    const snap = await db.collection("verification_requests").where("status","in",["approved","rejected"]).limit(100).get();
+    const docs = snap.docs.sort((a,b) => (b.get("reviewedAt")?.toMillis?.() || 0) - (a.get("reviewedAt")?.toMillis?.() || 0));
+    if (!docs.length) { panel.innerHTML = '<p class="empty">尚無紀錄</p>'; return; }
+    panel.innerHTML = docs.map(d => {
+      const x = d.data(), p = x.payload || {};
+      const ok = x.status === "approved";
+      return '<div class="card"><div class="row"><span class="pill">' + esc(LV[x.targetLevel] || x.targetLevel) + '</span>' +
+        '<span class="pill ' + (ok ? "ok" : "bad") + '">' + (ok ? "已核准" : "已退件") + '</span>' +
+        '<span class="muted">' + esc(fmt(x.reviewedAt)) + '・' + esc(x.reviewerUid === "system:auto" ? "自動" : (x.reviewerUid || "")) + '</span></div>' +
+        '<div class="kv"><b>申請人</b><span>' + esc(p.realName || x.uid) + (p.orgName ? '（' + esc(p.orgName) + '）' : '') + '</span>' +
+        (x.reviewNote ? '<b>備註</b><span>' + esc(x.reviewNote) + '</span>' : '') + '</div></div>';
+    }).join("");
+  }
+
+  async function renderListings(panel){
+    const snap = await db.collection("public_plan_listings").where("status","==","approved").limit(300).get();
+    const docs = snap.docs.sort((a,b) => (b.get("createdAt")?.toMillis?.() || 0) - (a.get("createdAt")?.toMillis?.() || 0));
+    if (!docs.length) { panel.innerHTML = '<p class="empty">沒有上架中的公開活動</p>'; return; }
+    const OT = {individual:"個人", company:"公司", group:"社群"};
+    panel.innerHTML = docs.map(d => {
+      const x = d.data();
+      return '<div class="card" data-id="' + esc(d.id) + '"><div class="row">' +
+        '<span class="pill">' + esc(OT[x.ownerType] || x.ownerType) + '</span>' +
+        (x.eventId ? '<span class="pill ok">行程同步</span>' : '<span class="pill warn">方案</span>') +
+        '<strong style="flex:1">' + esc(x.title) + '</strong>' +
+        '<button class="btn danger" data-act="withdraw">下架</button></div>' +
+        '<div class="kv"><b>發布者</b><span>' + esc(x.ownerName) + ' <span class="muted">(' + esc(x.ownerId) + ')</span></span>' +
+        '<b>地點</b><span>' + esc(x.location) + '</span>' +
+        (x.startAt ? '<b>時間</b><span>' + esc(fmt(x.startAt)) + '</span>' : '') +
+        (x.description ? '<b>說明</b><span>' + esc(x.description) + '</span>' : '') + '</div></div>';
+    }).join("");
+    panel.querySelectorAll("button[data-act=withdraw]").forEach(btn => btn.onclick = async () => {
+      const card = btn.closest(".card");
+      if (!confirm("確定下架這筆公開活動？")) return;
+      btn.disabled = true;
+      try {
+        await db.collection("public_plan_listings").doc(card.dataset.id).update({ status: "withdrawn" });
+        card.remove();
+      } catch (e) { alert("失敗：" + e.message); btn.disabled = false; }
+    });
+  }
+
+  // 修改内容：檢舉審核 — 列出 pending 檢舉；可下架內容、停權發布者、標記已處理／駁回
+  const RT = { user: "用戶", event: "行程", plan: "公開方案", group: "社群" };
+  const RR = { spam: "垃圾／廣告", harassment: "騷擾霸凌", inappropriate: "不當內容", scam: "詐騙", violence: "暴力危險", other: "其他" };
+
+  async function takedown(x){
+    if (x.type === "plan") {
+      await db.collection("public_plan_listings").doc(x.targetId).update({ status: "withdrawn", withdrawnReason: "report" });
+      return "已下架公開方案";
+    }
+    if (x.type === "event") {
+      const gid = x.context && x.context.groupId;
+      if (gid) {
+        const q = await db.collection("groups").doc(gid).collection("groupEvents").where("id","==",Number(x.targetId)).limit(1).get();
+        if (q.empty) throw new Error("找不到社群行程");
+        await q.docs[0].ref.update({ openChecked: 0, takedownReason: "report" });
+        return "已將社群行程設為不公開";
+      }
+      if (!x.targetOwnerId) throw new Error("缺少發布者");
+      const q = await db.collection("users").doc(x.targetOwnerId).collection("events").where("id","==",Number(x.targetId)).limit(1).get();
+      if (q.empty) throw new Error("找不到行程");
+      await q.docs[0].ref.update({ openChecked: 0, takedownReason: "report" });
+      return "已將行程設為不公開";
+    }
+    if (x.type === "group") {
+      await db.collection("groups").doc(x.targetId).update({ privacy: "private", takedownReason: "report" });
+      return "已將社群設為私密";
+    }
+    throw new Error("此類型無法下架");
+  }
+
+  async function renderReports(panel){
+    const snap = await db.collection("reports").where("status","==","pending").limit(200).get();
+    const docs = snap.docs.sort((a,b) => (b.get("createdAt")?.toMillis?.() || 0) - (a.get("createdAt")?.toMillis?.() || 0));
+    if (!docs.length) { panel.innerHTML = '<p class="empty">沒有待處理的檢舉</p>'; return; }
+    const names = {};
+    for (const d of docs) {
+      const x = d.data();
+      for (const u of [x.reporterId, x.targetOwnerId, x.type === "user" ? x.targetId : null]) {
+        if (u && !names[u]) names[u] = await userName(u);
+      }
+    }
+    panel.innerHTML = docs.map(d => {
+      const x = d.data();
+      const subject = x.type === "user" ? x.targetId : (x.targetOwnerId || "");
+      return '<div class="card" data-id="' + esc(d.id) + '"><div class="row">' +
+        '<span class="pill">' + esc(RT[x.type] || x.type) + '</span>' +
+        '<span class="pill warn">' + esc(RR[x.reason] || x.reason) + '</span>' +
+        '<strong style="flex:1">' + esc(x.targetId) + '</strong>' +
+        (x.type !== "user" ? '<button class="btn danger" data-act="takedown">下架</button>' : '') +
+        (subject ? '<button class="btn danger" data-act="suspend" data-uid="' + esc(subject) + '">停權</button>' : '') +
+        '<button class="btn" data-act="actioned">已處理</button>' +
+        '<button class="btn ghost" data-act="dismissed">駁回</button></div>' +
+        '<div class="kv">' +
+        '<b>檢舉人</b><span>' + esc(names[x.reporterId] || x.reporterId) + ' <span class="muted">(' + esc(x.reporterId) + ')</span></span>' +
+        (subject ? '<b>被檢舉者</b><span>' + esc(names[subject] || subject) + ' <span class="muted">(' + esc(subject) + ')</span></span>' : '') +
+        (x.detail ? '<b>說明</b><span>' + esc(x.detail) + '</span>' : '') +
+        (x.createdAt ? '<b>時間</b><span>' + esc(fmt(x.createdAt)) + '</span>' : '') +
+        '</div></div>';
+    }).join("");
+
+    panel.querySelectorAll("button[data-act]").forEach(btn => btn.onclick = async () => {
+      const card = btn.closest(".card");
+      const act = btn.dataset.act;
+      const ref = db.collection("reports").doc(card.dataset.id);
+      const x = (await ref.get()).data();
+      const me = auth.currentUser.uid;
+      btn.disabled = true;
+      try {
+        if (act === "takedown") {
+          if (!confirm("確定下架此內容？")) { btn.disabled = false; return; }
+          const msg = await takedown(x);
+          await ref.update({ status: "actioned", action: "takedown", reviewedBy: me, reviewedAt: firebase.firestore.FieldValue.serverTimestamp() });
+          alert(msg); card.remove(); return;
+        }
+        if (act === "suspend") {
+          const note = prompt("停權原因（必填）", "違反社群規範：" + (RR[x.reason] || x.reason));
+          if (!note) { btn.disabled = false; return; }
+          await fns.httpsCallable("adminSetLevelCap")({ uid: btn.dataset.uid, cap: 0, suspended: true, note });
+          if (x.type !== "user") { try { await takedown(x); } catch {} }
+          await ref.update({ status: "actioned", action: "suspend", reviewedBy: me, reviewedAt: firebase.firestore.FieldValue.serverTimestamp(), reviewNote: note });
+          card.remove(); return;
+        }
+        await ref.update({ status: act, reviewedBy: me, reviewedAt: firebase.firestore.FieldValue.serverTimestamp() });
+        card.remove();
+      } catch (e) { alert("失敗：" + e.message); btn.disabled = false; }
+    });
+  }
+})();
+</script>
+</body>
+</html>
