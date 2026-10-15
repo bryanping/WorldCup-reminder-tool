@@ -1,5 +1,16 @@
 /* 首頁：AI 示範動畫、模板可拖曳無限輪播、公開日曆「加入 App」（依國家）、多語 */
 (function(){
+  /* 修改内容：进场动画最先执行，后面任何错误都不会让整页停在 opacity:0 */
+  (function(){
+    var els=document.querySelectorAll('[data-in]');
+    if(!('IntersectionObserver' in window)){[].forEach.call(els,function(e){e.classList.add('on')});return}
+    var io0=new IntersectionObserver(function(en){en.forEach(function(x){
+      if(x.isIntersecting){x.target.classList.add('on');io0.unobserve(x.target)}
+    })},{threshold:.15});
+    [].forEach.call(els,function(e){io0.observe(e)});
+    window.__reveal=function(el){ if(el) io0.observe(el); };
+  })();
+
   var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
   var TF='https://testflight.apple.com/join/K3JKca9n';
   var I=window.I18N, T=I?I.t:function(k){return k}; // 修改内容
@@ -98,7 +109,7 @@
   var grid=document.getElementById('pubGrid');
   if(grid&&window.CATALOG){
     var region=I?I.region:'TW';
-    var LIST=window.CAL.forRegion(region); // 修改内容
+    var LIST=(window.CAL&&window.CAL.forRegion)?window.CAL.forRegion(region):window.CATALOG; // 修改内容：旧版 catalog.js 没有 forRegion 时退回全部
     function subId(c){return 'gcal_'+String(c.id||c.title).replace(/[^A-Za-z0-9]/g,'_').slice(0,80)}
     function icsOf(c){return c.type==='gcal_id'?window.CAL.ics(c.id):c.href}
     function name(c){return c.k?T(c.k,{c:I?I.country(c.c||region):c.c}):c.title} // 修改内容

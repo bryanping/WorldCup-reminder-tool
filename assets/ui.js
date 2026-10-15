@@ -93,6 +93,23 @@
     dateI.value=iso(t0); dateI.min=iso(new Date());
     weekWrap.hidden=!tpl.weekly;
 
+    /* 參數控制：骨架 + 參數 → 依用戶狀況生成 */ // 修改内容
+    var P=Object.assign({},tpl.defaults||{}), W=Object.assign({},tpl);
+    function rebuild(){ if(tpl.build) W.items=tpl.build(P) }
+    if(tpl.params&&tpl.params.length){
+      var box=document.querySelector('.addbox'), fld=box.querySelector('.field'), pb=document.createElement('div');
+      pb.className='params';
+      pb.innerHTML='<div class="p-h">調整成你的節奏</div><div class="p-g">'+tpl.params.map(function(q){
+        var ctl=q.type==='text'
+          ?'<input type="text" data-p="'+q.key+'" value="'+q.def.replace(/"/g,'&quot;')+'" placeholder="'+(q.ph||'')+'">'
+          :'<select data-p="'+q.key+'">'+q.opts.map(function(o){return '<option value="'+o[0]+'"'+(o[0]===q.def?' selected':'')+'>'+o[1]+'</option>'}).join('')+'</select>';
+        return '<label><span>'+q.label+'</span>'+ctl+'</label>';
+      }).join('')+'</div>';
+      box.insertBefore(pb,fld);
+      pb.addEventListener('input',function(e){var c=e.target.closest('[data-p]');if(!c)return;P[c.dataset.p]=c.value;rebuild();draw()});
+    }
+    rebuild();
+
     function fmtD(d){return d.toLocaleDateString('zh-TW',{month:'long',day:'numeric',weekday:'short'})}
     function fmtT(d){return d.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false})}
     function draw(){
@@ -100,8 +117,8 @@
           base=new Date(+p[0],+p[1]-1,+p[2]),
           reps=tpl.weekly?Math.min(2,+weekI.value||1):1,
           html='',last='';
-      for(var r=0;r<reps;r++) for(var i=0;i<tpl.items.length;i++){
-        var it=tpl.items[i],s=new Date(base.getTime());
+      for(var r=0;r<reps;r++) for(var i=0;i<W.items.length;i++){ // 修改内容
+        var it=W.items[i],s=new Date(base.getTime());
         s.setDate(s.getDate()+it.d+r*7); s.setHours(it.h,it.m||0,0,0);
         var e=new Date(s.getTime()+(it.dur||60)*60000),day=fmtD(s);
         if(day!==last){html+='<div class="daybar">'+day+(tpl.weekly?'（第 '+(r+1)+' 週）':'')+'</div>';last=day}
@@ -112,18 +129,18 @@
           '<span class="chip">'+(it.dur||60)+' 分鐘</span></div></div>';
       }
       tl.innerHTML=html;
-      document.getElementById('cnt').textContent=tpl.items.length*(tpl.weekly?(+weekI.value||1):1);
+      document.getElementById('cnt').textContent=W.items.length*(tpl.weekly?(+weekI.value||1):1);
     }
     dateI.addEventListener('change',draw);
     weekI.addEventListener('change',draw);
     draw();
 
     document.getElementById('btnIcs').addEventListener('click',function(){
-      var n=window.ICS.download(tpl,dateI.value,tpl.weekly?+weekI.value:1);
+      var n=window.ICS.download(W,dateI.value,tpl.weekly?+weekI.value:1); // 修改内容
       toast('已下載 '+n+' 個行程，開啟檔案即可加入行事曆');
     });
     document.getElementById('btnApp').addEventListener('click',function(){
-      location.href='secalender://template/'+tpl.id+'?start='+dateI.value;
+      location.href='secalender://template/'+tpl.id+'?start='+dateI.value+'&p='+encodeURIComponent(JSON.stringify(P)); // 修改内容
       setTimeout(function(){toast('若沒有反應，表示尚未安裝 App')},1200);
     });
     document.getElementById('btnCopy').addEventListener('click',function(){

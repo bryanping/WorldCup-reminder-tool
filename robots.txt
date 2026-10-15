@@ -1,6 +1,7 @@
 User-agent: *
 Allow: /
 Disallow: /invite/
+Disallow: /admin
 Disallow: /friend/
 Disallow: /_to_delete/
 

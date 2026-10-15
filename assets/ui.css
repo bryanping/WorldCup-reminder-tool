@@ -234,3 +234,11 @@ details.qa p{margin-top:10px;font-size:.92rem}
 .si-chk{font-size:.76rem;color:var(--tx2);display:flex;align-items:center;gap:5px;cursor:pointer}
 .si-a .mini{font-size:.76rem;padding:6px 11px;border:0;cursor:pointer;font-family:inherit}
 .side-empty{font-size:.85rem;color:var(--tx3);line-height:1.7;padding:12px 4px}
+
+/* 模板參數 */ /* 修改内容 */
+.params{margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid var(--line)}
+.params .p-h{font-size:.88rem;font-weight:600;margin-bottom:10px}
+.params .p-g{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px 14px}
+.params label{display:flex;flex-direction:column;gap:5px;font-size:.78rem;color:var(--tx2)}
+.params select,.params input{font-family:inherit;font-size:.95rem;padding:9px 12px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--tx);width:100%}
+.params select:focus,.params input:focus{outline:none;border-color:var(--ac);box-shadow:0 0 0 3px rgba(0,113,227,.15)}
