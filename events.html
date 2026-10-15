@@ -16,6 +16,7 @@
 <meta property="og:image" content="https://secalender.com/assets/og.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="/assets/ui.css?v=2026101504">
+<script src="/assets/i18n-ui.js?v=2026101504"></script>
 <script src="/assets/i18n.js?v=2026101504"></script>
 </head>
 <body>
@@ -34,8 +35,8 @@
 
 <section class="band tight">
  <div class="in center">
-  <h1 class="display" style="font-size:2.2rem">公開活動日曆</h1>
-  <p class="lede wide">賽事、假日、發表會的公開日曆（ICS）。整份訂閱交給系統行事曆自動更新，或用 App 逐場挑選加入。</p>
+  <h1 class="display" style="font-size:2.2rem" data-i18n="ev_h">公開活動日曆</h1>
+  <p class="lede wide" data-i18n="ev_p">賽事、假日、發表會的公開日曆（ICS）。整份訂閱交給系統行事曆自動更新，或用 App 逐場挑選加入。</p>
   <div class="search">
    <span class="mag" aria-hidden="true">🔍</span>
    <label for="calSearch" style="position:absolute;left:-9999px">搜尋日曆</label>
@@ -45,19 +46,19 @@
  </div>
  <div class="in">
   <div class="cals" id="calGrid"></div>
-  <p class="small center" id="calEmpty" hidden style="padding:40px 0">沒有符合的日曆。換個關鍵字，或來信告訴我們想要哪一個。</p>
+  <p class="small center" id="calEmpty" hidden style="padding:40px 0" data-i18n="ev_none">沒有符合的日曆。換個關鍵字，或來信告訴我們想要哪一個。</p>
  </div>
 </section>
 
 <section class="band alt tight">
  <div class="in narrow">
-  <h2 class="title center" data-in>三種加入方式</h2>
+  <h2 class="title center" data-in data-i18n="ev_ways">三種加入方式</h2>
   <div class="bento" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr))">
-   <div class="tile" data-in><span class="ic">⚡</span><h3>加入 App</h3><p>在 Secalender App 中開啟日曆，勾選想要的場次再加入自己的行程。最推薦，不會被整份日曆洗版。</p></div>
-   <div class="tile" data-in style="--d:1"><span class="ic">📱</span><h3>系統訂閱</h3><p>以 webcal 開啟 iPhone／Mac 行事曆，整份訂閱並自動保持更新。</p></div>
-   <div class="tile" data-in style="--d:2"><span class="ic">🟦</span><h3>Google 日曆</h3><p>在 Google 日曆網頁版加入該公開日曆，跨裝置同步。</p></div>
+   <div class="tile" data-in><span class="ic">⚡</span><h3 data-i18n="ev_w1">加入 App</h3><p data-i18n="ev_w1d">在 Secalender App 中開啟日曆，勾選想要的場次再加入自己的行程。最推薦，不會被整份日曆洗版。</p></div>
+   <div class="tile" data-in style="--d:1"><span class="ic">📱</span><h3 data-i18n="ev_w2">系統訂閱</h3><p data-i18n="ev_w2d">以 webcal 開啟 iPhone／Mac 行事曆，整份訂閱並自動保持更新。</p></div>
+   <div class="tile" data-in style="--d:2"><span class="ic">🟦</span><h3 data-i18n="ev_w3">Google 日曆</h3><p data-i18n="ev_w3d">在 Google 日曆網頁版加入該公開日曆，跨裝置同步。</p></div>
   </div>
-  <p class="small center" style="margin-top:26px">想要的日曆還沒上線？<a href="mailto:linping@huodonli.com">來信許願</a>。</p>
+  <p class="small center" style="margin-top:26px" data-i18n="ev_wish">想要的日曆還沒上線？<a href="mailto:linping@huodonli.com">來信許願</a>。</p>
  </div>
 </section>
 

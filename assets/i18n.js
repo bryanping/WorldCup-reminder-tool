@@ -162,6 +162,8 @@ window.I18N=(function(){
     C:{TW:"Taiwan",HK:"Hongkong",CN:"China",JP:"Japan",US:"USA",FR:"Frankreich",ES:"Spanien",DE:"Deutschland"}
   }};
   S["zh-HK"]=S["zh-TW"];
+  /* 修改内容：外部补充字串（assets/i18n-ui.js），同名覆写 */
+  (function(){var EX=window.I18N_EXTRA||{};for(var l in EX){if(!S[l])S[l]={};for(var k in EX[l])S[l][k]=EX[l][k];}})();
 
   function detect(){
     var q=new URLSearchParams(location.search).get("region");
@@ -175,7 +177,7 @@ window.I18N=(function(){
   }
   var region=detect(),lang=REGIONS[region].lang,D=S[lang];
 
-  function t(k,v){var s=D[k]!=null?D[k]:(S["zh-TW"][k]||k);if(v)for(var x in v)s=s.split("{"+x+"}").join(v[x]);return s}
+  function t(k,v){var s=D[k]!=null?D[k]:((S.en&&S.en[k])||S["zh-TW"][k]||k);if(v)for(var x in v)s=s.split("{"+x+"}").join(v[x]);return s}
   function country(code){return (D.C||{})[code]||code}
   function apply(root){
     root=root||document;
@@ -185,6 +187,7 @@ window.I18N=(function(){
       if(el.dataset.i18nHtml!=null) el.innerHTML=t(k,v); else el.textContent=t(k,v);
     });
     /* 修改内容：整段内容区块（长文页用），缺该语系时退回英文、再退回繁中 */
+    root.querySelectorAll("[data-i18n-ph]").forEach(function(el){ el.placeholder=t(el.dataset.i18nPh); }); /* 修改内容：输入框提示文字 */
     root.querySelectorAll("[data-i18n-block]").forEach(function(el){
       var P=window.I18N_PAGES&&window.I18N_PAGES[el.dataset.i18nBlock];
       if(!P) return;

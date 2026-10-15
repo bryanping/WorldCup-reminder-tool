@@ -10,6 +10,7 @@
 <meta name="description" content="登入後在網頁檢視你的行程，對比好友與社群的公開行程，一鍵加入自己的行事曆。">
 <meta name="robots" content="noindex">
 <link rel="stylesheet" href="/assets/ui.css?v=2026101504">
+<script src="/assets/i18n-ui.js?v=2026101504"></script>
 <script src="/assets/i18n.js?v=2026101504"></script>
 </head>
 <body>
@@ -30,22 +31,22 @@
 
  <div class="in narrow" id="gate">
   <div class="gate">
-   <h1>登入以檢視你的日曆</h1>
-   <p>登入後可以看到自己的行程，並和好友、社群的公開行程並排對比，直接把想參加的加進自己的行事曆。</p>
-   <button class="btn" id="btnGoogle" type="button">使用 Google 登入</button>
-   <button class="btn quiet" id="btnApple" type="button">使用 Apple 登入</button>
-   <p class="note">與 Secalender App 同一組帳號。我們只讀取你自己的行程，以及好友設為公開的行程。</p>
+   <h1 data-i18n="cal_login_h">登入以檢視你的日曆</h1>
+   <p data-i18n="cal_login_p">登入後可以看到自己的行程，並和好友、社群的公開行程並排對比，直接把想參加的加進自己的行事曆。</p>
+   <button class="btn" id="btnGoogle" type="button" data-i18n="cal_google">使用 Google 登入</button>
+   <button class="btn quiet" id="btnApple" type="button" data-i18n="cal_apple">使用 Apple 登入</button>
+   <p class="note" data-i18n="cal_note">與 Secalender App 同一組帳號。我們只讀取你自己的行程，以及好友設為公開的行程。</p>
   </div>
  </div>
 
  <div class="in" id="calApp" hidden>
   <div class="calbar">
-   <h1 id="weekLabel">本週</h1>
+   <h1 id="weekLabel" data-i18n="cal_week">本週</h1>
    <span class="who" id="who"></span>
    <button class="icobtn" id="prevW" type="button" aria-label="上一週">‹</button>
-   <button class="btn quiet sm" id="todayW" type="button">今天</button>
+   <button class="btn quiet sm" id="todayW" type="button" data-i18n="cal_today">今天</button>
    <button class="icobtn" id="nextW" type="button" aria-label="下一週">›</button>
-   <button class="btn quiet sm" id="btnOut" type="button">登出</button>
+   <button class="btn quiet sm" id="btnOut" type="button" data-i18n="cal_logout">登出</button>
   </div>
 
   <p class="small" style="margin:-6px 0 14px">顯示你在 Secalender 的行程（含重複與跨日）。Apple／訂閱日曆匯入的行程預設只存在手機本機，需在 App 的「已匯入內容」開啟「同步匯入行程到雲端」才會出現在這裡。</p>
@@ -58,11 +59,11 @@
 
    <aside class="side">
     <div class="side-tabs">
-     <button class="side-tab on" data-t="friend" type="button">好友行程</button>
-     <button class="side-tab" data-t="group" type="button">社群行程</button>
+     <button class="side-tab on" data-t="friend" type="button" data-i18n="cal_friends">好友行程</button>
+     <button class="side-tab" data-t="group" type="button" data-i18n="cal_groups">社群行程</button>
     </div>
-    <div class="side-list" id="friendList"><p class="side-empty">載入中…</p></div>
-    <div class="side-list" id="groupList" hidden><p class="side-empty">載入中…</p></div>
+    <div class="side-list" id="friendList"><p class="side-empty" data-i18n="loading">載入中…</p></div>
+    <div class="side-list" id="groupList" hidden><p class="side-empty" data-i18n="loading">載入中…</p></div>
    </aside>
   </div>
  </div>

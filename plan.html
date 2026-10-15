@@ -20,6 +20,7 @@
 .state{color:var(--tx2);text-align:center;padding:60px 0;font-size:.95rem}
 .untimed .t{color:var(--tx3)}
 </style>
+<script src="/assets/i18n-ui.js?v=2026101504"></script>
 <script src="/assets/i18n.js?v=2026101504"></script>
 </head>
 <body>
@@ -41,16 +42,16 @@
   <div id="head" class="center"></div>
   <div id="addwrap" hidden>
    <div class="addbox">
-    <h3>加入你的行事曆</h3>
-    <p>下載 .ics 直接加入 iPhone、Google 或 Outlook；已安裝 App 可直接在 App 中開啟並確認。</p>
+    <h3 data-i18n="pl_add_h">加入你的行事曆</h3>
+    <p data-i18n="pl_add_p">下載 .ics 直接加入 iPhone、Google 或 Outlook；已安裝 App 可直接在 App 中開啟並確認。</p>
     <div class="actions">
-     <button class="btn" id="btnIcs" type="button">下載並加入行事曆</button>
-     <button class="btn quiet" id="btnApp" type="button">在 App 開啟</button>
+     <button class="btn" id="btnIcs" type="button" data-i18n="pl_dl">下載並加入行事曆</button>
+     <button class="btn quiet" id="btnApp" type="button" data-i18n="pl_open">在 App 開啟</button>
     </div>
-    <p class="hint">共 <b id="cnt">0</b> 個行程</p>
+    <p class="hint"><span data-i18n="pl_total">共</span> <b id="cnt">0</b> <span data-i18n="pl_items">個行程</span></p>
    </div>
   </div>
-  <div class="timeline" id="app"><div class="state">載入中…</div></div>
+  <div class="timeline" id="app"><div class="state" data-i18n="loading">載入中…</div></div>
  </div>
 </section>
 
