@@ -1,4 +1,4 @@
-/* 修改内容：功能页 UI 字串（i18n.js 之前载入；缺的语系自动退回英文） */
+/* 修改内容：功能页 UI 字串＋各页标题描述（i18n.js 之前载入；缺的语系自动退回英文） */
 window.I18N_EXTRA={
  "zh-TW": {
   "cal_login_h": "登入以檢視你的日曆",
@@ -44,7 +44,19 @@ window.I18N_EXTRA={
   "tp_items_note": "個行程 · iPhone 點開 .ics 後選擇要加入的行事曆；Android 可匯入 Google 日曆。",
   "tp_content": "行程內容",
   "tp_other": "其他模板",
-  "wc_join": "📲 加入 App"
+  "wc_join": "📲 加入 App",
+  "ttl_home": "Secalender — 行程，不用從空白開始",
+  "dsc_home": "現成的行程模板與公開活動，選一個開始日期，整份直接進你的行事曆。",
+  "ttl_support": "支援中心 · Secalender",
+  "dsc_support": "常見問題、帳號與資料處理、分享連結、AI 規劃、問題回報信箱 linping@huodonli.com。",
+  "ttl_cal": "我的日曆 · Secalender",
+  "dsc_cal": "登入後在網頁檢視你的行程，對比好友與社群的公開行程，一鍵加入自己的行事曆。",
+  "ttl_ev": "公開活動日曆 · 賽事、假日、發表會 | Secalender",
+  "dsc_ev": "公開活動日曆（ICS）：世界盃賽程、國定假日、月相、科技發表會。訂閱到 iPhone、Google 日曆，或用 App 逐場挑選。",
+  "ttl_privacy": "隱私權政策 · Secalender",
+  "ttl_terms": "服務條款 · Secalender",
+  "ttl_del": "刪除帳號 · Secalender",
+  "ttl_cg": "社群規範 · Secalender"
  },
  "zh-CN": {
   "cal_login_h": "登录以查看你的日历",
@@ -90,7 +102,19 @@ window.I18N_EXTRA={
   "tp_items_note": "个行程 · iPhone 打开 .ics 后选择要加入的日历；Android 可导入 Google 日历。",
   "tp_content": "行程内容",
   "tp_other": "其他模板",
-  "wc_join": "📲 加入 App"
+  "wc_join": "📲 加入 App",
+  "ttl_home": "Secalender — 行程，不用从空白开始",
+  "dsc_home": "现成的行程模板与公开活动，选一个开始日期，整份直接进你的日历。",
+  "ttl_support": "支持中心 · Secalender",
+  "dsc_support": "常见问题、账号与数据处理、分享链接、AI 规划、问题反馈邮箱 linping@huodonli.com。",
+  "ttl_cal": "我的日历 · Secalender",
+  "dsc_cal": "登录后在网页查看你的行程，对比好友与社群的公开行程，一键加入自己的日历。",
+  "ttl_ev": "公开活动日历 · 赛事、假日、发布会 | Secalender",
+  "dsc_ev": "公开活动日历（ICS）：世界杯赛程、法定节假日、月相、科技发布会。订阅到 iPhone、Google 日历，或用 App 逐场挑选。",
+  "ttl_privacy": "隐私政策 · Secalender",
+  "ttl_terms": "服务条款 · Secalender",
+  "ttl_del": "删除账号 · Secalender",
+  "ttl_cg": "社群规范 · Secalender"
  },
  "en": {
   "cal_login_h": "Sign in to see your calendar",
@@ -136,7 +160,19 @@ window.I18N_EXTRA={
   "tp_items_note": "events · On iPhone, open the .ics and choose a calendar; on Android, import it into Google Calendar.",
   "tp_content": "Itinerary",
   "tp_other": "Other templates",
-  "wc_join": "📲 Add in the app"
+  "wc_join": "📲 Add in the app",
+  "ttl_home": "Secalender — your schedule doesn't have to start from a blank page",
+  "dsc_home": "Ready-made itineraries and public events: pick a start date and the whole plan goes into your calendar.",
+  "ttl_support": "Support · Secalender",
+  "dsc_support": "FAQ, accounts and data, share links, AI planning, and how to report a problem: linping@huodonli.com.",
+  "ttl_cal": "My calendar · Secalender",
+  "dsc_cal": "Sign in to see your schedule on the web, compare it with friends' and communities' public events, and add them in one tap.",
+  "ttl_ev": "Public event calendars · fixtures, holidays, keynotes | Secalender",
+  "dsc_ev": "Public calendars (ICS): World Cup fixtures, public holidays, moon phases, tech keynotes. Subscribe on iPhone or Google Calendar, or pick sessions in the app.",
+  "ttl_privacy": "Privacy Policy · Secalender",
+  "ttl_terms": "Terms of Service · Secalender",
+  "ttl_del": "Delete your account · Secalender",
+  "ttl_cg": "Community Guidelines · Secalender"
  },
  "ja": {
   "cal_login_h": "サインインしてカレンダーを見る",
@@ -182,7 +218,19 @@ window.I18N_EXTRA={
   "tp_items_note": "件の予定 · iPhone では .ics を開いて追加先のカレンダーを選びます。Android では Google カレンダーに取り込めます。",
   "tp_content": "旅程の内容",
   "tp_other": "ほかのテンプレート",
-  "wc_join": "📲 アプリで追加"
+  "wc_join": "📲 アプリで追加",
+  "ttl_home": "Secalender — 予定は白紙から始めなくていい",
+  "dsc_home": "出来合いの旅程と公開イベント。開始日を選ぶだけで、まるごとカレンダーに入ります。",
+  "ttl_support": "サポート · Secalender",
+  "dsc_support": "よくある質問、アカウントとデータ、共有リンク、AI プランニング、不具合の報告先 linping@huodonli.com。",
+  "ttl_cal": "マイカレンダー · Secalender",
+  "dsc_cal": "サインインしてウェブで予定を確認し、友だちやコミュニティの公開イベントと見比べて、ワンタップで追加できます。",
+  "ttl_ev": "公開イベントカレンダー · 試合・祝日・発表会 | Secalender",
+  "dsc_ev": "公開カレンダー（ICS）：ワールドカップの日程、祝日、月相、技術発表会。iPhone や Google カレンダーで購読するか、アプリで 1 件ずつ選べます。",
+  "ttl_privacy": "プライバシーポリシー · Secalender",
+  "ttl_terms": "利用規約 · Secalender",
+  "ttl_del": "アカウントの削除 · Secalender",
+  "ttl_cg": "コミュニティガイドライン · Secalender"
  },
  "es": {
   "cal_login_h": "Inicia sesión para ver tu calendario",
@@ -228,6 +276,18 @@ window.I18N_EXTRA={
   "tp_items_note": "eventos · En iPhone, abre el .ics y elige el calendario; en Android, impórtalo en Google Calendar.",
   "tp_content": "Itinerario",
   "tp_other": "Otras plantillas",
-  "wc_join": "📲 Añadir en la app"
+  "wc_join": "📲 Añadir en la app",
+  "ttl_home": "Secalender — tu agenda no tiene que empezar en blanco",
+  "dsc_home": "Itinerarios listos y eventos públicos: elige una fecha y todo el plan entra en tu calendario.",
+  "ttl_support": "Soporte · Secalender",
+  "dsc_support": "Preguntas frecuentes, cuentas y datos, enlaces para compartir, planificación con IA y cómo informar de un problema: linping@huodonli.com.",
+  "ttl_cal": "Mi calendario · Secalender",
+  "dsc_cal": "Inicia sesión para ver tu agenda en la web, compararla con los eventos públicos de amigos y comunidades y añadirlos con un toque.",
+  "ttl_ev": "Calendarios de eventos públicos · partidos, festivos, presentaciones | Secalender",
+  "dsc_ev": "Calendarios públicos (ICS): partidos del Mundial, festivos, fases lunares y presentaciones tecnológicas. Suscríbete en iPhone o Google Calendar, o elige sesiones en la app.",
+  "ttl_privacy": "Política de privacidad · Secalender",
+  "ttl_terms": "Términos del servicio · Secalender",
+  "ttl_del": "Eliminar tu cuenta · Secalender",
+  "ttl_cg": "Normas de la comunidad · Secalender"
  }
 };

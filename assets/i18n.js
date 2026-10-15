@@ -182,6 +182,10 @@ window.I18N=(function(){
   function apply(root){
     root=root||document;
     document.documentElement.lang=lang; document.documentElement.dataset.region=region;
+    /* 修改内容：页面标题与描述也跟着语系 */
+    var dt=document.documentElement.dataset;
+    if(dt.i18nTitle) document.title=t(dt.i18nTitle);
+    if(dt.i18nDesc){ var m=document.querySelector('meta[name="description"]'); if(m) m.setAttribute("content",t(dt.i18nDesc)); }
     root.querySelectorAll("[data-i18n]").forEach(function(el){
       var k=el.dataset.i18n,v={region:country(region)};
       if(el.dataset.i18nHtml!=null) el.innerHTML=t(k,v); else el.textContent=t(k,v);
