@@ -64,7 +64,7 @@
 
   /* 模板卡片 */
   function tcard(t,go){
-    return '<a class="tcard" href="/template.html?id='+t.id+'">'+
+    return '<a class="tcard" href="/template?id='+t.id+'">'+
       '<div class="top" style="background:'+t.tint+'">'+t.icon+'</div>'+
       '<div class="body"><h3>'+t.title+'</h3><div class="meta">'+t.meta+'</div>'+
       (go?'<span class="go">檢視並加入 ›</span>':'')+'</div></a>';

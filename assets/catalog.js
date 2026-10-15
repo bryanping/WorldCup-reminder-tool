@@ -2,7 +2,7 @@
 /* type: page=站內專頁 · gcal_id=Google 公共日曆 · ics=外部 ics · soon=即將上線
    regions: 首頁依國家顯示（"*"=全部）；k/dk/ck: i18n 鍵（首頁多語用；events.html 仍用 title/desc/cat） */
 window.CATALOG=[
- {icon:"⚽",title:"2026 世界盃",k:"wc",dk:"wc_d",ck:"cat_sport",color:"#FF9500",cat:"運動",hot:"🔥 進行中熱門",desc:"美加墨 104 場完整賽程，逐場提醒、時區自動換算，可逐場加入 App。",type:"page",href:"/worldcup.html",regions:["*"]},
+ {icon:"⚽",title:"2026 世界盃",k:"wc",dk:"wc_d",ck:"cat_sport",color:"#FF9500",cat:"運動",hot:"🔥 進行中熱門",desc:"美加墨 104 場完整賽程，逐場提醒、時區自動換算，可逐場加入 App。",type:"page",href:"/worldcup",regions:["*"]},
  {icon:"🇹🇼",title:"台灣國定假日",k:"holiday",c:"TW",dk:"holiday_d",ck:"cat_holiday",color:"#34C759",cat:"假日",desc:"台灣國定假日與補班日，Google 官方公共日曆，自動更新。",type:"gcal_id",id:"zh_tw.taiwan#holiday@group.v.calendar.google.com",regions:["TW"]},
  {icon:"🇭🇰",title:"香港公眾假期",k:"holiday",c:"HK",dk:"holiday_d",ck:"cat_holiday",color:"#5856D6",cat:"假日",desc:"香港公眾假期公共日曆。",type:"gcal_id",id:"zh.hong_kong#holiday@group.v.calendar.google.com",regions:["HK"]},
  {icon:"🇨🇳",title:"中國法定節假日",k:"holiday",c:"CN",dk:"holiday_d",ck:"cat_holiday",color:"#FF3B30",cat:"假日",desc:"中國大陸法定節假日公共日曆。",type:"gcal_id",id:"zh.china#holiday@group.v.calendar.google.com",regions:["CN"]},
