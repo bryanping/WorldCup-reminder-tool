@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
 <title>Secalender 審核後台</title>
-<link rel="stylesheet" href="/assets/ui.css?v=2026101506">
+<link rel="stylesheet" href="/assets/ui.css?v=2026102101">
 <style>
   /* 修改内容：審核後台（admin 帳號登入）— 認證審核／公開活動下架 */
   body{background:var(--bg2)}
@@ -34,6 +34,19 @@
   textarea{width:100%;min-height:60px;border-radius:12px;border:1px solid var(--line);padding:10px;font:inherit;margin:8px 0}
   .muted{color:var(--tx2);font-size:.9rem}
   .empty{text-align:center;color:var(--tx3);padding:40px 0}
+  /* 修改内容：檢舉狀態篩選／用戶管理／稽核 */
+  .sub{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;align-items:center}
+  .sub .tab{padding:6px 12px;font-size:.82rem}
+  .search{display:flex;gap:8px;margin-bottom:14px}
+  .search input{flex:1;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font:inherit}
+  .pill.overdue{background:#d70015;color:#fff}
+  .mono{font-family:ui-monospace,Menlo,monospace;font-size:.8rem}
+  .ctx{background:#f7f7fb;border-radius:10px;padding:8px 10px;font-size:.8rem;white-space:pre-wrap;word-break:break-all}
+  /* 修改内容：帳號密碼登入表單 */
+  .login{max-width:360px}
+  .login h2{font-size:1.05rem;margin:0 0 12px}
+  .login input{width:100%;box-sizing:border-box;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font:inherit;margin-bottom:10px}
+  .login .err{color:#d70015}
 </style>
 </head>
 <body>
@@ -44,6 +57,18 @@
     <button id="loginBtn" class="btn">以 Google 登入</button>
     <button id="logoutBtn" class="btn ghost" hidden>登出</button>
   </div>
+
+  <!-- 修改内容：帳號密碼登入（管理員帳號） -->
+  <form id="pwForm" class="card login" autocomplete="on">
+    <h2>管理員登入</h2>
+    <input id="pwEmail" type="email" placeholder="Email" autocomplete="username" required>
+    <input id="pwPass" type="password" placeholder="密碼" autocomplete="current-password" required>
+    <div class="row">
+      <button id="pwBtn" class="btn" type="submit">登入</button>
+      <button id="pwReset" class="btn ghost" type="button">忘記密碼</button>
+    </div>
+    <p id="pwMsg" class="muted" hidden></p>
+  </form>
 
   <div id="denied" class="card" hidden>
     <p>此帳號不是管理者。請將以下 UID 加入 <code>roles/{uid}</code>（isAdmin: true）後重新登入：</p>
@@ -56,6 +81,8 @@
       <button class="tab" data-tab="decided">已審紀錄</button>
       <button class="tab" data-tab="listings">公開活動</button>
       <button class="tab" data-tab="reports">檢舉 <span id="cntReports"></span></button>
+      <button class="tab" data-tab="users">用戶管理</button>
+      <button class="tab" data-tab="audit">稽核紀錄</button>
     </div>
     <div id="panel"></div>
   </div>
@@ -66,7 +93,7 @@
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-functions-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-storage-compat.js"></script>
-<script src="/assets/fb.js?v=2026101506"></script>
+<script src="/assets/fb.js?v=2026102101"></script>
 <script>
 (function(){
   const app = firebase.initializeApp(window.FB_CONFIG);
@@ -83,6 +110,18 @@
 
   $("loginBtn").onclick = () => auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
   $("logoutBtn").onclick = () => auth.signOut();
+  // 修改内容：帳號密碼登入
+  const pwMsg = (t, err) => { const m = $("pwMsg"); m.hidden = !t; m.textContent = t || ""; m.classList.toggle("err", !!err); };
+  $("pwForm").onsubmit = async (e) => {
+    e.preventDefault(); pwMsg(""); $("pwBtn").disabled = true;
+    try { await auth.signInWithEmailAndPassword($("pwEmail").value.trim(), $("pwPass").value); }
+    catch (err) { pwMsg({"auth/invalid-credential":"帳號或密碼錯誤","auth/user-not-found":"帳號不存在","auth/wrong-password":"密碼錯誤","auth/too-many-requests":"嘗試次數過多，請稍後再試","auth/operation-not-allowed":"尚未在 Firebase 啟用 Email/Password 登入"}[err.code] || err.message, true); }
+    finally { $("pwBtn").disabled = false; }
+  };
+  $("pwReset").onclick = async () => {
+    const em = $("pwEmail").value.trim(); if (!em) { pwMsg("請先輸入 Email", true); return; }
+    try { await auth.sendPasswordResetEmail(em); pwMsg("重設密碼信已寄出"); } catch (err) { pwMsg(err.message, true); }
+  };
   document.querySelectorAll(".tab").forEach(b => b.onclick = () => {
     document.querySelectorAll(".tab").forEach(x => x.classList.remove("on"));
     b.classList.add("on"); tab = b.dataset.tab; render();
@@ -90,6 +129,7 @@
 
   auth.onAuthStateChanged(async (user) => {
     $("loginBtn").hidden = !!user; $("logoutBtn").hidden = !user;
+    $("pwForm").hidden = !!user;   // 修改内容
     $("who").textContent = user ? (user.email || user.uid) : "";
     $("app").hidden = true; $("denied").hidden = true;
     if (!user) return;
@@ -113,6 +153,8 @@
       if (tab === "pending") await renderPending(panel);
       else if (tab === "decided") await renderDecided(panel);
       else if (tab === "reports") await renderReports(panel);   // 修改内容：檢舉審核
+      else if (tab === "users") await renderUsers(panel);        // 修改内容：用戶管理
+      else if (tab === "audit") await renderAudit(panel);        // 修改内容：稽核紀錄
       else await renderListings(panel);
     } catch (e) {
       panel.innerHTML = '<p class="empty">載入失敗：' + esc(e.message) + '</p>';
@@ -262,35 +304,72 @@
     throw new Error("此類型無法下架");
   }
 
+  // 修改内容：檢舉分頁 — 狀態篩選、24 小時逾期標示、同一目標重複檢舉次數、原始 context
+  let reportFilter = "pending";
+  const RS = { pending: "待處理", actioned: "已處理", dismissed: "已駁回" };
+  const RA = { takedown: "下架", suspend: "停權", delete: "刪除帳號" };
+  const ago = (ts) => {
+    if (!ts || !ts.toDate) return "";
+    const h = (Date.now() - ts.toDate().getTime()) / 36e5;
+    return h < 1 ? Math.round(h * 60) + " 分鐘前" : h < 48 ? Math.round(h) + " 小時前" : Math.round(h / 24) + " 天前";
+  };
+  const isOverdue = (ts) => ts && ts.toDate && (Date.now() - ts.toDate().getTime()) > 24 * 36e5;
+
   async function renderReports(panel){
-    const snap = await db.collection("reports").where("status","==","pending").limit(200).get();
-    const docs = snap.docs.sort((a,b) => (b.get("createdAt")?.toMillis?.() || 0) - (a.get("createdAt")?.toMillis?.() || 0));
-    if (!docs.length) { panel.innerHTML = '<p class="empty">沒有待處理的檢舉</p>'; return; }
-    const names = {};
+    const snap = await db.collection("reports").where("status","==",reportFilter).limit(200).get();
+    const docs = snap.docs.sort((a,b) => (reportFilter === "pending" ? 1 : -1) * ((a.get("createdAt")?.toMillis?.() || 0) - (b.get("createdAt")?.toMillis?.() || 0)));
+    if (reportFilter === "pending") $("cntReports").textContent = docs.length ? "(" + docs.length + ")" : "";
+
+    const subHtml = '<div class="sub">' + Object.keys(RS).map(k =>
+      '<button class="tab' + (k === reportFilter ? " on" : "") + '" data-filter="' + k + '">' + RS[k] + '</button>').join("") +
+      '<span class="muted" style="margin-left:auto">UGC 檢舉需於 24 小時內處理</span></div>';
+
+    if (!docs.length) {
+      panel.innerHTML = subHtml + '<p class="empty">沒有' + RS[reportFilter] + '的檢舉</p>';
+      bindFilter(panel); return;
+    }
+
+    // 同一目標被檢舉次數（跨狀態）
+    const names = {}, repeat = {};
     for (const d of docs) {
       const x = d.data();
+      const key = x.type + ":" + x.targetId;
+      if (repeat[key] === undefined) {
+        try { const r = await db.collection("reports").where("type","==",x.type).where("targetId","==",x.targetId).limit(50).get(); repeat[key] = r.size; } catch { repeat[key] = 1; }
+      }
       for (const u of [x.reporterId, x.targetOwnerId, x.type === "user" ? x.targetId : null]) {
-        if (u && !names[u]) names[u] = await userName(u);
+        if (u && u !== "deleted_user" && !names[u]) names[u] = await userName(u);
       }
     }
-    panel.innerHTML = docs.map(d => {
+
+    panel.innerHTML = subHtml + docs.map(d => {
       const x = d.data();
       const subject = x.type === "user" ? x.targetId : (x.targetOwnerId || "");
+      const pend = x.status === "pending";
+      const rep = repeat[x.type + ":" + x.targetId] || 1;
       return '<div class="card" data-id="' + esc(d.id) + '"><div class="row">' +
         '<span class="pill">' + esc(RT[x.type] || x.type) + '</span>' +
         '<span class="pill warn">' + esc(RR[x.reason] || x.reason) + '</span>' +
-        '<strong style="flex:1">' + esc(x.targetId) + '</strong>' +
-        (x.type !== "user" ? '<button class="btn danger" data-act="takedown">下架</button>' : '') +
-        (subject ? '<button class="btn danger" data-act="suspend" data-uid="' + esc(subject) + '">停權</button>' : '') +
-        '<button class="btn" data-act="actioned">已處理</button>' +
-        '<button class="btn ghost" data-act="dismissed">駁回</button></div>' +
-        '<div class="kv">' +
-        '<b>檢舉人</b><span>' + esc(names[x.reporterId] || x.reporterId) + ' <span class="muted">(' + esc(x.reporterId) + ')</span></span>' +
-        (subject ? '<b>被檢舉者</b><span>' + esc(names[subject] || subject) + ' <span class="muted">(' + esc(subject) + ')</span></span>' : '') +
+        (pend && isOverdue(x.createdAt) ? '<span class="pill overdue">逾期 ' + esc(ago(x.createdAt)) + '</span>' : '<span class="muted">' + esc(ago(x.createdAt)) + '</span>') +
+        (rep > 1 ? '<span class="pill bad">此目標累計 ' + rep + ' 次檢舉</span>' : '') +
+        (!pend ? '<span class="pill ' + (x.status === "actioned" ? "ok" : "") + '">' + esc(RS[x.status]) + (x.action ? "・" + esc(RA[x.action] || x.action) : "") + '</span>' : '') +
+        '<strong style="flex:1" class="mono">' + esc(x.targetId) + '</strong>' +
+        (pend && x.type !== "user" ? '<button class="btn danger" data-act="takedown">下架</button>' : '') +
+        (pend && subject && subject !== "deleted_user" ? '<button class="btn danger" data-act="suspend" data-uid="' + esc(subject) + '">停權</button>' : '') +
+        (pend ? '<button class="btn" data-act="actioned">已處理</button><button class="btn ghost" data-act="dismissed">駁回</button>' : '<button class="btn ghost" data-act="reopen">重開</button>') +
+        '</div><div class="kv">' +
+        '<b>檢舉人</b><span>' + esc(names[x.reporterId] || x.reporterId) + ' <span class="muted mono">(' + esc(x.reporterId) + ')</span></span>' +
+        (subject ? '<b>被檢舉者</b><span>' + esc(names[subject] || subject) + ' <span class="muted mono">(' + esc(subject) + ')</span>' +
+          (subject !== "deleted_user" ? ' <a href="#" data-lookup="' + esc(subject) + '">查看用戶</a>' : '') + '</span>' : '') +
         (x.detail ? '<b>說明</b><span>' + esc(x.detail) + '</span>' : '') +
         (x.createdAt ? '<b>時間</b><span>' + esc(fmt(x.createdAt)) + '</span>' : '') +
+        (x.reviewedAt ? '<b>處理</b><span>' + esc(fmt(x.reviewedAt)) + '・' + esc(x.reviewedBy || "") + (x.reviewNote ? '・' + esc(x.reviewNote) : '') + '</span>' : '') +
+        (x.context ? '<b>內容資訊</b><span class="ctx">' + esc(JSON.stringify(x.context)) + '</span>' : '') +
         '</div></div>';
     }).join("");
+    bindFilter(panel);
+
+    panel.querySelectorAll("a[data-lookup]").forEach(a => a.onclick = (e) => { e.preventDefault(); openUser(a.dataset.lookup); });
 
     panel.querySelectorAll("button[data-act]").forEach(btn => btn.onclick = async () => {
       const card = btn.closest(".card");
@@ -298,12 +377,14 @@
       const ref = db.collection("reports").doc(card.dataset.id);
       const x = (await ref.get()).data();
       const me = auth.currentUser.uid;
+      const now = firebase.firestore.FieldValue.serverTimestamp();
       btn.disabled = true;
       try {
         if (act === "takedown") {
           if (!confirm("確定下架此內容？")) { btn.disabled = false; return; }
           const msg = await takedown(x);
-          await ref.update({ status: "actioned", action: "takedown", reviewedBy: me, reviewedAt: firebase.firestore.FieldValue.serverTimestamp() });
+          await ref.update({ status: "actioned", action: "takedown", reviewedBy: me, reviewedAt: now });
+          await bumpReportCount(x);
           alert(msg); card.remove(); return;
         }
         if (act === "suspend") {
@@ -311,13 +392,126 @@
           if (!note) { btn.disabled = false; return; }
           await fns.httpsCallable("adminSetLevelCap")({ uid: btn.dataset.uid, cap: 0, suspended: true, note });
           if (x.type !== "user") { try { await takedown(x); } catch {} }
-          await ref.update({ status: "actioned", action: "suspend", reviewedBy: me, reviewedAt: firebase.firestore.FieldValue.serverTimestamp(), reviewNote: note });
+          await ref.update({ status: "actioned", action: "suspend", reviewedBy: me, reviewedAt: now, reviewNote: note });
+          await bumpReportCount(x);
           card.remove(); return;
         }
-        await ref.update({ status: act, reviewedBy: me, reviewedAt: firebase.firestore.FieldValue.serverTimestamp() });
+        if (act === "reopen") {
+          await ref.update({ status: "pending", action: firebase.firestore.FieldValue.delete(), reviewedBy: firebase.firestore.FieldValue.delete(), reviewedAt: firebase.firestore.FieldValue.delete() });
+          card.remove(); return;
+        }
+        await ref.update({ status: act, reviewedBy: me, reviewedAt: now });
+        if (act === "actioned") await bumpReportCount(x);
         card.remove();
       } catch (e) { alert("失敗：" + e.message); btn.disabled = false; }
     });
+
+    function bindFilter(p){
+      p.querySelectorAll("button[data-filter]").forEach(b => b.onclick = () => { reportFilter = b.dataset.filter; render(); });
+    }
+  }
+
+  /** 成立的檢舉 → 被檢舉者 users.reportCount +1（verification 風險分數會讀） */
+  async function bumpReportCount(x){
+    const subject = x.type === "user" ? x.targetId : x.targetOwnerId;
+    if (!subject || subject === "deleted_user") return;
+    try { await db.collection("users").doc(subject).update({ reportCount: firebase.firestore.FieldValue.increment(1) }); } catch {}
+  }
+
+  // 修改内容：用戶管理 — 搜尋（UID／Email／用戶代碼）、停權／解除停權、刪除帳號
+  let userQuery = "";
+  function openUser(q){ userQuery = q; tab = "users";
+    document.querySelectorAll(".tab[data-tab]").forEach(x => x.classList.toggle("on", x.dataset.tab === "users")); render(); }
+
+  async function renderUsers(panel){
+    panel.innerHTML = '<div class="search"><input id="uq" placeholder="UID／Email／用戶代碼" value="' + esc(userQuery) + '"><button class="btn" id="uqBtn">查詢</button></div><div id="uRes"></div>';
+    const go = async () => {
+      userQuery = $("uq").value.trim(); if (!userQuery) return;
+      $("uRes").innerHTML = '<p class="empty">查詢中…</p>';
+      try {
+        const r = (await fns.httpsCallable("adminLookupUser")({ query: userQuery })).data;
+        $("uRes").innerHTML = r.found ? userCard(r) : '<p class="empty">找不到用戶</p>';
+        bindUserActions($("uRes"), r);
+      } catch (e) { $("uRes").innerHTML = '<p class="empty">查詢失敗：' + esc(e.message) + '</p>'; }
+    };
+    $("uqBtn").onclick = go; $("uq").onkeydown = (e) => { if (e.key === "Enter") go(); };
+    if (userQuery) go();
+  }
+
+  function userCard(r){
+    const a = r.auth || {}, p = r.profile || {};
+    const level = p.trustLevel === null || p.trustLevel === undefined ? "—" : "L" + p.trustLevel;
+    return '<div class="card"><div class="row">' +
+      '<strong style="flex:1">' + esc(p.name || a.email || r.uid) + '</strong>' +
+      '<span class="pill">' + esc(level) + '</span>' +
+      (p.suspended ? '<span class="pill bad">停權中</span>' : '<span class="pill ok">正常</span>') +
+      (a.disabled ? '<span class="pill bad">Auth 已停用</span>' : '') +
+      (p.isDeleted ? '<span class="pill warn">已申請刪除</span>' : '') +
+      (r.pendingReports ? '<span class="pill warn">待處理檢舉 ' + r.pendingReports + '</span>' : '') +
+      '</div><div class="kv">' +
+      '<b>UID</b><span class="mono">' + esc(r.uid) + '</span>' +
+      '<b>Email</b><span>' + esc(a.email || "—") + '</span>' +
+      '<b>手機</b><span>' + esc(a.phone || "—") + '</span>' +
+      '<b>用戶代碼</b><span>' + esc(p.userCode || "—") + '</span>' +
+      '<b>登入方式</b><span>' + esc((a.providers || []).join("、") || "—") + '</span>' +
+      '<b>建立</b><span>' + esc(a.createdAt || "—") + '</span>' +
+      '<b>最後登入</b><span>' + esc(a.lastSignIn || "—") + '</span>' +
+      '<b>累計檢舉</b><span>' + (p.reportCount || 0) + '</span>' +
+      '<b>等級上限</b><span>' + (p.adminLevelCap === null || p.adminLevelCap === undefined ? "無" : "L" + p.adminLevelCap) + '</span>' +
+      '</div><div class="row">' +
+      (p.suspended
+        ? '<button class="btn" data-uact="unsuspend">解除停權</button>'
+        : '<button class="btn danger" data-uact="suspend">停權</button>') +
+      '<button class="btn ghost" data-uact="reports">查看此用戶檢舉</button>' +
+      '<button class="btn danger" data-uact="delete" style="margin-left:auto">刪除帳號</button>' +
+      '</div></div>';
+  }
+
+  function bindUserActions(root, r){
+    root.querySelectorAll("button[data-uact]").forEach(btn => btn.onclick = async () => {
+      const act = btn.dataset.uact;
+      try {
+        if (act === "reports") { reportFilter = "pending"; tab = "reports";
+          document.querySelectorAll(".tab[data-tab]").forEach(x => x.classList.toggle("on", x.dataset.tab === "reports")); render(); return; }
+        if (act === "suspend") {
+          const note = prompt("停權原因（必填）", "違反社群規範"); if (!note) return;
+          btn.disabled = true;
+          await fns.httpsCallable("adminSetLevelCap")({ uid: r.uid, cap: 0, suspended: true, note });
+        } else if (act === "unsuspend") {
+          const note = prompt("解除停權原因（必填）", "申訴成立"); if (!note) return;
+          btn.disabled = true;
+          await fns.httpsCallable("adminSetLevelCap")({ uid: r.uid, cap: null, suspended: false, note });
+        } else if (act === "delete") {
+          if (!confirm("將永久刪除此帳號與全部資料（Auth + Firestore + Storage），無法復原。確定？")) return;
+          const note = prompt("刪除原因（必填）", ""); if (!note) return;
+          if (prompt("請輸入 DELETE 以確認") !== "DELETE") return;
+          btn.disabled = true;
+          await fns.httpsCallable("adminDeleteUser")({ uid: r.uid, note });
+          alert("已刪除，資料清理由 onUserDeleted 背景執行");
+          userQuery = ""; render(); return;
+        }
+        render();
+      } catch (e) { alert("失敗：" + e.message); btn.disabled = false; }
+    });
+  }
+
+  // 修改内容：稽核紀錄（audit_logs，僅管理者可讀）
+  async function renderAudit(panel){
+    const snap = await db.collection("audit_logs").orderBy("at","desc").limit(100).get();
+    if (snap.empty) { panel.innerHTML = '<p class="empty">尚無紀錄</p>'; return; }
+    panel.innerHTML = snap.docs.map(d => {
+      const x = d.data();
+      return '<div class="card"><div class="row"><span class="pill">' + esc(x.action) + '</span>' +
+        '<span class="muted">' + esc(fmt(x.at)) + '</span>' +
+        '<span class="muted mono" style="margin-left:auto">by ' + esc(x.actorUid) + '</span></div>' +
+        '<div class="kv">' +
+        (x.targetUid ? '<b>對象</b><span class="mono">' + esc(x.targetUid) + ' <a href="#" data-lookup="' + esc(x.targetUid) + '">查看</a></span>' : '') +
+        (x.note ? '<b>備註</b><span>' + esc(x.note) + '</span>' : '') +
+        (x.before ? '<b>變更前</b><span class="ctx">' + esc(JSON.stringify(x.before)) + '</span>' : '') +
+        (x.after ? '<b>變更後</b><span class="ctx">' + esc(JSON.stringify(x.after)) + '</span>' : '') +
+        '</div></div>';
+    }).join("");
+    panel.querySelectorAll("a[data-lookup]").forEach(a => a.onclick = (e) => { e.preventDefault(); openUser(a.dataset.lookup); });
   }
 })();
 </script>
