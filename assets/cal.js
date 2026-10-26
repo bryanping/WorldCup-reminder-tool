@@ -274,15 +274,80 @@
     });
   }
 
-  /* ---------- 週視圖 ---------- */
-  var H0=6, H1=24, PXH=44;
+  /* ---------- 週視圖（修改内容：对齐 Apple 行事历 — 整日列 + 24 小时时间轴 + 重叠并排 + 各自颜色） ---------- */
+  var H0=0, H1=24, PXH=44, scrolled=false;
+  var WD=['日','一','二','三','四','五','六'];
+
+  function normColor(c){
+    c=String(c||'').trim();
+    if(!c) return '#0071e3';
+    if(c.charAt(0)!=='#') c='#'+c;
+    return /^#[0-9a-fA-F]{6}$/.test(c)?c:'#0071e3';
+  }
+  function rgb(hex){return [parseInt(hex.substr(1,2),16),parseInt(hex.substr(3,2),16),parseInt(hex.substr(5,2),16)]}
+  function lum(hex){var c=rgb(hex);return (0.299*c[0]+0.587*c[1]+0.114*c[2])/255}
+  function tint(hex,a){var c=rgb(hex);return 'rgba('+c[0]+','+c[1]+','+c[2]+','+a+')'}
+  function paint(ev,cls){
+    var c=normColor(ev.color);
+    if(cls==='other') return 'background:'+tint(c,.14)+';color:'+c+';border:1px dashed '+tint(c,.55)+';';
+    return 'background:'+c+';color:'+(lum(c)>.68?'#1a1a1a':'#fff')+';';
+  }
+
+  /* 重叠的行程并排显示 */
+  function layout(list){
+    list.sort(function(a,b){return (a.s-b.s)||(b.e-a.e)});
+    var groups=[],cur=[],curEnd=-1;
+    list.forEach(function(ev){
+      if(cur.length&&ev.s>=curEnd){groups.push(cur);cur=[];curEnd=-1}
+      cur.push(ev);curEnd=Math.max(curEnd,ev.e);
+    });
+    if(cur.length) groups.push(cur);
+    groups.forEach(function(g){
+      var ends=[];
+      g.forEach(function(ev){
+        var k=0;
+        while(k<ends.length&&ends[k]>ev.s) k++;
+        if(k===ends.length) ends.push(ev.e); else ends[k]=ev.e;
+        ev._col=k;
+      });
+      g.forEach(function(ev){ev._cols=ends.length});
+    });
+    return list;
+  }
+
+  function block(ev,cls){
+    var top=(Math.max(ev.s,H0*60)-H0*60)/60*PXH,
+        hgt=Math.max(18,(Math.min(ev.e,H1*60)-Math.max(ev.s,H0*60))/60*PXH-2),
+        n=ev._cols||1, k=ev._col||0, w=100/n;
+    return '<div class="ev '+cls+'" title="'+esc(ev.title)+'" style="top:'+top+'px;height:'+hgt+'px;'+
+      'left:calc('+(w*k)+'% + 2px);width:calc('+w+'% - 4px);'+paint(ev,cls)+'">'+
+      '<b>'+(ev.repeating?'↻ ':'')+esc(ev.title)+'</b>'+
+      '<i>'+hm(ev.s)+(ev.src.kind!=='me'?' · '+esc(ev.src.name):'')+'</i></div>';
+  }
+  function chip(ev,cls){
+    return '<div class="adchip '+cls+'" title="'+esc(ev.title)+'" style="'+paint(ev,cls)+'">'+
+      (ev.repeating?'↻ ':'')+esc(ev.title)+'</div>';
+  }
+
   function drawGrid(){
-    var head='', body='', i, h;
+    var head='',ad='',body='',i,h,todayISO=iso(new Date());
     for(i=0;i<7;i++){
-      var d=addD(weekStart,i), today=iso(d)===iso(new Date());
-      head+='<div class="col-h'+(today?' today':'')+'"><span>'+['日','一','二','三','四','五','六'][i]+'</span><b>'+d.getDate()+'</b></div>';
+      var d=addD(weekStart,i), today=iso(d)===todayISO;
+      head+='<div class="col-h'+(today?' today':'')+'"><span>'+WD[i]+'</span><b>'+d.getDate()+'</b></div>';
     }
     $('gridHead').innerHTML='<div class="col-h gutter"></div>'+head;
+
+    /* 整日行程：独立一列，不再压在时间轴上 */
+    var alld=myEvents.filter(function(e){return e.allDay}).map(function(e){return {ev:e,cls:'mine'}})
+      .concat(otherEvents.filter(function(e){return e.allDay}).map(function(e){return {ev:e,cls:'other'}}));
+    ad='<div class="ad-gutter">'+((window.I18N&&I18N.t('cal_allday'))||'整日')+'</div>';
+    for(i=0;i<7;i++){
+      var dayA=iso(addD(weekStart,i));
+      ad+='<div class="ad-cell">'+alld.filter(function(x){return x.ev.date===dayA})
+        .map(function(x){return chip(x.ev,x.cls)}).join('')+'</div>';
+    }
+    var adEl=$('gridAllday');
+    if(adEl){adEl.innerHTML=ad;adEl.hidden=!alld.length}
 
     var hours='';
     for(h=H0;h<H1;h++) hours+='<div class="hr"><span>'+('0'+h).slice(-2)+':00</span></div>';
@@ -290,18 +355,20 @@
     for(i=0;i<7;i++){
       var day=iso(addD(weekStart,i)), cells='';
       for(h=H0;h<H1;h++) cells+='<div class="cell"></div>';
-      var evs=myEvents.filter(function(e){return e.date===day}).map(function(e){return block(e,'mine')})
-        .concat(otherEvents.filter(function(e){return e.date===day}).map(function(e){return block(e,'other')}));
-      body+='<div class="col">'+cells+evs.join('')+'</div>';
+      var timed=layout(
+        myEvents.filter(function(e){return !e.allDay&&e.date===day}).map(function(e){var o=Object.assign({},e);o._cls='mine';return o})
+        .concat(otherEvents.filter(function(e){return !e.allDay&&e.date===day}).map(function(e){var o=Object.assign({},e);o._cls='other';return o}))
+      );
+      var now='';
+      if(day===todayISO){
+        var nd=new Date(), nm=nd.getHours()*60+nd.getMinutes();
+        if(nm>=H0*60&&nm<=H1*60) now='<div class="nowline" style="top:'+((nm-H0*60)/60*PXH)+'px"></div>';
+      }
+      body+='<div class="col'+(day===todayISO?' is-today':'')+'">'+cells+
+        timed.map(function(e){return block(e,e._cls)}).join('')+now+'</div>';
     }
     $('gridBody').innerHTML=body;
-  }
-  function block(ev,cls){
-    var top=(Math.max(ev.s,H0*60)-H0*60)/60*PXH,
-        hgt=Math.max(20,(Math.min(ev.e,H1*60)-Math.max(ev.s,H0*60))/60*PXH-3);
-    return '<div class="ev '+cls+(ev.allDay?' allday':'')+'" style="top:'+top+'px;height:'+hgt+'px">'+
-      '<b>'+(ev.repeating?'↻ ':'')+esc(ev.title)+'</b>'+
-      '<i>'+(ev.allDay?'整日':hm(ev.s))+(ev.src.kind!=='me'?' · '+esc(ev.src.name):'')+'</i></div>';
+    if(!scrolled){scrolled=true;var gb=$('gridBody');if(gb) gb.scrollTop=Math.max(0,(8-H0)*PXH-12)}
   }
 
   /* ---------- 週切換 / 分頁 ---------- */
@@ -315,5 +382,9 @@
       $('groupList').hidden=t.dataset.t!=='group';
     });
   });
+  /* 修改内容：?demo=1 时可注入假资料预览版面（不影响正常使用） */
+  if(location.search.indexOf('demo=1')>-1){
+    window.__calDemo=function(mine,other){myEvents=mine||[];otherEvents=other||[];drawGrid()};
+  }
   drawGrid();
 })();

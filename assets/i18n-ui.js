@@ -56,7 +56,8 @@ window.I18N_EXTRA={
   "ttl_privacy": "隱私權政策 · Secalender",
   "ttl_terms": "服務條款 · Secalender",
   "ttl_del": "刪除帳號 · Secalender",
-  "ttl_cg": "社群規範 · Secalender"
+  "ttl_cg": "社群規範 · Secalender",
+  "cal_allday": "整日"
  },
  "zh-CN": {
   "cal_login_h": "登录以查看你的日历",
@@ -114,7 +115,8 @@ window.I18N_EXTRA={
   "ttl_privacy": "隐私政策 · Secalender",
   "ttl_terms": "服务条款 · Secalender",
   "ttl_del": "删除账号 · Secalender",
-  "ttl_cg": "社群规范 · Secalender"
+  "ttl_cg": "社群规范 · Secalender",
+  "cal_allday": "全天"
  },
  "en": {
   "cal_login_h": "Sign in to see your calendar",
@@ -172,7 +174,8 @@ window.I18N_EXTRA={
   "ttl_privacy": "Privacy Policy · Secalender",
   "ttl_terms": "Terms of Service · Secalender",
   "ttl_del": "Delete your account · Secalender",
-  "ttl_cg": "Community Guidelines · Secalender"
+  "ttl_cg": "Community Guidelines · Secalender",
+  "cal_allday": "All-day"
  },
  "ja": {
   "cal_login_h": "サインインしてカレンダーを見る",
@@ -230,7 +233,8 @@ window.I18N_EXTRA={
   "ttl_privacy": "プライバシーポリシー · Secalender",
   "ttl_terms": "利用規約 · Secalender",
   "ttl_del": "アカウントの削除 · Secalender",
-  "ttl_cg": "コミュニティガイドライン · Secalender"
+  "ttl_cg": "コミュニティガイドライン · Secalender",
+  "cal_allday": "終日"
  },
  "es": {
   "cal_login_h": "Inicia sesión para ver tu calendario",
@@ -288,6 +292,7 @@ window.I18N_EXTRA={
   "ttl_privacy": "Política de privacidad · Secalender",
   "ttl_terms": "Términos del servicio · Secalender",
   "ttl_del": "Eliminar tu cuenta · Secalender",
-  "ttl_cg": "Normas de la comunidad · Secalender"
+  "ttl_cg": "Normas de la comunidad · Secalender",
+  "cal_allday": "Todo el día"
  }
 };

@@ -199,8 +199,9 @@ details.qa p{margin-top:10px;font-size:.92rem}
 @media(max-width:900px){.calwrap{grid-template-columns:1fr}}
 
 .gridcard{background:#fff;border-radius:var(--r-m);box-shadow:var(--sh);overflow:hidden}
-.grid-h{display:grid;grid-template-columns:52px repeat(7,minmax(0,1fr));border-bottom:1px solid var(--line2);
-  position:sticky;top:var(--nav-h);background:rgba(255,255,255,.92);backdrop-filter:blur(12px);z-index:4}
+/* 修改内容：星期列与整日列一起吸顶，整日列不再被盖住 */
+.grid-top{position:sticky;top:var(--nav-h);z-index:4;background:rgba(255,255,255,.92);backdrop-filter:blur(12px)}
+.grid-h{display:grid;grid-template-columns:52px repeat(7,minmax(0,1fr));border-bottom:1px solid var(--line2)}
 .col-h{padding:9px 4px;text-align:center;font-size:.72rem;color:var(--tx3)}
 .col-h b{display:block;font-size:1.02rem;color:var(--tx);font-weight:500;margin-top:2px}
 .col-h.today b{background:var(--ac);color:#fff;border-radius:50%;width:26px;height:26px;line-height:26px;margin:2px auto 0}
@@ -211,11 +212,22 @@ details.qa p{margin-top:10px;font-size:.92rem}
 .grid-b .col{position:relative;border-right:1px solid var(--line2)}
 .grid-b .col:last-child{border-right:0}
 .grid-b .cell{height:44px;border-bottom:1px solid var(--line2)}
-.ev{position:absolute;left:3px;right:3px;border-radius:7px;padding:4px 6px;overflow:hidden;font-size:.72rem;line-height:1.25}
-.ev b{display:block;font-weight:600}
-.ev i{font-style:normal;opacity:.75;font-size:.66rem}
-.ev.mine{background:#0071e3;color:#fff}
-.ev.other{background:rgba(0,113,227,.12);color:#0a4fa0;border:1px dashed rgba(0,113,227,.55)}
+/* 修改内容：整日行程独立一列（对齐 Apple 行事历） */
+.grid-ad{display:grid;grid-template-columns:52px repeat(7,minmax(0,1fr));border-bottom:1px solid var(--line2);background:var(--bg2)}
+.grid-ad .ad-gutter{font-size:.66rem;color:var(--tx3);padding:6px 6px 6px 0;text-align:right;border-right:1px solid var(--line2)}
+.grid-ad .ad-cell{min-height:26px;padding:4px;border-right:1px solid var(--line2);display:flex;flex-direction:column;gap:3px}
+.grid-ad .ad-cell:last-child{border-right:0}
+.adchip{border-radius:980px;padding:2px 9px;font-size:.7rem;line-height:1.4;font-weight:500;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* 行程区块：颜色跟著行程本身，重叠时并排 */
+.ev{position:absolute;left:2px;width:calc(100% - 4px);border-radius:7px;padding:3px 6px;overflow:hidden;
+  font-size:.72rem;line-height:1.25;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.ev b{display:block;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ev i{font-style:normal;opacity:.8;font-size:.66rem}
+.grid-b .col.is-today{background:rgba(0,113,227,.04)}
+.nowline{position:absolute;left:0;right:0;height:2px;background:#ff3b30;z-index:3;pointer-events:none}
+.nowline::before{content:"";position:absolute;left:-4px;top:-3px;width:8px;height:8px;border-radius:50%;background:#ff3b30}
 
 .side{background:#fff;border-radius:var(--r-m);box-shadow:var(--sh);padding:16px;position:sticky;top:calc(var(--nav-h) + 16px)}
 .side-tabs{display:flex;gap:6px;margin-bottom:14px}
