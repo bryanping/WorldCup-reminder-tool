@@ -4,7 +4,7 @@ window.I18N_PAGES={
     "zh-TW":`<p class="lead">找不到答案？來信 <a href="mailto:linping@huodonli.com">linping@huodonli.com</a>，我們會在 2 個工作日內回覆。</p>
 
 <h2>安裝與帳號</h2>
-<details class="qa"><summary>如何取得 Secalender App？</summary><p>目前為 iOS TestFlight 公測版：<a href="https://testflight.apple.com/join/K3JKca9n">加入 TestFlight</a>。App Store 正式版上架準備中。網頁版可於 <a href="https://huodonli.com/login">huodonli.com/login</a> 登入。</p></details>
+<details class="qa"><summary>如何取得 Secalender App？</summary><p>iOS 版已在 App Store 上架：<a href="https://apps.apple.com/tw/app/secalender/id6743923504">前往 App Store 下載</a>。網頁版可於 <a href="https://huodonli.com/login">huodonli.com/login</a> 登入。</p></details>
 <details class="qa"><summary>支援哪些登入方式？</summary><p>Apple 登入、電子郵件，以及活動曆帳號。同一帳號在 App 與網頁版資料同步。</p></details>
 <details class="qa"><summary>如何刪除帳號與所有資料？</summary><p>App 內「我的 → 設定 → 帳號 → 刪除帳號」即可提交；也可來信申請。刪除後行程、好友關係與 AI 規劃紀錄將於 30 日內從生產環境移除。詳見<a href="/delete-account">帳號刪除說明</a>。</p></details>
 
@@ -31,7 +31,7 @@ window.I18N_PAGES={
     "zh-CN":`<p class="lead">找不到答案？来信 <a href="mailto:linping@huodonli.com">linping@huodonli.com</a>，我们会在 2 个工作日内回复。</p>
 
 <h2>安装与账号</h2>
-<details class="qa"><summary>如何获取 Secalender App？</summary><p>目前为 iOS TestFlight 公测版：<a href="https://testflight.apple.com/join/K3JKca9n">加入 TestFlight</a>。App Store 正式版上架准备中。网页版可在 <a href="https://huodonli.com/login">huodonli.com/login</a> 登录。</p></details>
+<details class="qa"><summary>如何获取 Secalender App？</summary><p>iOS 版已在 App Store 上架：<a href="https://apps.apple.com/tw/app/secalender/id6743923504">前往 App Store 下载</a>。网页版可在 <a href="https://huodonli.com/login">huodonli.com/login</a> 登录。</p></details>
 <details class="qa"><summary>支持哪些登录方式？</summary><p>Apple 登录、电子邮件，以及活动历账号。同一账号在 App 与网页版数据同步。</p></details>
 <details class="qa"><summary>如何删除账号与所有数据？</summary><p>App 内「我的 → 设置 → 账号 → 删除账号」即可提交；也可来信申请。删除后行程、好友关系与 AI 规划记录将在 30 日内从生产环境移除。详见<a href="/delete-account">账号删除说明</a>。</p></details>
 
@@ -58,7 +58,7 @@ window.I18N_PAGES={
     "en":`<p class="lead">Can't find an answer? Email <a href="mailto:linping@huodonli.com">linping@huodonli.com</a> and we'll reply within 2 business days.</p>
 
 <h2>Install &amp; account</h2>
-<details class="qa"><summary>How do I get the Secalender app?</summary><p>It is currently in public beta on iOS TestFlight: <a href="https://testflight.apple.com/join/K3JKca9n">join TestFlight</a>. The App Store release is in preparation. The web version is at <a href="https://huodonli.com/login">huodonli.com/login</a>.</p></details>
+<details class="qa"><summary>How do I get the Secalender app?</summary><p>The iOS app is available on the App Store: <a href="https://apps.apple.com/tw/app/secalender/id6743923504">download on the App Store</a>. The web version is at <a href="https://huodonli.com/login">huodonli.com/login</a>.</p></details>
 <details class="qa"><summary>Which sign-in methods are supported?</summary><p>Sign in with Apple, email, and a Huodonli account. The same account keeps the app and the web version in sync.</p></details>
 <details class="qa"><summary>How do I delete my account and all my data?</summary><p>In the app: Me → Settings → Account → Delete account. You can also request it by email. Events, friend connections and AI planning records are removed from production within 30 days. See the <a href="/delete-account">account deletion page</a>.</p></details>
 
@@ -85,7 +85,7 @@ window.I18N_PAGES={
     "ja":`<p class="lead">答えが見つからない場合は <a href="mailto:linping@huodonli.com">linping@huodonli.com</a> までご連絡ください。2 営業日以内に返信します。</p>
 
 <h2>インストールとアカウント</h2>
-<details class="qa"><summary>Secalender アプリはどこで入手できますか？</summary><p>現在 iOS の TestFlight でパブリックベータを公開しています：<a href="https://testflight.apple.com/join/K3JKca9n">TestFlight に参加</a>。App Store 版は準備中です。ウェブ版は <a href="https://huodonli.com/login">huodonli.com/login</a> からご利用いただけます。</p></details>
+<details class="qa"><summary>Secalender アプリはどこで入手できますか？</summary><p>iOS 版は App Store で公開中です：<a href="https://apps.apple.com/tw/app/secalender/id6743923504">App Store でダウンロード</a>。ウェブ版は <a href="https://huodonli.com/login">huodonli.com/login</a> からご利用いただけます。</p></details>
 <details class="qa"><summary>どのログイン方法に対応していますか？</summary><p>Apple でサインイン、メールアドレス、Huodonli アカウントに対応しています。同じアカウントならアプリとウェブ版でデータが同期されます。</p></details>
 <details class="qa"><summary>アカウントとデータを削除するには？</summary><p>アプリの「マイページ → 設定 → アカウント → アカウント削除」から申請できます。メールでの申請も可能です。予定・友だち関係・AI の作成履歴は 30 日以内に本番環境から削除されます。詳しくは<a href="/delete-account">アカウント削除の説明</a>をご覧ください。</p></details>
 
@@ -112,7 +112,7 @@ window.I18N_PAGES={
     "es":`<p class="lead">¿No encuentras la respuesta? Escríbenos a <a href="mailto:linping@huodonli.com">linping@huodonli.com</a> y te responderemos en 2 días laborables.</p>
 
 <h2>Instalación y cuenta</h2>
-<details class="qa"><summary>¿Cómo consigo la app de Secalender?</summary><p>Ahora mismo está en beta pública en TestFlight para iOS: <a href="https://testflight.apple.com/join/K3JKca9n">unirse a TestFlight</a>. La versión de la App Store está en preparación. La versión web está en <a href="https://huodonli.com/login">huodonli.com/login</a>.</p></details>
+<details class="qa"><summary>¿Cómo consigo la app de Secalender?</summary><p>La app para iOS ya está en la App Store: <a href="https://apps.apple.com/tw/app/secalender/id6743923504">descargar en la App Store</a>. La versión web está en <a href="https://huodonli.com/login">huodonli.com/login</a>.</p></details>
 <details class="qa"><summary>¿Qué formas de inicio de sesión admite?</summary><p>Iniciar sesión con Apple, correo electrónico y cuenta de Huodonli. Con la misma cuenta, la app y la web mantienen los datos sincronizados.</p></details>
 <details class="qa"><summary>¿Cómo elimino mi cuenta y todos mis datos?</summary><p>En la app: Yo → Ajustes → Cuenta → Eliminar cuenta. También puedes solicitarlo por correo. Los eventos, las conexiones con amigos y el historial de planificación con IA se eliminan de producción en un plazo de 30 días. Consulta la <a href="/delete-account">página de eliminación de cuenta</a>.</p></details>
 

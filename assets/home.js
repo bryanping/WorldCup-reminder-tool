@@ -12,7 +12,7 @@
   })();
 
   var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var TF='https://testflight.apple.com/join/K3JKca9n';
+  var TF='https://apps.apple.com/tw/app/secalender/id6743923504';
   var I=window.I18N, T=I?I.t:function(k){return k}; // 修改内容
   if(I) I.apply(); // 修改内容：套用字串 + 建立國家切換器
   function esc(s){var d=document.createElement('div');d.textContent=s==null?'':s;return d.innerHTML}
