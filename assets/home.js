@@ -12,8 +12,8 @@
   })();
 
   var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var TF='https://apps.apple.com/tw/app/secalender/id6743923504';
   var I=window.I18N, T=I?I.t:function(k){return k}; // 修改内容
+  var TF=(I&&I.APP_STORE)||'https://apps.apple.com/tw/app/secalender/id6743923504'; // 修改内容：依國家／地區對應 App Store
   if(I) I.apply(); // 修改内容：套用字串 + 建立國家切換器
   function esc(s){var d=document.createElement('div');d.textContent=s==null?'':s;return d.innerHTML}
 

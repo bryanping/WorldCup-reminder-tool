@@ -176,6 +176,10 @@ window.I18N=(function(){
     return "TW";
   }
   var region=detect(),lang=REGIONS[region].lang,D=S[lang];
+  /* 修改内容：App Store 依國家／地區對應商店；語言由該商店自動決定 */
+  var STORE={TW:"tw",HK:"hk",CN:"cn",JP:"jp",US:"us",FR:"fr",ES:"es",DE:"de"};
+  var APP_ID="id6743923504";
+  function appStore(c){return "https://apps.apple.com/"+(STORE[c||region]||"tw")+"/app/secalender/"+APP_ID}
 
   function t(k,v){var s=D[k]!=null?D[k]:((S.en&&S.en[k])||S["zh-TW"][k]||k);if(v)for(var x in v)s=s.split("{"+x+"}").join(v[x]);return s}
   function country(code){return (D.C||{})[code]||code}
@@ -192,6 +196,8 @@ window.I18N=(function(){
     });
     /* 修改内容：整段内容区块（长文页用），缺该语系时退回英文、再退回繁中 */
     root.querySelectorAll("[data-i18n-ph]").forEach(function(el){ el.placeholder=t(el.dataset.i18nPh); }); /* 修改内容：输入框提示文字 */
+    /* 修改内容：所有 App Store 下載連結改指向目前國家／地區的商店 */
+    root.querySelectorAll('a[href*="apps.apple.com"]').forEach(function(a){ a.href=appStore(); });
     root.querySelectorAll("[data-i18n-block]").forEach(function(el){
       var P=window.I18N_PAGES&&window.I18N_PAGES[el.dataset.i18nBlock];
       if(!P) return;
@@ -214,7 +220,7 @@ window.I18N=(function(){
     history.replaceState(null,"",u.pathname+u.search+u.hash);
     location.reload();
   }
-  return {REGIONS:REGIONS,region:region,lang:lang,t:t,country:country,apply:apply,set:set};
+  return {REGIONS:REGIONS,region:region,lang:lang,t:t,country:country,apply:apply,set:set,appStore:appStore,APP_STORE:appStore()};
 })();
 
 /* 修改内容：每个载入 i18n.js 的页面自动套用字串（index 由 home.js 另外呼叫一次，重复套用无害） */
